@@ -114,7 +114,6 @@ export const fruktData: ServicePageData = {
       proof:
         "En ltt annerledes fruktkurv. Vi tilbyr abonnement på næringsrike og ferske smoothies, laget fra bunnen av på vårt eget kjøkken og satt rett i deres kjøleskap.",
       layout: "feature",
-      reverse: true,
       items: [
         {
           name: "Jobbsmoothie",
@@ -292,25 +291,26 @@ export const fruktData: ServicePageData = {
           items: [
             "Gjenbrukskurver brukes til alle leveranser.",
             "Bilparken er nøye planlagt i forhold til utslipp.",
-            "Alt avfall kildesorteres: Frukt som sorteres ut av vår strenge kvalitetskontroll, men som fremdeles er brukbar, blir gitt bort til lokale barnehager og organisasjoner. Frukt som ikke lenger kan benyttes gis bort som heste- og grisefôr, eller gjenvinnes som biogass.",
+            "Alt avfall kildesorteres: Frukt som sorteres ut av vår strenge kvalitetskontroll, men som fremdeles er brukbar, blir gitt bort til lokale barnehager og organisasjoner, deriblant Blå Kors og Fattighuset i Oslo. Frukt som ikke lenger kan benyttes gis bort som heste- og grisefôr, eller gjenvinnes som biogass.",
             "Økologisk frukt blir benyttet såfremt det er tilgjengelig.",
+            "Vi er veldig for norsk frukt, og bruker det så godt det går i sesongen, så lenge kvaliteten og holdbarheten er god nok.",
           ],
         },
       ],
     },
 
     {
-      slug: "gokurven",
-      title: "Go'kurven",
+      slug: "hverdagskurven",
+      title: "Hverdagskurven",
       variantOf: "fruktkurver",
       description:
-        "Go'kurven™ er vårt mest populære alternativ, da den er både rimelig, variert og spennende.",
-      image: gokurvenImg,
+        "Den perfekte fruktkurven for dere som ønsker å oppnå helsefordelen ved å benytte frukt og samtidig holde prisen på det minimale.",
+      image: hverdagskurvenImg,
       content: [
         {
           type: "text",
           paragraphs: [
-            "Go'kurven™ er vårt mest populære alternativ, da den er både rimelig, variert og spennende. Dere får friske fruktkurver bestående av eple, sitrus, banan, pære, drue, plomme og nektarin, variert etter sesong og tilgang. I tillegg får dere en gang i blant nøtter, cherrytomater eller eksotisk frukt som en hyggelig overraskelse.",
+            "Den perfekte fruktkurven for dere som ønsker å oppnå helsefordelen ved frukt til en lav pris. Hverdagskurven består av tre ulike typer basefrukt, der det varieres mellom eple, pære, banan og sitrus",
             "Leveres i kurver à ca. 6 kg, 9 kg og 15 kg.",
           ],
         },
@@ -327,24 +327,24 @@ export const fruktData: ServicePageData = {
         {
           type: "text",
           paragraphs: [
-            "Et sunt og spennende alternativ som er skapt for kos. Inneholder epler, pærer, bananer, sitrus, druer, minigulrøtter, cherrytomater, reddiker, sukkererter og nøtter. Ønsker dere en fruktkurv med masse spennende innhold, er dette kurven for dere!",
+            "Et sunt og spennende alternativ som er skapt for kos. Knaskekurven har et fast innslag av epler, pærer, bananer, druer, knaskerøtter og cherrytomater, og varierer etter sesongen med plommer, klementiner, blåbær, reddiker og sukkererter. Ønsker dere en fruktkurv med masse spennende innhold, er dette kurven for dere!",
             "Leveres i kurver à ca. 5,5 kg og 8 kg."
           ],
         },
       ],
     },
     {
-      slug: "hverdagskurven",
-      title: "Hverdagskurven",
+      slug: "gokurven",
+      title: "Go'kurven",
       variantOf: "fruktkurver",
       description:
-        "Den perfekte fruktkurven for dere som ønsker å oppnå helsefordelen ved å benytte frukt og samtidig holde prisen på det minimale.",
-      image: hverdagskurvenImg,
+        "Go'kurven™ er vårt mest populære alternativ, da den er både rimelig, variert og spennende.",
+      image: gokurvenImg,
       content: [
         {
           type: "text",
           paragraphs: [
-            "Den perfekte fruktkurven for dere som ønsker å oppnå helsefordelen ved frukt til en lav pris. Hverdagskurven består av tre ulike typer basefrukt, der det varieres mellom eple, pære, banan og sitrus",
+            "Go'kurven™ er vårt mest populære alternativ, da den er både rimelig, variert og spennende. Dere får friske fruktkurver bestående av eple, sitrus, banan, pære, drue, plomme og nektarin, variert etter sesong og tilgang. I tillegg får dere en gang i blant nøtter, cherrytomater eller eksotisk frukt som en hyggelig overraskelse.",
             "Leveres i kurver à ca. 6 kg, 9 kg og 15 kg.",
           ],
         },

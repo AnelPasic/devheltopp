@@ -42,7 +42,7 @@ export const kantineData: ServicePageData = {
     heading: "Hva tilbyr vi?",
     body: [
       "Helt Opplagt leverer kantine og kantineservice til bedrifter i Oslo og Stor-Oslo. Tjenesten kan inkludere daglig matlevering, buffet, modulbasert meny, lunsjavvikling og vert eller vertinne. Løsningen passer for bedrifter som ønsker en fullverdig kantineopplevelse uten å måtte håndtere all drift, bemanning og logistikk selv.",
-      "De ansatte vil ha en god kantine. Du vil slippe mer administrasjon. Helt Opplagt leverer maten, verten og lunsjflyten.",
+      "De ansatte vil få en god kantine. Du slipper administrasjon. Helt Opplagt leverer maten, verten og lunsjflyten.",
     ],
 
     image: explainerImg,
@@ -52,7 +52,7 @@ export const kantineData: ServicePageData = {
     {
       heading: "Modulbasert kantinetilbud",
       proof:
-        "Vi er veldig fleksible og kunden håndplukker moduler etter ønske. Her kan man ha få, mange eller alle moduler hver dag. Lehgger også tilrette for en kombinasjon med for eksempel noen moduler fast og la andre rullere utover uken.",
+        "Vi er veldig fleksible og kunden håndplukker moduler etter ønske. Her kan man få, mange eller alle moduler hver dag. Legger også tilrette for en kombinasjon med for eksempel noen moduler fast og la andre rullere utover uken.",
       layout: "grid",
       photo: true,
       items: [
@@ -105,12 +105,11 @@ export const kantineData: ServicePageData = {
       heading: "Kantine på jobben – uten kjøkken?",
       proof: "Hos Helt Opplagt leverer vi fullverdige kantineløsninger til bedrifter helt ned i 15 personer – uten at dere trenger store kjøkkenfasiliteter.",
       layout: "feature",
-      reverse: true,
       items: [
         {
           name: "Ingen kjøkken? Ikke noe problem!",
           description:
-            "Med oss trenger du ikke et stort kjøkken, men kommer langt med en komfyr, kjøleskap og oppvaskmaskin. Alt kommer klart til bruk, og våre kantineverter tar seg av oppdekking, rydding og etterarbeid – med et smil.",
+            "Du trenger du ikke et stort kjøkken, man kommer langt med en komfyr, kjøleskap og oppvaskmaskin. Alt kommer klart til bruk, og våre kantineverter tar seg av oppdekking, rydding og etterarbeid – med et smil.",
           image: utenKjokkenImg,
         },
       ],
@@ -121,13 +120,13 @@ export const kantineData: ServicePageData = {
     },
     {
       heading: "Verter og vertinner",
-      proof: "I våre mer enn 100 betjente kantiner sørger våre dyktige, blide og serviceinnstilte verter og vertinner for å skape en god lunsjopplevelse i en travel hverdag for våre kunders ansatte.",
+      proof: "I våre mer enn 100 betjente kantiner sørger våre dyktige, blide og serviceinnstilte verter og vertinner for å skape en god lunsjopplevelse i en travel hverdag.",
       layout: "feature",
       items: [
         {
           name: "Dere kan bare komme og nyte maten",
           description:
-            "Våre utmerkede verter og vertinner sørger for at dere bare kan komme og nyte maten. Vi tar oss av alt av gjøremål som: av- og pådekking, tilbereding av all maten i buffeten, oppvask, holde kjøkken og kantineområdet rent og ryddig etc. Vi kan også påta oss annet forefallende kontorarbeid og/eller vask av deres lokaler.",
+            "Vi tar oss av alt: av- og pådekking, tilbereding av all maten i buffeten, oppvask, holde kjøkken og kantineområdet rent og ryddig etc. Vi kan også påta oss annet forefallende kontorarbeid og/eller vask av deres lokaler.",
           image: `${thumbs}/a29ba39192bb1cdb321cad644af15f53.jpg`,
         },
       ],
@@ -238,12 +237,6 @@ export const kantineData: ServicePageData = {
             "Brød/knekkebrød - sunne og grove brød etter egne oppskrifter uten unødvendige tilsetningsstoffer. Variert utvalg av gode og fiberrike knekkebrødvarianter.",
           ],
         },
-        {
-          type: "text",
-          paragraphs: [
-            "Ring oss på 0 23 46 eller bruk skjema under for en uforpliktende prat!",
-          ],
-        },
       ],
     },
     {
@@ -306,7 +299,7 @@ export const kantineData: ServicePageData = {
         },
         {
           type: "text",
-          heading: "Skreddersydd kantine – rett på døra",
+          heading: "Skreddersydd kantine",
           paragraphs: [
             "Vår kantinetjeneste er modulbasert, noe som betyr at du som kunde kan velge akkurat det nivået som passer dere – både innhold og budsjett. Enten det er en enkel løsning med brød, pålegg og salater, eller en mer omfattende meny med daglig varmretter og småbakst, så leveres alt ferdig til kontoret – pakket i resirkulerte esker, klare til servering.",
           ],
@@ -330,14 +323,7 @@ export const kantineData: ServicePageData = {
             "Kantine kombinert med renhold: Ved å samle dine tjenester hos en leverandør vil du forenkle din arbeidshverdag. Færre leverandører bidrar til store besparelser.",
           ],
         },
-        {
-          type: "text",
-          heading: "Det lille ekstra – når du ønsker det",
-          paragraphs: [
-            "Vil du ha fredagsvafler, pølseonsdag eller hjelp til event? Vi fikser det. For oss handler kantine om mer enn mat – det handler om trivsel, helse og samhold i hverdagen.",
-            "Er du klar for en smartere kantineløsning? Kontakt oss i dag – vi hjelper deg å finne en løsning som passer perfekt, uansett størrelse på bedriften.",
-          ],
-        },
+
       ],
     },
   ],

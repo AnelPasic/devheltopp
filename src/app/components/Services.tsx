@@ -23,7 +23,7 @@ function ServiceCard({ service }: { service: LiveryService }) {
   return (
     <Link
       to={service.href}
-      className="group relative block aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-[#1c1c1c] shadow-[0_1px_2px_rgba(13,43,64,0.06)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-12px_rgba(13,43,64,0.18)]"
+      className="group relative block aspect-[4/3] isolate overflow-hidden rounded-[1.5rem] transition-transform duration-300 hover:scale-[1.012]"
     >
       <img
         src={PHOTO[service.name]}
@@ -71,8 +71,8 @@ export function Services() {
           <div id="tjenester-tittel">
             <SectionHead
               kicker="Våre tjenester"
-              title="Våre produkter og tjenester"
-              lede="Les mer om våre tjenester og produkter, og hvordan vi kan hjelpe din bedrift med å skape en bedre arbeidsplass."
+              title="En bedre arbeidsdag starter her"
+              lede="Les mer om våre tjenester, og hvordan vi kan hjelpe din bedrift med en enklere, sunnnere og renere hverdag."
               action={
                 <Pill to="/kontakt" variant="outline">
                   Kontakt oss

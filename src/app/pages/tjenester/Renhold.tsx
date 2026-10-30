@@ -146,7 +146,6 @@ export const renholdData: ServicePageData = {
           paragraphs: [
             "Vi har fagutdannede og kompetente medarbeidere, og det forplikter. Alle våre medarbeidere får bruke tid på videreutvikling og læring, blant annet gjennom nært samarbeid med våre leverandører som er spesialister på sine felt. Her legger vi også stor vekt på HMS, service og arbeidssystematikk.",
             "Vi avholder kontinuerlig norskkurs etter behov i samarbeid med Folkeuniversitetet. Denne kontinuerlige kompetanseutviklingen gjør at du som kunde får de beste leveransene fra våre motiverte medarbeidere.",
-            "Ring oss på 0 23 46 eller bruk skjema under for en uforpliktende prat!",
           ],
         },
       ],
@@ -199,7 +198,6 @@ export const renholdData: ServicePageData = {
           heading: "En viktig del av det totale renholdsbildet",
           paragraphs: [
             "En hovedrengjøring innebærer en grundig rengjøring av både vegger og tak. Det kan også innbefatte andre områder som ikke blir rengjort ved daglig rengjøring. Dette blir vi enige om sammen. Hovedrengjøring er en viktig del av det totale renholdsbildet. Hvor ofte en trenger hovedrengjøring avhenger av bransje og smussgraden. Hovedrengjøring utføres av renholder med lang erfaring fra denne type arbeid.",
-            "Ring oss på 0 23 46 eller bruk skjema under for en uforpliktende prat!",
           ],
         },
       ],
@@ -215,7 +213,6 @@ export const renholdData: ServicePageData = {
           type: "text",
           paragraphs: [
             "Vedlikehold av gulv er en viktig del av renholdet. Kostnadene kan bli mangedoblet om man utsetter dette arbeidet for lenge. Med våre moderne maskiner kan vi rense, skure, bone, olje og vedlikeholde alle typer gulv. Snakk med oss for å få en vurdering av hva som er riktig rengjøring av ditt gulv.",
-            "Ring oss på 0 23 46 eller bruk skjema under for en uforpliktende prat!",
           ],
         },
       ],
@@ -233,7 +230,6 @@ export const renholdData: ServicePageData = {
           paragraphs: [
             "Vi utfører vinduspuss og bruker moderne utstyr for å gjøre vinduene rene og flekkfrie på en fagmessig og riktig måte. Slik at du kan se gjennom vinduene – ikke på vinduene.",
             "Sammen med våre kunder, kommer vi frem til en avtale om jevnlig vinduspuss.",
-            "Ring oss på 0 23 46 eller bruk skjema under for en uforpliktende prat!",
           ],
         },
       ],
@@ -251,7 +247,6 @@ export const renholdData: ServicePageData = {
           paragraphs: [
             "Dersom det ikke utføres jevnlig tepperens vil dette gå utover rommets brukere i form av dårligere kvalitet på inneluften, i verste fall betyr dette høyere sykefravær. Regelmessig støvsuging av tepper er en viktig del av vedlikeholdet. I tillegg bør man årlig ta en dypere rens av teppet, for å fjerne støv og bakterier som har samlet seg i teppets fibre. Vi er klare til å bli kalt inn på teppet!",
             "Vi anbefaler også at man renser tekstilmøbler med jevne mellomrom. Dette ivaretar stoffet i møblene og vil dermed øke holdbarheten. Og så er det jo hyggeligere å sitte i en nyrenset sofa.",
-            "Ring oss på 0 23 46 eller bruk skjema under for en uforpliktende prat!",
           ],
         },
       ],

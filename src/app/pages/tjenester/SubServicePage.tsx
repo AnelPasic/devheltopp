@@ -301,6 +301,24 @@ function ImageTextRow({
   );
 }
 
+/** Turns `<a href="/path">text</a>` in copied paragraph text into router links. */
+function withLinks(text: string) {
+  const parts = text.split(/(<a href="[^"]+">.*?<\/a>)/);
+  return parts.map((part, i) => {
+    const match = part.match(/^<a href="([^"]+)">(.*?)<\/a>$/);
+    if (!match) return part;
+    return (
+      <Link
+        key={i}
+        to={match[1]}
+        className="font-semibold text-brand underline underline-offset-2 hover:text-brand-deep"
+      >
+        {match[2]}
+      </Link>
+    );
+  });
+}
+
 function ContentBlockView({ block }: { block: ContentBlock }) {
   if (block.type === "text") {
     return (
@@ -312,8 +330,8 @@ function ContentBlockView({ block }: { block: ContentBlock }) {
         )}
         <div className="space-y-4">
           {block.paragraphs.map((p, i) => (
-            <p key={i} className="text-[17px] leading-relaxed text-navy/70">
-              {p}
+            <p key={i} className="whitespace-pre-line text-[17px] leading-relaxed text-navy/70">
+              {withLinks(p)}
             </p>
           ))}
         </div>

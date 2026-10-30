@@ -57,12 +57,9 @@ export function Hero() {
           </h1>
 
           <p
-            className={`mt-6 max-w-[36rem] bg-yellow-300 text-[15px] leading-relaxed text-navy/65 lg:text-[17px] xl:mt-7 ${ENTER} [transition-delay:160ms]`}
+            className={`mt-6 max-w-[36rem] text-[15px] leading-relaxed text-navy/65 lg:text-[17px] xl:mt-7 ${ENTER} [transition-delay:160ms]`}
           >
-            Helt Opplagt på jobben er en markedsorientert leverandør av løpende
-            abonnementsbaserte tjenester innen helse og trivsel på arbeidsplassen.
-            Vi leverer jobbfrukt, catering, renhold, kantine og ren luft til over
-            50 000 ansatte i bedrifter i Oslo.
+            Helt Opplagt på jobben er en fast leverandør av helse- og trivselstjenester til bedrifter. Vi leverer jobbfrukt, lunsj, catering, kantine, renhold og ren luft til over 50 000 ansatte.
           </p>
 
           <div className={`mt-9 flex flex-col gap-3 sm:flex-row ${ENTER} [transition-delay:240ms]`}>
