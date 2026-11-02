@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 const services = ["Lunsj", "Kantine", "Catering", "Frukt", "Inneklima", "Renhold"];
 
 const CHIP_ON =
-  "rounded-full border border-brand bg-brand px-4 py-2 text-[13px] font-semibold text-white transition-colors";
+  "rounded-[1rem] border border-brand bg-brand px-4 py-2 text-[13px] font-semibold text-white transition-colors";
 const CHIP_OFF =
-  "rounded-full border border-navy/20 px-4 py-2 text-[13px] font-semibold text-navy/60 transition-colors hover:border-brand hover:text-brand";
+  "rounded-[1rem] border border-navy/20 px-4 py-2 text-[13px] font-semibold text-navy/60 transition-colors hover:border-brand hover:text-brand";
 const LABEL = "mb-1.5 block text-[13px] font-medium text-navy/70";
 
 interface ContactFormProps {
@@ -51,7 +51,7 @@ export function ContactForm({ initialServices, size = "compact" }: ContactFormPr
       onSubmit={(e) => e.preventDefault()}
       className={spacious ? "flex flex-col gap-5" : "flex flex-col gap-4"}
     >
-      <div className={spacious ? "grid gap-5 sm:grid-cols-2" : "grid grid-cols-2 gap-4"}>
+      <div className={spacious ? "grid items-end gap-5 sm:grid-cols-2" : "grid items-end gap-4 sm:grid-cols-2"}>
         <label className="block">
           <span className={LABEL}>Navn</span>
           <input type="text" name="name" className={FIELD} placeholder="Ditt navn" />
@@ -62,7 +62,7 @@ export function ContactForm({ initialServices, size = "compact" }: ContactFormPr
         </label>
       </div>
 
-      <div className={spacious ? "grid gap-5 sm:grid-cols-2" : "contents"}>
+      <div className={spacious ? "grid items-end gap-5 sm:grid-cols-2" : "contents"}>
         <label className="block">
           <span className={LABEL}>E-post</span>
           <input
@@ -90,7 +90,7 @@ export function ContactForm({ initialServices, size = "compact" }: ContactFormPr
         )}
       </div>
 
-      <div className={spacious ? "grid gap-5 sm:grid-cols-2" : "grid grid-cols-2 gap-4"}>
+      <div className={spacious ? "grid items-end gap-5 sm:grid-cols-2" : "grid items-end gap-4 sm:grid-cols-2"}>
         {!spacious && (
           <label className="block">
             <span className={LABEL}>Telefon</span>
@@ -186,8 +186,8 @@ export function ContactForm({ initialServices, size = "compact" }: ContactFormPr
       <button
         type="submit"
         className={
-          "mt-1 inline-flex items-center justify-center gap-2 rounded-full bg-brand px-7 py-3 text-[14px] font-semibold text-white transition-colors hover:bg-brand-deep " +
-          (spacious ? "w-full py-3.5 text-[15px] sm:w-auto sm:self-start" : "self-start")
+          "mt-1 inline-flex items-center justify-center gap-2 rounded-[1rem] bg-brand px-7 py-3 text-[14px] font-semibold text-white transition-colors hover:bg-brand-deep " +
+          (spacious ? "w-full py-3.5 text-[15px] sm:w-auto sm:self-start" : "w-full sm:w-auto sm:self-start")
         }
       >
         Send skjema

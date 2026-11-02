@@ -20,7 +20,7 @@ export function AktueltPage() {
       <section className="bg-white py-16 lg:py-20">
         <div className={CONTAINER}>
           <Link to={`/aktuelt/${featured.slug}`} className="group block lg:grid lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-14">
-            <div className="relative aspect-[16/10] overflow-hidden rounded-[1.5rem]">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-[1.25rem]">
               <img
                 src={featured.image}
                 alt={featured.imageAlt}
@@ -31,7 +31,7 @@ export function AktueltPage() {
               <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-brand">
                 {featured.category}
               </span>
-              <h2 className="mt-3 font-lato text-[26px] font-bold leading-[1.2] text-navy transition-colors group-hover:text-brand sm:text-[30px]">
+              <h2 className="mt-3 font-lato text-[26px] font-bold leading-[1.2] text-navy sm:text-[30px]">
                 {featured.title}
               </h2>
               <p className="mt-4 max-w-[46ch] text-[15px] leading-relaxed text-navy/60 lg:text-[16px]">
@@ -67,7 +67,7 @@ export function AktueltPage() {
                   <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-brand">
                     {a.category}
                   </span>
-                  <h3 className="mt-2 font-lato text-[19px] font-bold leading-snug text-navy transition-colors group-hover:text-brand">
+                  <h3 className="mt-2 font-lato text-[19px] font-bold leading-snug text-navy">
                     {a.title}
                   </h3>
                   <p className="mt-2.5 flex-1 text-[14px] leading-relaxed text-navy/60">

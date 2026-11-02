@@ -7,14 +7,9 @@ import heroFrukt from "../../images/hero/hero-frukt.jpg";
 import heroCatering from "../../images/hero/hero-catering.jpg";
 import heroInneklima from "../../images/hero/hero-inneklima-dno.jpg";
 import heroRenhold from "../../images/hero/hero-renhold.jpg";
-import { CONTAINER, Kicker, Pill } from "./site";
+import { CONTAINER, ENTER, Kicker, LinePiece, Pill } from "./site";
 
 const SLIDE_DURATION = 6000;
-
-/* Entrance on first paint: fades and lifts in, staggered per element via
-   [transition-delay:…]. Users who prefer reduced motion see it at rest. */
-const ENTER =
-  "motion-safe:transition-[opacity,translate] motion-safe:duration-1500 motion-safe:ease-out motion-safe:starting:translate-y-3 motion-safe:starting:opacity-0";
 
 const slides = [
   { src: heroFrukt, label: "Frukt", href: "/tjenester/frukt" },
@@ -37,7 +32,10 @@ export function Hero() {
   }, [active]);
 
   return (
-    <section className="bg-white">
+    <section className="relative isolate overflow-hidden bg-white">
+      {/* Fades in with the rest of the hero, so it isn't the first thing
+          on screen. */}
+      <LinePiece className="-right-40 top-10 w-[34rem] rotate-[14deg] text-brand/30 motion-safe:transition-opacity motion-safe:duration-1000 motion-safe:ease-out motion-safe:starting:opacity-0 [transition-delay:150ms] lg:-right-32 lg:top-6 lg:w-[46rem]" />
       <div
         className={`${CONTAINER} grid items-center gap-y-12 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-x-16 lg:py-20 xl:gap-x-24 xl:py-24`}
       >
@@ -74,7 +72,7 @@ export function Hero() {
         </div>
 
         <div className={`${ENTER} [transition-delay:200ms]`}>
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-[26rem] overflow-hidden rounded-2xl lg:max-w-[30rem] xl:max-w-[33rem]">
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-[26rem] overflow-hidden rounded-[0.875rem] lg:max-w-[30rem] xl:max-w-[33rem]">
             {slides.map((slide, i) => (
               <img
                 key={slide.label}
@@ -90,7 +88,7 @@ export function Hero() {
             ))}
             <Link
               to={slides[active].href}
-              className="absolute bottom-4 left-1/2 z-[2] -translate-x-1/2 rounded-full bg-white/90 px-5 py-2 text-[13px] font-semibold text-navy shadow-sm backdrop-blur transition-colors hover:bg-white hover:text-brand"
+              className="absolute bottom-4 left-1/2 z-[2] -translate-x-1/2 rounded-[1rem] bg-white/90 px-5 py-2 text-[13px] font-semibold text-navy shadow-sm backdrop-blur transition-colors hover:bg-white hover:text-brand"
             >
               {slides[active].label}
             </Link>

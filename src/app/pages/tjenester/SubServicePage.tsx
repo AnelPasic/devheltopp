@@ -7,7 +7,7 @@ import {
   ServicePageData,
 } from "../../components/ServicePage";
 import { VariantSwitcher } from "../../components/VariantSwitcher";
-import { CONTAINER, Kicker, Pill } from "../../components/site";
+import { CONTAINER, ENTER_DESKTOP, FADE_DESKTOP, Kicker, Pill } from "../../components/site";
 import { fruktData } from "./Frukt";
 import { cateringData } from "./Catering";
 import { kantineData } from "./Kantine";
@@ -84,18 +84,23 @@ export function SubServicePage() {
     first?.type === "image" && first.src === sub.image
       ? sub.content!.slice(1)
       : sub.content ?? [];
+  const bodyImages = body.filter((b): b is ImageBlock => b.type === "image");
 
   return (
     <div className="min-h-dvh bg-white">
-      <div className={`${CONTAINER} pt-10 lg:pt-14`}>
+      {/* Hero: on white with generous space around it, and a fine rule
+          underneath with a short brand-blue mark, so the page body has a
+          clear start instead of running into the hero. */}
+      <section className={`${CONTAINER} pt-10 lg:pt-16`}>
         <div
           className={
-            showImage
-              ? "lg:grid lg:grid-cols-[1fr_minmax(0,460px)] lg:items-center lg:gap-16"
-              : ""
+            "pb-12 lg:pb-16 " +
+            (showImage
+              ? "lg:grid lg:grid-cols-[1fr_minmax(0,500px)] lg:items-center lg:gap-20"
+              : "")
           }
         >
-          <div>
+          <div className={`${ENTER_DESKTOP} [transition-delay:100ms]`}>
             <Breadcrumb
               items={[
                 { label: "Alle tjenester", to: "/tjenester" },
@@ -148,7 +153,7 @@ export function SubServicePage() {
           </div>
 
           {showImage && (
-            <div className="mt-10 max-w-[780px] overflow-hidden rounded-[1.5rem] lg:mt-0">
+            <div className={`mt-9 max-w-[780px] overflow-hidden rounded-[1.25rem] ${FADE_DESKTOP} lg:mt-0`}>
               <img
                 src={sub.image}
                 alt={sub.title}
@@ -157,29 +162,53 @@ export function SubServicePage() {
             </div>
           )}
         </div>
-      </div>
+        <div aria-hidden="true" className="relative h-px bg-navy/10">
+          <span className="absolute left-0 top-1/2 h-[3px] w-14 -translate-y-1/2 rounded-full bg-brand" />
+        </div>
+      </section>
 
       {!hasVariants && body.length > 0 && (
-        <section className="border-b border-navy/10 bg-white py-14">
-          <div className={`${CONTAINER} space-y-14`}>
-            {pairImages(body).map((row, i) =>
-              row.kind === "pair" ? (
-                <ImageTextRow
-                  key={i}
-                  text={row.text}
-                  image={row.image}
-                  imageLeft={row.index % 2 === 1}
-                />
-              ) : (
-                <ContentBlockView key={i} block={row.block} />
-              )
+        <section className="border-b border-navy/10 bg-white pb-14 pt-14 lg:pb-20 lg:pt-20">
+          {/* Text on the left. On desktop the page's photos stack in a
+              right-hand column the same width as the hero photo, so they sit
+              straight under it; on phones they stay in the text where they
+              were. */}
+          <div
+            className={
+              CONTAINER +
+              (bodyImages.length > 0
+                ? " lg:grid lg:grid-cols-[1fr_minmax(0,500px)] lg:items-start lg:gap-20"
+                : "")
+            }
+          >
+            <div className="space-y-14">
+              {body.map((block, i) => (
+                <div key={i} className={block.type === "image" ? "lg:hidden" : undefined}>
+                  <ContentBlockView block={block} />
+                </div>
+              ))}
+            </div>
+            {bodyImages.length > 0 && (
+              <div className="hidden flex-col gap-6 lg:flex">
+                {bodyImages.map((image, i) => (
+                  <div key={i} className="overflow-hidden rounded-[1.25rem]">
+                    <img
+                      src={image.src}
+                      alt={image.alt ?? ""}
+                      loading="lazy"
+                      decoding="async"
+                      className="aspect-[4/3] w-full object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
             )}
           </div>
         </section>
       )}
 
       {hasVariants && (
-        <section className="border-b border-navy/10 bg-white pt-12 pb-14">
+        <section className="border-b border-navy/10 bg-white pb-14 pt-14 lg:pt-20">
           <div className={CONTAINER}>
             <VariantSwitcher
               label={VARIANT_LABELS[sub.variantOf!] ?? "Velg variant"}
@@ -206,7 +235,7 @@ export function SubServicePage() {
                   className="group flex items-center gap-3 rounded-[1.25rem] border border-navy/10 p-4 transition-all duration-300 hover:border-brand/40 hover:shadow-[0_8px_24px_rgba(0,119,190,0.08)]"
                 >
                   {s.image && (
-                    <span className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-lg bg-white">
+                    <span className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-[0.4375rem] bg-white">
                       <img
                         src={s.image}
                         alt=""
@@ -242,65 +271,6 @@ export function SubServicePage() {
 }
 
 type ImageBlock = Extract<ContentBlock, { type: "image" }>;
-type Row =
-  | { kind: "single"; block: ContentBlock }
-  | { kind: "pair"; text: ContentBlock; image: ImageBlock; index: number };
-
-const pairable = (b?: ContentBlock) => b?.type === "text" || b?.type === "bullets";
-
-/** Sit each photo beside the text next to it, so no photo floats on its own. */
-function pairImages(blocks: ContentBlock[]): Row[] {
-  const rows: Row[] = [];
-  let pairs = 0;
-  for (let i = 0; i < blocks.length; i++) {
-    const block = blocks[i];
-    if (block.type !== "image") {
-      rows.push({ kind: "single", block });
-      continue;
-    }
-    const prev = rows[rows.length - 1];
-    if (prev?.kind === "single" && pairable(prev.block)) {
-      rows[rows.length - 1] = { kind: "pair", text: prev.block, image: block, index: pairs++ };
-    } else if (pairable(blocks[i + 1])) {
-      rows.push({ kind: "pair", text: blocks[i + 1], image: block, index: pairs++ });
-      i++;
-    } else {
-      rows.push({ kind: "single", block });
-    }
-  }
-  return rows;
-}
-
-/** Text and photo side by side; the photo alternates sides row by row. */
-function ImageTextRow({
-  text,
-  image,
-  imageLeft,
-}: {
-  text: ContentBlock;
-  image: ImageBlock;
-  imageLeft: boolean;
-}) {
-  return (
-    <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
-      <ContentBlockView block={text} />
-      <div
-        className={
-          "overflow-hidden rounded-[1.5rem] " + (imageLeft ? "lg:order-first" : "")
-        }
-      >
-        <img
-          src={image.src}
-          alt={image.alt ?? ""}
-          loading="lazy"
-          decoding="async"
-          className="aspect-[4/3] w-full object-cover"
-        />
-      </div>
-    </div>
-  );
-}
-
 /** Turns `<a href="/path">text</a>` in copied paragraph text into router links. */
 function withLinks(text: string) {
   const parts = text.split(/(<a href="[^"]+">.*?<\/a>)/);
@@ -341,7 +311,7 @@ function ContentBlockView({ block }: { block: ContentBlock }) {
 
   if (block.type === "image") {
     return (
-      <div className="max-w-[780px] overflow-hidden rounded-[1.5rem]">
+      <div className="max-w-[780px] overflow-hidden rounded-[1.25rem]">
         <img src={block.src} alt={block.alt ?? ""} className="w-full" />
       </div>
     );
@@ -349,7 +319,7 @@ function ContentBlockView({ block }: { block: ContentBlock }) {
 
   if (block.type === "link") {
     const cls =
-      "inline-flex items-center gap-2 rounded-full border border-navy/15 px-5 py-2.5 text-sm font-semibold text-navy hover:border-brand/40 hover:text-brand transition-colors";
+      "inline-flex items-center gap-2 rounded-[1rem] border border-navy/15 px-5 py-2.5 text-sm font-semibold text-navy hover:border-brand/40 hover:text-brand transition-colors";
     const isExternal = /^https?:\/\//.test(block.href);
     return (
       <div>

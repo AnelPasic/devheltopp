@@ -39,10 +39,6 @@ export function Contact({ initialServices }: ContactProps) {
     <section id="kontakt" className="scroll-mt-20 bg-white">
       <Reveal className={`${CONTAINER} py-20 lg:py-28`}>
         <div className="relative isolate grid gap-12 overflow-hidden rounded-[2rem] bg-stone p-7 sm:p-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16 lg:p-14">
-          <span
-            aria-hidden="true"
-            className="livery-puzzle-outline aspect-[100/129] -bottom-12 hidden w-52 -rotate-[14deg] bg-brand/15 lg:-left-6 lg:block"
-          />
           <div className="relative z-10">
             <Kicker>Kontakt</Kicker>
             <h2 className="mt-4 font-lato text-[30px] font-light leading-[1.12] tracking-[-0.01em] text-navy sm:text-[38px] lg:text-[44px]">
@@ -151,7 +147,7 @@ export function Contact({ initialServices }: ContactProps) {
                   href="https://outlook.office.com/book/Bookmtemedmeg@heltopplagt.no/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-brand px-7 py-3 text-[14px] font-semibold text-white transition-colors hover:bg-brand-deep"
+                  className="mt-8 inline-flex items-center justify-center gap-2 rounded-[1rem] bg-brand px-7 py-3 text-[14px] font-semibold text-white transition-colors hover:bg-brand-deep"
                 >
                   Velg tidspunkt
                   <ArrowRight className="h-4 w-4" strokeWidth={2.5} />

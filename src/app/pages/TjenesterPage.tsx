@@ -1,53 +1,8 @@
-import { Link } from "react-router";
-import { ArrowRight } from "lucide-react";
-import { CONTAINER } from "../components/site";
-import { PageHeader } from "../components/PageHeader";
-import { fruktData } from "./tjenester/Frukt";
-import { cateringData } from "./tjenester/Catering";
-import { kantineData } from "./tjenester/Kantine";
-import { lunsjData } from "./tjenester/Lunsj";
-import { inneklimaData } from "./tjenester/Inneklima";
-import { renholdData } from "./tjenester/Renhold";
+import { CONTAINER, ENTER_DESKTOP } from "../components/site";
+import { SERVICES } from "../components/livery";
+import { ServiceCard } from "../components/Services";
+import { Reveal } from "../components/Reveal";
 import { useDocumentMeta } from "../../lib/use-document-meta";
-
-const services = [
-  {
-    label: "Frukt",
-    data: fruktData,
-    description:
-      "Du bestemmer størrelse og innhold. Vi leverer daglig eller etter behov.",
-  },
-  {
-    label: "Lunsj",
-    data: lunsjData,
-    description:
-      "Lønnsomme og velsmakende lunsjordninger for 5 personer og oppover.",
-  },
-  {
-    label: "Kantine",
-    data: kantineData,
-    description:
-      "Et fullservicetilbud som passer alle typer kjøkken der vi tar oss av hele lunsjavviklingen.",
-  },
-  {
-    label: "Catering",
-    data: cateringData,
-    description:
-      "Vi tilbereder alt i vårt eget kjøkken. Fra varmmat, salater og påsmurt til spennende møte- og kursmat.",
-  },
-  {
-    label: "Inneklima",
-    data: inneklimaData,
-    description:
-      "Vi leverer ren luft og rett temperatur, helt uten byggtekniske endringer.",
-  },
-  {
-    label: "Renhold",
-    data: renholdData,
-    description:
-      "Godt renhold gir bedre trivsel og sørger for et bedre arbeidsmiljø.",
-  },
-];
 
 export function TjenesterPage() {
   useDocumentMeta(
@@ -57,42 +12,25 @@ export function TjenesterPage() {
 
   return (
     <div className="min-h-dvh bg-white">
-      <PageHeader title="Alle tjenester" />
+      {/* Hero: just the heading. */}
+      <section className="text-navy">
+        <div className={`${CONTAINER} pb-2 pt-12 lg:pb-4 lg:pt-16`}>
+          <h1
+            className={`h1-compact font-lato font-light text-navy ${ENTER_DESKTOP} [transition-delay:100ms]`}
+          >
+            Alle våre tjenester
+          </h1>
+        </div>
+      </section>
 
-      <section className="bg-white py-16 lg:py-20">
-        <div className={CONTAINER}>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
-            {services.map((s) => (
-              <Link
-                key={s.data.path}
-                to={s.data.path}
-                className="group flex flex-col overflow-hidden rounded-[1.5rem] bg-white shadow-[0_1px_2px_rgba(13,43,64,0.06)] ring-1 ring-navy/5 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-12px_rgba(13,43,64,0.18)]"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
-                    src={s.data.image}
-                    alt={s.label}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-6 sm:p-7">
-                  <h2 className="font-lato text-[21px] font-bold text-navy sm:text-[23px]">
-                    {s.label}
-                  </h2>
-                  <p className="mt-2.5 flex-1 text-[15px] leading-relaxed text-navy/60">
-                    {s.description}
-                  </p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-[14px] font-semibold text-brand">
-                    Les mer
-                    <ArrowRight
-                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                      strokeWidth={2.5}
-                    />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
+      {/* The same photo cards as the home page. */}
+      <section className="bg-white pb-16 pt-8 lg:pb-24 lg:pt-10">
+        <div className={`${CONTAINER} grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7`}>
+          {SERVICES.map((service, i) => (
+            <Reveal key={service.href} delay={i * 80}>
+              <ServiceCard service={service} />
+            </Reveal>
+          ))}
         </div>
       </section>
     </div>

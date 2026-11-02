@@ -1,5 +1,14 @@
 import { type ReactNode } from "react";
 import { Link } from "react-router";
+import {
+  Apple,
+  ChefHat,
+  Sandwich,
+  Sparkles,
+  UtensilsCrossed,
+  Wind,
+  type LucideIcon,
+} from "lucide-react";
 
 export const LIVERY_CONTAINER =
   "mx-auto w-full max-w-[1440px] 2xl:max-w-[1560px] 3xl:max-w-[1680px] 4xl:max-w-[1800px] 5xl:max-w-[1920px] px-6 sm:px-8 2xl:px-12 3xl:px-16 4xl:px-20 5xl:px-24";
@@ -10,6 +19,16 @@ export interface LiveryService {
   proof: string;
   blurb: string;
 }
+
+/** One icon per service, used in the header dropdown and the puzzle section. */
+export const SERVICE_ICONS: Record<string, LucideIcon> = {
+  Frukt: Apple,
+  Lunsj: Sandwich,
+  Kantine: UtensilsCrossed,
+  Catering: ChefHat,
+  Inneklima: Wind,
+  Renhold: Sparkles,
+};
 
 export const SERVICES: LiveryService[] = [
   {

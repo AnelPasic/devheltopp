@@ -375,3 +375,64 @@ h2:not(.payoff-marker):not(.h2-plain) {
   70% { opacity: 0; transform: scale(1.6); }
   100% { opacity: 0; transform: scale(1.6); }
 }
+
+/* FAQ answers (FaqList in ServicePage.tsx) slide open and fade in, and close
+   the same way. Browsers without ::details-content or interpolate-size just
+   open and close without motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .faq-item {
+    interpolate-size: allow-keywords;
+  }
+  .faq-item::details-content {
+    block-size: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+      block-size 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+      opacity 0.3s ease,
+      content-visibility 0.3s allow-discrete;
+  }
+  .faq-item[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+}
+
+/* Customer logo strip (References.tsx): an endless, slow slide to the left.
+   The track holds two identical runs and moves by exactly one, so the loop
+   has no seam. Hover pauses it. With reduced motion the first run sits still
+   and centred, and the copy is hidden. */
+.logo-marquee {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .logo-marquee-track {
+    animation: logo-marquee 60s linear infinite;
+  }
+  .logo-marquee:hover .logo-marquee-track {
+    animation-play-state: paused;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee-track {
+    width: auto;
+    justify-content: center;
+  }
+  .logo-marquee-track [aria-hidden="true"] {
+    display: none;
+  }
+}
+@keyframes logo-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* "Flere tjenester fra en leverandør" puzzle (OneSupplier.tsx): once the
+   pieces have landed, the whole puzzle gives one small press, like pieces
+   clicking into place. */
+@keyframes puzzle-click {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.025); }
+  100% { transform: scale(1); }
+}

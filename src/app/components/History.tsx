@@ -383,7 +383,7 @@ export function History({
                     <div className={compact ? "flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-6" : ""}>
                       <div
                         className={
-                          "history-photo relative overflow-hidden rounded-2xl bg-navy/5 " +
+                          "history-photo relative overflow-hidden rounded-[0.875rem] bg-navy/5 " +
                           (compact
                             ? "h-28 w-full flex-shrink-0 sm:aspect-[4/3] sm:h-auto sm:w-[45%] "
                             : "h-[clamp(9rem,24vh,20rem)] ") +
