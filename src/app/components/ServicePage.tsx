@@ -1022,7 +1022,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
                   {i === blocks.findIndex((b) => b.kind === "cards") && (
                     <span
                       aria-hidden="true"
-                      className="livery-puzzle aspect-[100/129] -bottom-12 -left-10 w-20 -rotate-[16deg] bg-brand lg:-left-16 lg:w-24"
+                      className="livery-puzzle aspect-[100/129] -bottom-16 -left-12 w-28 -rotate-[16deg] bg-brand lg:-left-20 lg:w-32"
                     />
                   )}
                   {node}

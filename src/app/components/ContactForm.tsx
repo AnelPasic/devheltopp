@@ -1,5 +1,7 @@
 import { ArrowRight, ChevronDown } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useLocation, useNavigate } from "react-router";
+import { getAttribution } from "../../lib/attribution";
 
 const services = ["Lunsj", "Kantine", "Catering", "Frukt", "Inneklima", "Renhold"];
 
@@ -17,8 +19,49 @@ interface ContactFormProps {
 
 export function ContactForm({ initialServices, size = "compact" }: ContactFormProps) {
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
   const servicesRef = useRef<HTMLDetailsElement>(null);
+  /* When the form was shown; the server rejects anything sent faster than a
+     person could fill it in. */
+  const shownAt = useRef(Date.now());
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   const spacious = size === "spacious";
+
+  /* Sends the lead, with where the visitor came from (src/lib/attribution.ts),
+     to the /api/contact function, which e-mails it. */
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (status === "sending") return;
+    const data = new FormData(e.currentTarget);
+    const field = (name: string) => String(data.get(name) ?? "").trim();
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: field("name"),
+          company: field("company"),
+          email: field("email"),
+          phone: field("phone"),
+          employees: field("employees"),
+          services: selectedServices,
+          message: field("message"),
+          website: field("website"),
+          elapsedMs: Date.now() - shownAt.current,
+          page: pathname,
+          attribution: getAttribution(),
+        }),
+      });
+      /* Success goes to its own page, /takk, which ad and analytics tools
+         count as the conversion. */
+      if (res.ok) navigate("/takk");
+      else setStatus("error");
+    } catch {
+      setStatus("error");
+    }
+  };
 
   const FIELD =
     "w-full rounded-xl border border-navy/15 bg-cloud/50 px-4 text-[15px] text-navy outline-none transition-colors placeholder:text-navy/35 focus:border-brand focus:bg-white " +
@@ -46,15 +89,25 @@ export function ContactForm({ initialServices, size = "compact" }: ContactFormPr
     );
   };
 
+  /* PLACEHOLDER COPY: error wording until Gard supplies it. */
   return (
     <form
-      onSubmit={(e) => e.preventDefault()}
+      onSubmit={onSubmit}
       className={spacious ? "flex flex-col gap-5" : "flex flex-col gap-4"}
     >
+      {/* Honeypot: hidden from people, often filled in by spam bots. */}
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute -left-[9999px] h-px w-px opacity-0"
+      />
       <div className={spacious ? "grid items-end gap-5 sm:grid-cols-2" : "grid items-end gap-4 sm:grid-cols-2"}>
         <label className="block">
           <span className={LABEL}>Navn</span>
-          <input type="text" name="name" className={FIELD} placeholder="Ditt navn" />
+          <input type="text" name="name" required autoComplete="name" className={FIELD} placeholder="Ditt navn" />
         </label>
         <label className="block">
           <span className={LABEL}>Firmanavn</span>
@@ -68,6 +121,8 @@ export function ContactForm({ initialServices, size = "compact" }: ContactFormPr
           <input
             type="email"
             name="email"
+            required
+            autoComplete="email"
             className={`${FIELD} validator`}
             placeholder="din@epost.no"
           />
@@ -183,15 +238,27 @@ export function ContactForm({ initialServices, size = "compact" }: ContactFormPr
         />
       </label>
 
+      {status === "error" && (
+        <p role="alert" className="text-[14px] leading-relaxed text-error">
+          Noe gikk galt, og skjemaet ble ikke sendt. Prøv igjen, eller ring oss
+          på{" "}
+          <a href="tel:02346" className="font-semibold underline">
+            02346
+          </a>
+          .
+        </p>
+      )}
+
       <button
         type="submit"
+        disabled={status === "sending"}
         className={
-          "mt-1 inline-flex items-center justify-center gap-2 rounded-[1rem] bg-brand px-7 py-3 text-[14px] font-semibold text-white transition-colors hover:bg-brand-deep " +
+          "mt-1 inline-flex items-center justify-center gap-2 rounded-[1rem] bg-brand px-7 py-3 text-[14px] font-semibold text-white transition-colors hover:bg-brand-deep disabled:cursor-wait disabled:opacity-70 " +
           (spacious ? "w-full py-3.5 text-[15px] sm:w-auto sm:self-start" : "w-full sm:w-auto sm:self-start")
         }
       >
-        Send skjema
-        <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+        {status === "sending" ? "Sender…" : "Send skjema"}
+        {status !== "sending" && <ArrowRight className="h-4 w-4" strokeWidth={2.5} />}
       </button>
     </form>
   );
