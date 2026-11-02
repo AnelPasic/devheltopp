@@ -1,6 +1,6 @@
 import { ArrowRight, Check } from "lucide-react";
 import teamImg from "../../images/om-oss/hele-gjengen.png";
-import { CONTAINER, Kicker, Pill } from "./site";
+import { CONTAINER, Kicker, LinePiece, Pill } from "./site";
 import { Reveal } from "./Reveal";
 
 const points = [
@@ -12,24 +12,29 @@ const points = [
 
 export function About() {
   return (
-    <section id="om-oss" className="scroll-mt-20 bg-white py-20 lg:py-28">
+    <section id="om-oss" className="relative isolate scroll-mt-20 overflow-x-clip bg-white py-20 lg:py-28">
+      <LinePiece className="-left-64 top-1/4 w-[40rem] -rotate-[18deg] text-navy/[0.12] lg:-left-56 lg:w-[56rem]" />
       <div
         className={`${CONTAINER} grid items-center gap-14 lg:grid-cols-2 lg:gap-20`}
       >
         <Reveal className="relative order-2 mx-auto w-full max-w-[26rem] lg:order-1 lg:max-w-[30rem]">
-          <div className="aspect-[4/5] overflow-hidden rounded-2xl">
+          <div className="aspect-[4/5] overflow-hidden rounded-[0.875rem]">
             <img
               src={teamImg}
               alt="Teamet i Helt Opplagt"
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="absolute -right-2 bottom-10 rounded-[1.25rem] bg-white px-6 py-4 shadow-[0_16px_36px_-8px_rgba(13,43,64,0.22)] sm:-right-6">
-            <p className="font-lato text-[34px] font-light leading-none text-brand">
-              40+ år
+          {/* Plain white card over the photo's right edge. */}
+          <div className="absolute -right-2 bottom-10 flex items-center gap-4 rounded-[0.875rem] bg-white px-5 py-4 shadow-[0_12px_32px_-16px_rgba(13,43,64,0.3)] ring-1 ring-navy/[0.06] sm:-right-6">
+            <p className="font-lato text-[38px] font-light leading-none tracking-[-0.02em] text-navy">
+              40+
             </p>
-            <p className="mt-1 text-[12px] font-semibold uppercase tracking-[0.1em] text-navy/55">
-              Erfaring
+            <span aria-hidden="true" className="h-9 w-px bg-navy/15" />
+            <p className="text-[12px] font-semibold uppercase leading-snug tracking-[0.12em] text-brand">
+              År med
+              <br />
+              erfaring
             </p>
           </div>
         </Reveal>

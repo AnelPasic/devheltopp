@@ -159,7 +159,6 @@ export const inneklimaData: ServicePageData = {
       proof:
         "Vi leier ut sensorer fra SafeLungs, og dere får tilgang til et dashbord der dere følger inneklimaet hver dag.",
       layout: "feature",
-      reverse: true,
       items: [
         {
           name: "Sensorer og dashbord fra SafeLungs",

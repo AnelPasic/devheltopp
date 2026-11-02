@@ -4,6 +4,43 @@ import { Link } from "react-router";
 export const CONTAINER =
   "mx-auto w-full max-w-[1360px] px-5 sm:px-8 lg:px-10";
 
+/* Entrance on first paint: fades and lifts in, staggered per element via
+   [transition-delay:…]. Users who prefer reduced motion see it at rest. */
+export const ENTER =
+  "motion-safe:transition-[opacity,translate] motion-safe:duration-1500 motion-safe:ease-out motion-safe:starting:translate-y-3 motion-safe:starting:opacity-0";
+
+/* The same entrance, desktop only: on phones the page just appears. */
+export const ENTER_DESKTOP =
+  "lg:motion-safe:transition-[opacity,translate] lg:motion-safe:duration-1500 lg:motion-safe:ease-out lg:motion-safe:starting:translate-y-3 lg:motion-safe:starting:opacity-0";
+
+/* Photo counterpart of ENTER_DESKTOP: fades only, no lift. */
+export const FADE_DESKTOP =
+  "lg:motion-safe:transition-opacity lg:motion-safe:duration-1000 lg:motion-safe:ease-out lg:motion-safe:starting:opacity-0";
+
+const PUZZLE_PATH =
+  "M70 420L370 420C400 330 330 300 330 200C330 85 415 30 500 30C585 30 670 85 670 200C670 300 600 330 630 420L930 420L930 735C860 760 820 690 770 700C690 715 650 790 650 870C650 950 690 1025 770 1040C820 1050 860 980 930 1005L950 1225L60 1225L70 1005C140 1030 180 1050 230 1040C310 1025 350 950 350 870C350 790 310 715 230 700C180 690 140 710 70 735Z";
+
+/** A very large puzzle piece drawn as a single thin line. The stroke stays
+    1px however big the piece gets, so it reads as a fine drawn mark rather
+    than a shape. Sits behind the content. */
+export function LinePiece({ className }: { className: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 1000 1290"
+      fill="none"
+      className={`pointer-events-none absolute -z-10 aspect-[100/129] ${className}`}
+    >
+      <path
+        d={PUZZLE_PATH}
+        stroke="currentColor"
+        strokeWidth={1}
+        vectorEffect="non-scaling-stroke"
+      />
+    </svg>
+  );
+}
+
 /** Small uppercase section label with a brand-blue slash, Compass-style. */
 export function Kicker({
   children,
@@ -88,7 +125,7 @@ export function Pill({
   className?: string;
 } & Record<string, unknown>) {
   const base =
-    "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[14px] font-semibold transition-colors";
+    "inline-flex items-center justify-center gap-2 rounded-[1rem] px-6 py-3 text-[14px] font-semibold transition-colors";
   const variants: Record<string, string> = {
     primary: "bg-brand text-white hover:bg-brand-deep",
     navy: "bg-navy text-white hover:bg-brand",

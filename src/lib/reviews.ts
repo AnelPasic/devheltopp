@@ -78,3 +78,17 @@ export const reviews: Review[] = [
     text: "Høsten 2023 så vi etter ny samarbeidspartner på daglig og temporært renhold og valget falt på Helt Opplagt. Tilbudspresentasjonen var i sin helhet god, i tillegg er det et firma som tar stort sosialt ansvar noe som er svært viktig for oss og våre verdier. Et godt renhold gir et bra arbeidsmiljø, og Helt Opplagt innfrir alle forventningene vi hadde til kvalitet. Når ansatte kommenterer at det er rent blir man trygg på at man har gjort riktig valg av leverandør. Jeg vil spesielt trekke frem positiviteten Helt Opplagt viser. De er løsningsorienterte, bestandig imøtekommende og fikser alt vi ber om. Vi er glade for valget vi tok om ny samarbeidspartner.",
   },
 ];
+
+/** Anchor id for one review on /referanser, e.g. "referanse-kristin-gresmo-johansen". */
+export function reviewId(review: Review) {
+  const slug = review.name
+    .toLowerCase()
+    .replace(/æ/g, "ae")
+    .replace(/ø/g, "o")
+    .replace(/å/g, "a")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+  return `referanse-${slug}`;
+}

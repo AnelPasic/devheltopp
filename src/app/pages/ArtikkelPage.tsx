@@ -139,7 +139,7 @@ function ArticleBlockView({ block }: { block: ArticleBlock }) {
   if (block.type === "image") {
     return (
       <figure className="mb-8">
-        <div className="overflow-hidden rounded-[1.5rem]">
+        <div className="overflow-hidden rounded-[1.25rem]">
           <img
             src={block.src}
             alt={block.alt ?? ""}

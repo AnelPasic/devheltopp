@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { Link } from "react-router";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router";
 import { ArrowUpRight, Quote } from "lucide-react";
 import { CONTAINER } from "../components/site";
 import { PageHeader } from "../components/PageHeader";
-import { reviews, type Review } from "../../lib/reviews";
+import { reviewId, reviews, type Review } from "../../lib/reviews";
 import kantineImg from "../../images/kantine/sport-1-10.jpg";
 import lunsjImg from "../../images/lunsj/lunsj.jpg";
 import fruktImg from "../../images/frukt/fruktkurv-mote.jpg";
@@ -114,12 +114,20 @@ export function ReferanserPage() {
 
   const [filter, setFilter] = useState<Service | "Alle">("Alle");
 
+  /* Arriving from a review card on the home page (/referanser#referanse-…):
+     scroll that review into view. */
+  const { hash } = useLocation();
+  useEffect(() => {
+    const id = hash.slice(1);
+    if (id) document.getElementById(id)?.scrollIntoView({ block: "center" });
+  }, [hash]);
+
   const shown = SERVICES.filter(
     (s) => filter === "Alle" || s.service === filter
   );
 
   const chip =
-    "inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[14px] font-semibold transition-colors";
+    "inline-flex items-center gap-2 rounded-[1rem] border px-4 py-2 text-[14px] font-semibold transition-colors";
 
   return (
     <div className="min-h-dvh bg-white">
@@ -180,7 +188,11 @@ export function ReferanserPage() {
                 {reviews
                   .filter((r) => r.service === entry.service)
                   .map((review) => (
-                    <div key={review.name} className="mb-6 break-inside-avoid">
+                    <div
+                      key={review.name}
+                      id={reviewId(review)}
+                      className="mb-6 scroll-mt-28 break-inside-avoid"
+                    >
                       <ReviewCard review={review} showTag={filter === "Alle"} />
                     </div>
                   ))}

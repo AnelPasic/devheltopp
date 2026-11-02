@@ -6,6 +6,7 @@ import fatHof3 from "../../../images/lunsj/hof3.jpg";
 import hverdagslunsjenImg from "../../../images/lunsj/cards/hverdagslunsjen.jpg";
 import golunsjenImg from "../../../images/lunsj/cards/golunsjen.jpg";
 import superlunsjenImg from "../../../images/lunsj/cards/superlunsjen.jpg";
+import varmLunsjImg from "../../../images/lunsj/varm-lunsj.jpg";
 
 const thumbs = "https://heltopplagt.no/application/files/cache/thumbnails";
 
@@ -18,7 +19,7 @@ export const lunsjData: ServicePageData = {
       Lunsj
     </>
   ),
-  subtitle: "Vår lunsj gjør arbeidsdagen hyggeligere",
+  subtitle: "Sunn og god lunsj gjør arbeidsdagen bedre",
   intro:
     "Vi har over 25 års erfaring med å levere lunsj til store og små bedrifter i Oslo og Stor-Oslo. Vi leverer alt fra enkle lunsjesker til proffkantine, og er eksperter på å sikre en god og variert lunsj tilpasset bedriftens behov.",
   image: heroImg,
@@ -77,14 +78,13 @@ export const lunsjData: ServicePageData = {
       heading: "Ferdige fat",
 
       layout: "feature",
-      reverse: true,
       items: [
         {
           name: "Leveres rett inn i deres kjøleskap",
           tag: "Passer best fra ca 10 pers og oppover",
           description:
 
-            "Ønsker dere dagens meny lekkert dandert på fat? Kjøtt- og fiskepålegg, ost, egg, grønnsaker osv pakkes på fat. Drikke, smør, syltetøy og andre pålegg som ikke egner seg så godt på fat kommer ved siden av. Fatene setter vi rett inn i kjøleskapet hos dere ved våre daglige leveranser. ",
+            "Ønsker dere dagens meny lekkert dandert på fat? Kjøtt- og fiskepålegg, ost, egg, grønnsaker osv pakkes på fat. Fatene setter vi rett inn i kjøleskapet hos dere ved våre daglige leveranser. ",
           image: fatHof3,
         },
       ],
@@ -100,7 +100,7 @@ export const lunsjData: ServicePageData = {
           tag: "Mer enn 50 retter",
           description:
             "Vi har et stort utvalg av velsmakende varmretter, alle laget helt fra bunn av, med fokus på sunnhet og naturlige råvarer. Rettene leveres både porsjonspakkede og i storforpakninger, og kan raskt og enkelt varmes opp i komfyr eller mikrobølgeovn.",
-          image: `${thumbs}/317b0d000b75625d1c6eea3f9a02a605.jpg`,
+          image: varmLunsjImg,
         },
       ],
       link: { label: "Les mer om varm lunsj", to: "/tjenester/lunsj/varm-lunsj" },
@@ -116,7 +116,7 @@ export const lunsjData: ServicePageData = {
     {
       question: "Når leveres lunsjen på jobben?",
       answer:
-        "Sunn lunsj levert helt inn på spiserommet før kl. 11 hver dag. Vi leverer daglig eller etter behov.",
+        "All lunsj leveres før kl. 11 hver dag. Vi leverer daglig eller etter behov.",
     },
     {
       question: "Hva koster en lunsjordning?",
@@ -146,7 +146,7 @@ export const lunsjData: ServicePageData = {
       label: "Varm lunsj",
       description: "Vi har et stort utvalg av velsmakende retter, alle laget helt fra bunn av.",
       to: "/tjenester/lunsj/varm-lunsj",
-      image: `${thumbs}/317b0d000b75625d1c6eea3f9a02a605.jpg`,
+      image: varmLunsjImg,
     },
     {
       label: "Kantine",
@@ -224,42 +224,26 @@ export const lunsjData: ServicePageData = {
       content: [
         {
           type: "text",
-          heading: "Leveres rett inn i deres kjøleskap",
+          heading: "Ønsker dere en ordning som er enda mer tilrettelagt?",
           paragraphs: [
-            "Fatene setter vi rett inn i kjøleskapet hos dere ved våre daglige leveranser. I tillegg etterfylles andre pålegg etter rullerende meny. Vi hjelper dere med å holde orden i kjøleskapet, noe som sikrer fersk mat og hindrer svinn.",
+            "Vi kommer hver dag med dagens meny lekkert dandert på fat. Lunsjfatene baserer seg på det store utvalget vi leverer i Go'lunsjen og passer best fra ca. ti personer og oppover. Dere får en kjøtt- og fiskepålegg, ost , egg og friske grønnsaker. Drikke, smør, syltetøy og annet som ikke gener seg på fat, kommer ved siden av. Dere får en flere typer pålegg hver dag, med stor variasjon.\n \nVi rullerer mellom 50  forskjellige påleggsmenyer, slik at dere ikke går lei.Dere får også egen fredagsmeny, der det varieres mellom blant annet karbonader, roastbiff, fiskekaer og kyllingvinger.",
           ],
         },
-        {
-          type: "bullets",
-          heading: "Brød, pålegg, grønt, drikke og en ekstra fredagsmeny",
-          items: [
-            "Variert og sunt brød + margarin. Brødet leveres ferdig oppskåret.",
-            "Flere typer pålegg hver dag, varieres med 50 rullerende menyer. Her er vi innom de fleste kjente typer kjøtt- og fiskepålegg, kokte egg, majones, kaviar, assorterte skivede oster, smøre- og kremoster, italiensk- og skalldyrsalater, syltetøy, leverpostei og mye mer.",
-            "Ekstra fredagsmeny. Varieres mellom karbonader, roastbiff, kokte egg, fiskekaker og kyllingvinger.",
-            "Friske grønnsaker: tomat/agurk/salat/paprika.",
-            "Juice/melk.",
-          ],
-        },
-        {
-          type: "text",
-          paragraphs: [
-            "Ring oss på 0 23 46 eller bruk skjema under for en uforpliktende prat!",
-          ],
-        },
+
       ],
     },
     {
       slug: "varm-lunsj",
       title: "Varm lunsj",
       description:
-        "Vi har et stort utvalg av velsmakende retter, alle laget helt fra bunn av, med fokus på sunnhet og naturlige råvarer. Rettene leveres både porsjonspakkede og i storforpakninger, og kan raskt og enkelt varmes opp i komfyr eller mikrobølgeovn.",
-      image: `${thumbs}/317b0d000b75625d1c6eea3f9a02a605.jpg`,
+        "Vi har et stort utvalg av velsmakende retter, laget av våre egen kokker - helt fra bunnen av.",
+      image: varmLunsjImg,
       content: [
         {
           type: "text",
           heading: "Stor variasjon og lang holdbarhet",
           paragraphs: [
-            "Vi jobber hele tiden med fornyelse og nye retter. Vi vil at våre kunder skal oppleve en inspirerende variasjon. Det rulleres mellom mer enn 50 retter, her er noen eksempler:",
+            "På vårt kjøkkken er det fokus på sunne og ferske råvarer uten tilsetningsstoffer, og rettene leveres både porsjonspakket og i storforpakninger. Disse kan raskt og enkelt varmes opp i komfyr eller mikrobølgeovn. \n \n Vi jobber kontinuerlig med fornyelse av våre menyer og har et godt og variert utvalg. Vi vil at våre kunder skal oppleve en inspirerende variasjon, så det rulleres mellom smaksrike retter fra hele verden. Under ser du et lite utvalg av våre retter:",
           ],
         },
         {
@@ -274,12 +258,6 @@ export const lunsjData: ServicePageData = {
             "Thailandsk Green Curry med ris",
             "Pasta Carbonara",
             "Karbonader med ertepure og stekte poteter",
-          ],
-        },
-        {
-          type: "text",
-          paragraphs: [
-            "Ring oss på 0 23 46 eller bruk skjema under for en uforpliktende prat!",
           ],
         },
       ],

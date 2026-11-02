@@ -27,17 +27,17 @@ export function Aktuelt() {
         <div className="mt-12 grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
           <Reveal delay={100}>
           <Link to={`/aktuelt/${featured.slug}`} className="group block">
-            <div className="relative aspect-[16/10] overflow-hidden rounded-[1.5rem]">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-[1.25rem]">
               <img
                 src={featured.image}
                 alt={featured.imageAlt}
-                className="absolute inset-0 h-full w-full object-cover object-[center_35%] transition-transform duration-500 group-hover:scale-105"
+                className="absolute inset-0 h-full w-full object-cover object-[center_35%] transition-transform duration-500 group-hover:scale-[1.02]"
               />
               <span className="absolute left-4 top-4 rounded-full bg-white/90 px-4 py-1.5 text-[12px] font-semibold text-navy backdrop-blur">
                 Store Stensrud Gård
               </span>
             </div>
-            <h3 className="mt-6 font-lato text-[22px] font-bold leading-[1.25] text-navy transition-colors group-hover:text-brand lg:text-[24px]">
+            <h3 className="mt-6 font-lato text-[22px] font-bold leading-[1.25] text-navy lg:text-[24px]">
               Leter du etter det perfekte stedet for ditt arrangement?
             </h3>
             <p className="mt-3 max-w-[48ch] text-[15px] leading-relaxed text-navy/60">
@@ -61,20 +61,20 @@ export function Aktuelt() {
                 to={`/aktuelt/${item.slug}`}
                 className="group flex items-center gap-5 rounded-[1.5rem] bg-cloud/60 p-4 transition-colors hover:bg-cloud sm:p-5"
               >
-                <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-[1rem] sm:h-24 sm:w-24">
+                <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-[0.75rem] sm:h-24 sm:w-24">
                   <img
                     src={item.image}
                     alt={item.imageAlt}
                     loading="lazy"
                     decoding="async"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                   />
                 </div>
                 <div className="min-w-0">
                   <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-brand">
                     {item.category}
                   </span>
-                  <h4 className="mt-1.5 text-[16px] font-semibold leading-snug text-navy transition-colors group-hover:text-brand">
+                  <h4 className="mt-1.5 text-[16px] font-semibold leading-snug text-navy">
                     {item.title}
                   </h4>
                 </div>

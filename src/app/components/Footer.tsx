@@ -1,7 +1,7 @@
 import { ExternalLink, Mail, Phone } from "lucide-react";
 import { Link } from "react-router";
 import logoSrc from "../../images/logo/helt-opplagt.png";
-import { CONTAINER, Pill } from "./site";
+import { CONTAINER, LinePiece, Pill } from "./site";
 import { SERVICES } from "./livery";
 
 const companyLinks: { label: string; to?: string; href?: string }[] = [
@@ -18,7 +18,8 @@ const HEADING =
 
 export function Footer() {
   return (
-    <footer className="bg-navy text-white">
+    <footer className="relative isolate overflow-hidden bg-navy text-white">
+      <LinePiece className="-left-48 -top-28 w-[36rem] -rotate-[18deg] text-white/[0.14] lg:-left-32 lg:-top-40 lg:w-[50rem]" />
       <div
         className={`${CONTAINER} grid grid-cols-2 gap-x-6 gap-y-10 py-12 lg:grid-cols-[1.6fr_1fr_1fr_1.3fr] lg:gap-10 lg:py-20`}
       >

@@ -1,51 +1,16 @@
 import {
-  Apple,
-  ChefHat,
   ChevronDown,
   ExternalLink,
   Mail,
   Menu,
   Phone,
-  Sandwich,
-  Sparkles,
-  UtensilsCrossed,
-  Wind,
   X,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import logoSrc from "../../images/logo/helt-opplagt.png";
-import { CONTAINER } from "./site";
-import { SERVICES } from "./livery";
-import heroFrukt from "../../images/hero/hero-frukt.jpg";
-import heroLunsj from "../../images/hero/hero-lunsj.jpg";
-import heroKantine from "../../images/hero/hero-kantine.jpg";
-import heroCatering from "../../images/hero/hero-catering.jpg";
-import heroInneklima from "../../images/hero/hero-inneklima-dno.jpg";
-import heroRenhold from "../../images/hero/hero-renhold.jpg";
-import kantineStaff from "../../images/kantine/sport-1-21.jpg";
-
-/** Photos the menu's picture panel cross-fades through. Decorative only. */
-const MENU_PHOTOS = [
-  kantineStaff,
-  heroFrukt,
-  heroLunsj,
-  heroInneklima,
-  heroKantine,
-  heroCatering,
-  heroRenhold,
-];
-const MENU_PHOTO_INTERVAL = 4000;
-
-const SERVICE_ICONS: Record<string, LucideIcon> = {
-  Frukt: Apple,
-  Lunsj: Sandwich,
-  Kantine: UtensilsCrossed,
-  Catering: ChefHat,
-  Inneklima: Wind,
-  Renhold: Sparkles,
-};
+import { CONTAINER, LinePiece } from "./site";
+import { SERVICE_ICONS, SERVICES } from "./livery";
 
 const secondaryLinks: { label: string; to?: string; href?: string }[] = [
   { label: "Om oss", to: "/om-oss" },
@@ -77,18 +42,16 @@ export function Header() {
   const menuRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDetailsElement>(null);
   const [menuExpanded, setMenuExpanded] = useState(false);
-  const [photo, setPhoto] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
 
-  /* Cross-fade the picture panel while the menu is open. */
+  /* Once the page scrolls, the glass gets a little more solid and the
+     shadow a little deeper, so the bar holds up over photos. */
   useEffect(() => {
-    if (!menuExpanded) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = window.setInterval(
-      () => setPhoto((i) => (i + 1) % MENU_PHOTOS.length),
-      MENU_PHOTO_INTERVAL
-    );
-    return () => window.clearInterval(timer);
-  }, [menuExpanded]);
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   /* The <details>-based dropdown doesn't close on outside clicks by itself. */
   useEffect(() => {
@@ -117,21 +80,35 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-navy/8 bg-white/95 backdrop-blur">
+    /* A full-width glass bar: frosted and see-through, with a fine light edge
+       along the bottom and a soft shadow underneath. */
+    <header
+      className={
+        "sticky top-0 z-50 border-b border-white/70 backdrop-blur-xl backdrop-saturate-150 transition-[background-color,box-shadow] duration-300 " +
+        (scrolled
+          ? "bg-white/75 shadow-[0_10px_28px_-18px_rgba(13,43,64,0.22),0_1px_2px_-1px_rgba(13,43,64,0.06)]"
+          : "bg-white/55 shadow-[0_6px_20px_-16px_rgba(13,43,64,0.14)]")
+      }
+    >
       <div className={`${CONTAINER} flex h-[4.5rem] items-center gap-5 lg:gap-7`}>
         <Link to="/" className="flex-shrink-0">
           <img src={logoSrc} alt="Helt Opplagt" className="h-11 object-contain" />
         </Link>
 
-        <nav aria-label="Tjenester" className="hidden items-center gap-4 lg:flex xl:gap-6">
+        <nav aria-label="Tjenester" className="hidden items-center gap-5 lg:flex xl:gap-7">
           {SERVICES.map((s) => (
-            <Link
+            <NavLink
               key={s.href}
               to={s.href}
-              className="text-[14px] font-medium text-navy/70 transition-colors hover:text-brand"
+              className={({ isActive }) =>
+                /* Blue underline grows in from the left on hover and stays
+                   under the current page. */
+                "relative py-1 text-[14px] font-medium transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-[2px] after:origin-left after:rounded-full after:bg-brand after:transition-transform after:duration-300 after:ease-out hover:text-navy hover:after:scale-x-100 " +
+                (isActive ? "text-navy after:scale-x-100" : "text-navy/65 after:scale-x-0")
+              }
             >
               {s.name}
-            </Link>
+            </NavLink>
           ))}
         </nav>
 
@@ -174,14 +151,14 @@ export function Header() {
 
           <Link
             to="/kontakt"
-            className="hidden items-center justify-center rounded-full bg-brand px-5 py-2.5 text-[13.5px] font-semibold text-white transition-colors hover:bg-brand-deep sm:inline-flex"
+            className="hidden items-center justify-center rounded-[0.875rem] bg-brand px-5 py-2.5 text-[13.5px] font-semibold text-white shadow-[0_6px_16px_-6px_rgba(0,119,190,0.6)] transition-[background-color,box-shadow] hover:bg-brand-deep hover:shadow-[0_8px_20px_-6px_rgba(0,95,152,0.7)] sm:inline-flex"
           >
             Kontakt oss
           </Link>
 
           <button
             type="button"
-            className="inline-flex items-center gap-2 rounded-full border border-navy/20 px-4 py-2.5 text-[13.5px] font-semibold text-navy transition-colors hover:border-brand hover:text-brand"
+            className="inline-flex items-center gap-2 rounded-[0.875rem] border border-navy/15 bg-white/60 px-4 py-2.5 text-[13.5px] font-semibold text-navy transition-colors hover:border-brand hover:text-brand"
             {...({ popovertarget: MENU_POPOVER_ID } as Record<string, string>)}
           >
             <Menu className="h-4 w-4" />
@@ -198,11 +175,17 @@ export function Header() {
       >
         <div
           className={
-            "modal-box flex h-full max-h-none w-full max-w-none flex-col rounded-none bg-navy p-0 text-white transition-[scale,opacity] duration-300 ease-out " +
+            "modal-box relative isolate flex h-full max-h-none w-full max-w-none flex-col overflow-hidden rounded-none bg-navy p-0 text-white transition-[scale,opacity] duration-300 ease-out " +
             (menuExpanded ? "scale-100 opacity-100" : "scale-95 opacity-0")
           }
         >
-          <div className="flex h-[4.5rem] flex-shrink-0 items-center justify-between border-b border-white/10 px-6 sm:px-8">
+          {/* One large puzzle piece drawn in thin lines, rising out of the
+              bottom right corner with its tab pointing to the top left. */}
+          <LinePiece className="-bottom-56 -right-48 w-[34rem] -rotate-[40deg] text-white/[0.12] lg:-bottom-72 lg:-right-40 lg:w-[56rem]" />
+          {/* Same container and height as the navbar, so the logo and the
+              close button sit exactly where the logo and "Meny" were. */}
+          <div className="flex-shrink-0 border-b border-white/10">
+          <div className={`${CONTAINER} flex h-[4.5rem] items-center justify-between`}>
             <Link to="/" onClick={closeMenu} className="flex-shrink-0">
               <img
                 src={logoSrc}
@@ -222,10 +205,10 @@ export function Header() {
               <X className="h-4 w-4" />
             </button>
           </div>
+          </div>
 
           <div className="flex-1 overflow-y-auto px-6 py-6 sm:px-8 sm:py-14">
-            <div className="mx-auto grid max-w-[1280px] gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:gap-16 xl:grid-cols-[minmax(0,1fr)_minmax(0,30rem)]">
-            <div className="grid gap-6 sm:grid-cols-2 sm:gap-16">
+            <div className="mx-auto grid max-w-[1280px] gap-6 sm:grid-cols-2 sm:gap-16">
               <nav>
                 <p className="mb-2.5 flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.16em] text-white/50 sm:mb-5">
                   <span aria-hidden="true" className="text-[14px] font-bold text-aqua">/</span>
@@ -301,30 +284,6 @@ export function Header() {
                   })}
                 </ul>
               </nav>
-            </div>
-
-            <div
-              aria-hidden="true"
-              style={{ transitionDelay: menuExpanded ? "200ms" : "0ms" }}
-              className={
-                "relative hidden aspect-[4/5] max-h-[65vh] w-full overflow-hidden rounded-[1.5rem] bg-white/5 transition-[translate,opacity] duration-500 ease-out lg:block " +
-                (menuExpanded ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0")
-              }
-            >
-              {MENU_PHOTOS.map((src, i) => (
-                <img
-                  key={src}
-                  src={src}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                  className={
-                    "absolute inset-0 h-full w-full object-cover transition-[opacity,scale] duration-1000 ease-out " +
-                    (i === photo ? "scale-100 opacity-100" : "scale-105 opacity-0")
-                  }
-                />
-              ))}
-            </div>
             </div>
           </div>
 

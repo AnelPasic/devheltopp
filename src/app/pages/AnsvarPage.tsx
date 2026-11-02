@@ -27,14 +27,14 @@ function Collage({ photos }: { photos: Photo[] }) {
   const img = "h-full w-full object-cover";
   return (
     <div className="grid grid-cols-2 gap-3">
-      <div className="col-span-2 aspect-[16/10] overflow-hidden rounded-[1.25rem]">
+      <div className="col-span-2 aspect-[16/10] overflow-hidden rounded-[1rem]">
         <img src={lead.src} alt={lead.alt} loading="lazy" decoding="async" className={img} />
       </div>
       {rest.map((p) => (
         <div
           key={p.src}
           className={
-            "overflow-hidden rounded-[1.25rem] " +
+            "overflow-hidden rounded-[1rem] " +
             (rest.length === 1 ? "col-span-2 aspect-[16/10]" : "aspect-square")
           }
         >

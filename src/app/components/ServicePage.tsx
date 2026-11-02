@@ -1,8 +1,8 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useId, useRef, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronRight, Download, Phone, Plus } from "lucide-react";
 import { Link } from "react-router";
-import { CONTAINER, Pill } from "./site";
+import { CONTAINER, ENTER_DESKTOP, FADE_DESKTOP, LinePiece, Pill } from "./site";
 import { useDocumentMeta } from "../../lib/use-document-meta";
 import { Reveal } from "./Reveal";
 
@@ -15,12 +15,15 @@ export const allServices = [
   { label: "Renhold", to: "/tjenester/renhold" },
 ];
 
-const MOTIFS = [
-  "livery-puzzle-outline aspect-[100/129] -right-12 -bottom-10 w-40 rotate-[22deg] bg-brand/25 lg:-right-6 lg:w-56",
-  "livery-puzzle aspect-[100/129] -right-20 top-10 w-48 rotate-[9deg] bg-lime/15 lg:-right-12 lg:w-64",
-  "livery-puzzle-outline aspect-[100/129] -left-14 -bottom-8 w-36 -rotate-[12deg] bg-navy/20 lg:-left-8 lg:w-52",
-  "livery-puzzle-outline aspect-[100/129] -right-14 top-8 w-40 rotate-[15deg] bg-brand/20 lg:-right-8 lg:w-56",
-];
+/* Shared by the hero and the explainer so their right-hand photos always
+   have the same width. */
+const PHOTO_SPLIT =
+  "lg:grid-cols-[minmax(0,1fr)_minmax(0,32rem)] lg:gap-16 xl:grid-cols-[minmax(0,1fr)_minmax(0,36rem)] xl:gap-20";
+/* Same split mirrored, for a photo on the left. */
+const PHOTO_SPLIT_LEFT =
+  "lg:grid-cols-[minmax(0,32rem)_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[minmax(0,36rem)_minmax(0,1fr)] xl:gap-20";
+const PHOTO_COL =
+  "mx-auto w-full max-w-[22rem] sm:max-w-[26rem] lg:max-w-none";
 
 /** Small breadcrumb trail, e.g. Alle tjenester / Frukt / Jobbsmoothie */
 export function Breadcrumb({
@@ -97,12 +100,6 @@ export function ServiceFooter({
         (sky ? "bg-stone border-y border-navy/[0.06] py-[4.5rem] lg:py-[6rem]" : "bg-white py-16 lg:py-20")
       }
     >
-      {sky && (
-        <span
-          aria-hidden="true"
-          className="livery-puzzle-outline aspect-[100/129] -right-16 -top-10 w-40 rotate-[18deg] bg-brand/20 lg:-right-8 lg:w-56"
-        />
-      )}
 
       <Reveal className={`${CONTAINER} relative z-10`}>
         <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
@@ -111,10 +108,6 @@ export function ServiceFooter({
               Bli {" "}
               <span className="text-brand">Helt Opplagt!</span>
             </h2>
-            <p className="mt-4 max-w-[48ch] text-[16px] leading-relaxed text-navy/65">
-              Ring oss på 0 23 46 eller bruk skjema under for en uforpliktende
-              prat!
-            </p>
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-shrink-0 sm:flex-row sm:items-center">
@@ -260,9 +253,6 @@ export interface CatalogSection {
   items: CatalogItem[];
   /** "panels" = text-only panels, "grid" = product cards, "band" = one wide row, "feature" = copy + one photo. */
   layout?: "panels" | "grid" | "band" | "feature";
-  /** "feature" only: photo on the left, copy on the right. Alternate it
-      section by section so the page zigzags. */
-  reverse?: boolean;
   /** true = real photographs (object-cover). Default false = white-background cut-outs (mix-blend-multiply). */
   photo?: boolean;
   link?: { label: string; to: string };
@@ -317,7 +307,7 @@ function SubServiceCard({ to, sub }: { to: string; sub: SubService }) {
   return (
     <Link
       to={to}
-      className="group flex flex-col overflow-hidden rounded-[1.5rem] bg-white shadow-[0_1px_2px_rgba(13,43,64,0.06)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-12px_rgba(13,43,64,0.18)]"
+      className="group flex flex-col overflow-hidden rounded-[1.5rem] bg-white shadow-[0_1px_2px_rgba(13,43,64,0.06)] transition-shadow duration-300 hover:shadow-[0_20px_40px_-12px_rgba(13,43,64,0.18)]"
     >
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
@@ -325,7 +315,7 @@ function SubServiceCard({ to, sub }: { to: string; sub: SubService }) {
           alt=""
           loading="lazy"
           decoding="async"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
         />
       </div>
 
@@ -348,18 +338,26 @@ function SubServiceCard({ to, sub }: { to: string; sub: SubService }) {
   );
 }
 
-function CatalogSectionView({ catalog }: { catalog: CatalogSection }) {
+/** `reverse` = "feature" photo on the left. Set by ServicePage so the photo
+    sections zigzag down the page. */
+function CatalogSectionView({
+  catalog,
+  reverse = false,
+}: {
+  catalog: CatalogSection;
+  reverse?: boolean;
+}) {
   if (catalog.layout === "feature") {
     const item = catalog.items[0];
     return (
       <div
         className={
-          catalog.reverse
+          reverse
             ? "grid items-center gap-10 lg:grid-cols-[42%_1fr] lg:gap-16"
             : "grid items-center gap-10 lg:grid-cols-[1fr_42%] lg:gap-16"
         }
       >
-        <div className={catalog.reverse ? "lg:order-last" : undefined}>
+        <div className={reverse ? "lg:order-last" : undefined}>
           <h2 className="max-w-[20ch] font-lato text-[26px] font-light leading-[1.15] tracking-[-0.01em] text-navy sm:text-[32px] lg:text-[38px]">
             {catalog.heading}
           </h2>
@@ -396,14 +394,16 @@ function CatalogSectionView({ catalog }: { catalog: CatalogSection }) {
         </div>
 
         {item?.image && (
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2rem]">
-            <img
-              src={item.image}
-              alt={item.name}
-              loading="lazy"
-              decoding="async"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
+          <div>
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.5rem]">
+              <img
+                src={item.image}
+                alt={item.name}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
           </div>
         )}
       </div>
@@ -510,7 +510,7 @@ function CatalogSectionView({ catalog }: { catalog: CatalogSection }) {
                       decoding="async"
                       className={
                         catalog.photo
-                          ? "absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          ? "absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                           : "absolute inset-0 h-full w-full object-contain p-4 mix-blend-multiply"
                       }
                     />
@@ -677,7 +677,7 @@ function ReadMoreList({ links }: { links: ReadMoreLink[] }) {
           className="group flex items-center gap-6 border-b border-navy/10 py-5 first:border-t first:border-navy/10"
         >
           {link.image && (
-            <span className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-[1rem] sm:h-20 sm:w-20">
+            <span className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-[0.75rem] sm:h-20 sm:w-20">
               <img
                 src={link.image}
                 alt=""
@@ -709,12 +709,15 @@ function ReadMoreList({ links }: { links: ReadMoreLink[] }) {
 }
 
 export function FaqList({ items }: { items: FaqItem[] }) {
+  /* A shared `name` makes the <details> exclusive: opening one closes the rest. */
+  const group = useId();
   return (
     <div className="mt-10 max-w-[900px]">
       {items.map((item, i) => (
         <details
           key={i}
-          className="group border-b border-navy/10 first:border-t first:border-navy/10"
+          name={group}
+          className="faq-item group border-b border-navy/10 first:border-t first:border-navy/10"
         >
           <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-[16px] font-semibold leading-snug text-navy transition-colors hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand [&::-webkit-details-marker]:hidden">
             <span>{item.question}</span>
@@ -744,13 +747,27 @@ export function ServicePage({ data }: { data: ServicePageData }) {
   const light = data.layout === "light";
   const hasPoints = !!data.heroPoints && data.heroPoints.length > 0;
 
-  const blocks: ReactNode[] = [];
+  /* "photo" = copy + photo side by side, "cards" = a grid of cards,
+     "plain" = text, lists, FAQ. Card grids get their own inset panel. */
+  const blocks: { node: ReactNode; kind: "photo" | "cards" | "plain" }[] = [];
 
   if (data.explainer) {
     const ex = data.explainer;
-    blocks.push(
+    blocks.push({ kind: "photo", node: (
       <>
-        <div className="grid items-center gap-10 lg:grid-cols-[1fr_42%] lg:gap-16">
+        <div className={`grid items-center gap-10 ${PHOTO_SPLIT_LEFT}`}>
+          <div className={PHOTO_COL}>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem]">
+              <img
+                src={ex.image}
+                alt={ex.imageAlt}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+          </div>
+
           <div>
             <h2 className="max-w-[20ch] font-lato text-[26px] font-light leading-[1.15] tracking-[-0.01em] text-navy sm:text-[32px] lg:text-[38px]">
               {ex.heading ?? "Hva tilbyr vi"}
@@ -782,41 +799,42 @@ export function ServicePage({ data }: { data: ServicePageData }) {
               </ul>
             )}
           </div>
-
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2rem]">
-            <img
-              src={ex.image}
-              alt={ex.imageAlt}
-              loading="lazy"
-              decoding="async"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </div>
         </div>
+        {/* Hero point strip hidden for now.
         {light && hasPoints && (
           <div className="mt-14 lg:mt-16">
             <HeroPointStrip points={data.heroPoints!} />
           </div>
         )}
+        */}
       </>
-    );
+    ) });
   }
 
   if (data.benefits) {
-    blocks.push(
+    blocks.push({ kind: "plain", node: (
       <>
         <Head title={data.benefits.heading} proof={data.benefits.proof} />
         <BenefitGrid items={data.benefits.items} />
       </>
-    );
+    ) });
   }
 
+  /* Photo sections zigzag: the hero photo is on the right, so the explainer
+     (photo section 0) goes left, then right, left, and so on. */
+  let photoSection = data.explainer ? 1 : 0;
   (data.catalogs ?? []).forEach((catalog) => {
-    blocks.push(<CatalogSectionView catalog={catalog} />);
+    const feature = catalog.layout === "feature";
+    const reverse = feature && photoSection % 2 === 0;
+    if (feature) photoSection++;
+    blocks.push({
+      kind: feature ? "photo" : "cards",
+      node: <CatalogSectionView catalog={catalog} reverse={reverse} />,
+    });
   });
 
   if (data.subServices.length > 0 && !data.hideSubServiceCards) {
-    blocks.push(
+    blocks.push({ kind: "cards", node: (
       <>
         <Head
           title={data.subServicesHeading ?? `Dette leverer vi innen ${lowerLabel}`}
@@ -837,11 +855,11 @@ export function ServicePage({ data }: { data: ServicePageData }) {
           ))}
         </div>
       </>
-    );
+    ) });
   }
 
   if (data.quote) {
-    blocks.push(
+    blocks.push({ kind: "plain", node: (
       <figure className="mx-auto max-w-[820px] text-center">
         <blockquote className="font-lato text-[22px] font-light leading-[1.4] text-navy sm:text-[26px]">
           <span aria-hidden="true" className="text-amber">
@@ -860,11 +878,11 @@ export function ServicePage({ data }: { data: ServicePageData }) {
           </span>
         </figcaption>
       </figure>
-    );
+    ) });
   }
 
   if (data.faq && data.faq.length > 0) {
-    blocks.push(
+    blocks.push({ kind: "plain", node: (
       <>
         <Head
           title={data.faqHeading ?? "Ofte stilte spørsmål"}
@@ -872,57 +890,50 @@ export function ServicePage({ data }: { data: ServicePageData }) {
         />
         <FaqList items={data.faq} />
       </>
-    );
+    ) });
   }
 
   if (data.readMore && data.readMore.length > 0) {
-    blocks.push(
+    blocks.push({ kind: "plain", node: (
       <>
         <Head title={data.readMoreHeading ?? "Les mer"} />
         <ReadMoreList links={data.readMore} />
       </>
-    );
+    ) });
   }
-
-  /* Grounds alternate. With the light layout the hero points live inside the
-     first block, so the first block goes white and the alternation shifts. */
-  const groundOffset = light ? 1 : 0;
-  const otherServicesGround =
-    (blocks.length + groundOffset) % 2 === 0 ? "sky" : "white";
 
   return (
     <div className="min-h-dvh bg-white">
-      <section className="relative isolate overflow-hidden bg-stone border-b border-navy/[0.06] text-navy">
-        <span
-          aria-hidden="true"
-          className="livery-puzzle-outline aspect-[100/129] -left-20 bottom-[-3rem] w-44 -rotate-[14deg] bg-brand/15 lg:-left-12 lg:w-64"
-        />
+      <section className="relative isolate overflow-hidden text-navy">
+        <LinePiece className={`${FADE_DESKTOP} [transition-delay:150ms] hidden lg:block -right-40 top-10 w-[34rem] rotate-[14deg] text-brand/30 lg:-right-32 lg:top-6 lg:w-[46rem]`} />
         <div
-          className={`${CONTAINER} relative z-10 grid gap-10 py-10 sm:py-12 lg:min-h-[36rem] lg:grid-cols-[minmax(0,1fr)_minmax(0,32rem)] lg:items-center lg:gap-16 lg:py-16 xl:min-h-[40rem] xl:grid-cols-[minmax(0,1fr)_minmax(0,36rem)] xl:gap-20`}
+          className={`${CONTAINER} relative z-10 grid gap-10 py-10 sm:py-12 lg:min-h-[36rem] lg:items-center lg:py-16 xl:min-h-[40rem] ${PHOTO_SPLIT}`}
         >
           <div className="order-2 lg:order-1 lg:self-end lg:pb-2">
-            <Breadcrumb
-              items={[
-                { label: "Alle tjenester", to: "/tjenester" },
-                { label: serviceLabel },
-              ]}
-            />
+            <div className={`${ENTER_DESKTOP} [transition-delay:100ms]`}>
+              <Breadcrumb
+                items={[
+                  { label: "Alle tjenester", to: "/tjenester" },
+                  { label: serviceLabel },
+                ]}
+              />
+            </div>
 
-            <h1 className="font-lato text-[38px] font-light leading-[1.05] tracking-[-0.01em] text-navy sm:text-[48px] lg:text-[56px] xl:text-[64px]">
+            <h1 className={`font-lato text-[38px] font-light leading-[1.05] tracking-[-0.01em] text-navy sm:text-[48px] lg:text-[56px] xl:text-[64px] ${ENTER_DESKTOP} [transition-delay:180ms]`}>
               {data.title}
             </h1>
 
             {data.subtitle && (
-              <p className="service-subtitle mt-5 text-navy">
+              <p className={`service-subtitle mt-5 text-navy ${ENTER_DESKTOP} [transition-delay:260ms]`}>
                 {data.subtitle}
               </p>
             )}
 
-            <p className="mt-5 max-w-[36rem] text-[15px] leading-relaxed text-navy/65 lg:text-[17px]">
+            <p className={`mt-5 max-w-[36rem] text-[15px] leading-relaxed text-navy/65 lg:text-[17px] ${ENTER_DESKTOP} [transition-delay:340ms]`}>
               {data.intro}
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row xl:mt-10">
+            <div className={`mt-8 flex flex-col gap-3 sm:flex-row xl:mt-10 ${ENTER_DESKTOP} [transition-delay:420ms]`}>
               <Pill to="/kontakt">
                 Ta kontakt for tilbud
                 <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
@@ -941,9 +952,9 @@ export function ServicePage({ data }: { data: ServicePageData }) {
             </div>
           </div>
 
-          <div className="order-1 mx-auto w-full max-w-[22rem] sm:max-w-[26rem] lg:order-2 lg:max-w-none">
+          <div className={`order-1 lg:order-2 ${FADE_DESKTOP} ${PHOTO_COL}`}>
             <div className="relative aspect-square">
-              <div className="absolute inset-0 overflow-hidden rounded-2xl">
+              <div className="absolute inset-0 overflow-hidden rounded-[0.875rem]">
                 <img
                   src={data.heroImage ?? data.image}
                   alt={data.imageAlt}
@@ -980,6 +991,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
 
       <div id="innhold" className="scroll-mt-20" />
 
+      {/* Hero point strip hidden for now.
       {hasPoints && !(light && data.explainer) && (
         <section className="bg-white py-10 lg:py-12">
           <Reveal className={CONTAINER}>
@@ -987,28 +999,43 @@ export function ServicePage({ data }: { data: ServicePageData }) {
           </Reveal>
         </section>
       )}
+      */}
 
-      {blocks.map((block, i) => {
-        const sky = (i + groundOffset) % 2 === 0;
-        const motif = sky
-          ? MOTIFS[Math.floor((i + groundOffset) / 2) % MOTIFS.length]
-          : null;
-        return (
-          <section
-            key={i}
-            className={
-              sky
-                ? "relative isolate overflow-hidden bg-stone border-y border-navy/[0.06] py-[4.5rem] lg:py-[5.5rem]"
-                : "bg-white py-16 lg:py-20"
-            }
-          >
-            {motif && <span aria-hidden="true" className={motif} />}
-            <Reveal className={`${CONTAINER} relative z-10`}>{block}</Reveal>
-          </section>
-        );
-      })}
+      {blocks.map(({ node, kind }, i) => (
+        <section
+          key={i}
+          className={
+            "relative isolate overflow-x-clip py-14 lg:py-24 " +
+            (i === 0 ? "lg:pt-12" : "")
+          }
+        >
+          {/* One big line piece near the end of the page; the hero has the other. */}
+          {i === blocks.length - 2 && i > 0 && (
+            <LinePiece className="hidden lg:block -right-56 -top-24 w-[36rem] rotate-[24deg] text-navy/[0.12] lg:-right-48 lg:w-[50rem]" />
+          )}
+          <div className={CONTAINER}>
+            <Reveal>
+              {kind === "cards" ? (
+                <div className="relative rounded-[2rem] bg-stone px-5 py-12 sm:px-10 lg:px-14 lg:py-16">
+                  {/* One solid piece per page, hung off the lower corner of
+                      the first card panel, clear of the heading and cards. */}
+                  {i === blocks.findIndex((b) => b.kind === "cards") && (
+                    <span
+                      aria-hidden="true"
+                      className="livery-puzzle aspect-[100/129] -bottom-12 -left-10 w-20 -rotate-[16deg] bg-brand lg:-left-16 lg:w-24"
+                    />
+                  )}
+                  {node}
+                </div>
+              ) : (
+                node
+              )}
+            </Reveal>
+          </div>
+        </section>
+      ))}
 
-      <ServiceFooter currentPath={data.path} ground={otherServicesGround} />
+      <ServiceFooter currentPath={data.path} ground="sky" />
     </div>
   );
 }

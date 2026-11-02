@@ -19,24 +19,26 @@ const PHOTO: Record<string, string> = {
   Renhold: renholdImg,
 };
 
-function ServiceCard({ service }: { service: LiveryService }) {
+/** Photo card for one service: name on a light dark fade at the foot, with a
+    round arrow. Used on the home page and on /tjenester. */
+export function ServiceCard({ service }: { service: LiveryService }) {
   return (
     <Link
       to={service.href}
-      className="group relative block aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-[#1c1c1c] shadow-[0_1px_2px_rgba(13,43,64,0.06)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-12px_rgba(13,43,64,0.18)]"
+      className="group relative block aspect-[4/3] isolate overflow-hidden rounded-[1.25rem] transition-transform duration-300 hover:scale-[1.012]"
     >
       <img
         src={PHOTO[service.name]}
         alt=""
-        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
       />
       <span
         aria-hidden="true"
-        className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.18)_45%,rgba(0,0,0,0)_75%)]"
+        className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.1)_35%,rgba(0,0,0,0)_60%)]"
       />
 
       <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6 sm:p-7">
-        <span className="font-lato text-[24px] font-bold leading-none text-white sm:text-[26px]">
+        <span className="font-lato text-[24px] font-bold leading-none text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.35)] sm:text-[26px]">
           {service.name}
         </span>
 
@@ -59,20 +61,16 @@ export function Services() {
   return (
     <section
       id="tjenester"
-      className="relative isolate scroll-mt-24 overflow-hidden bg-stone border-y border-navy/[0.06] py-20 lg:py-28"
+      className="scroll-mt-24 bg-white py-20 lg:py-28"
       aria-labelledby="tjenester-tittel"
     >
-      <span
-        aria-hidden="true"
-        className="livery-puzzle-outline aspect-[100/129] -right-14 -bottom-12 w-44 rotate-[18deg] bg-brand/25 lg:-right-8 lg:w-60"
-      />
-      <div className={`${CONTAINER} relative z-10`}>
+      <div className={CONTAINER}>
         <Reveal>
           <div id="tjenester-tittel">
             <SectionHead
               kicker="Våre tjenester"
-              title="Våre produkter og tjenester"
-              lede="Les mer om våre tjenester og produkter, og hvordan vi kan hjelpe din bedrift med å skape en bedre arbeidsplass."
+              title="En bedre arbeidsdag starter her"
+              lede="Les mer om våre tjenester, og hvordan vi kan hjelpe din bedrift med en enklere, sunnnere og renere hverdag."
               action={
                 <Pill to="/kontakt" variant="outline">
                   Kontakt oss

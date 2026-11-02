@@ -5,6 +5,12 @@ import explainerImg from "../../../images/catering/kokker.jpg";
 import lunsjCardImg from "../../../images/lunsj/lunsj.png";
 import kantineCardImg from "../../../images/kantine/kantine.png";
 import fruktCardImg from "../../../images/frukt/frukt.png";
+import pasmurtImg from "../../../images/catering/pasmurt.jpg";
+import varmmatImg from "../../../images/catering/varmmat-buffet.jpg";
+import moteserviceImg from "../../../images/catering/moteservice.jpg";
+import eventImg from "../../../images/catering/event-koldtbord.jpg";
+import kakerImg from "../../../images/catering/kaker.jpg";
+import kakerKaffeImg from "../../../images/catering/kaker-kaffe.jpg";
 
 const thumbs = "https://heltopplagt.no/application/files/cache/thumbnails";
 
@@ -111,7 +117,7 @@ export const cateringData: ServicePageData = {
       title: "Påsmurt",
       description:
         "Når du har et arrangement, kurs eller gjester som krever mat utover den vanlige lunsjen, stiller vi med et vidt spekter av diverse møtemat og påsmurt.",
-      image: `${thumbs}/e9e4a392e580476d3d23ab5a5d2d2b7d.jpg`,
+      image: pasmurtImg,
       content: [
         {
           type: "text",
@@ -164,7 +170,7 @@ export const cateringData: ServicePageData = {
       title: "Varmmat",
       description:
         "Helt Opplagt lager forskjellige varmretter hver uke, slik at du kan nyte god mat laget fra bunn av. Vi starter med tomme kjeler og jobber oss opp ved hjelp av friske grønnsaker, kjøtt og fisk av god kvalitet.",
-      image: `${thumbs}/f6b4963e322aafa37844cd4403388db1.jpg`,
+      image: varmmatImg,
       content: [
         {
           type: "text",
@@ -241,7 +247,7 @@ export const cateringData: ServicePageData = {
       title: "Møteservice",
       description:
         "Helt Opplagt leverer møtepakker. Våre pakker koster fra 65,- per person for kaffe og snack til full pakke med kaffe, smoothie, wraps, bakervare og oppskåret frukt/grønt. Vi lover fornøyde og opplagte møtedeltakere.",
-      image: `${thumbs}/66e6182e79cbe18dbcaa6f73443b883e.jpg`,
+      image: moteserviceImg,
       content: [
         {
           type: "bullets",
@@ -277,7 +283,7 @@ export const cateringData: ServicePageData = {
       title: "Event",
       description:
         "Vi hjelper deg med alle former for events og firmafest! Planlegger du et arrangement for kunder og forretningsforbindelser, en feiring eller fest med kolleger, eller rett og slett bare en fredagspils? Kontakt oss.",
-      image: `${thumbs}/4369d98cf7a58b256a4e4e21a89c5655.jpg`,
+      image: eventImg,
       content: [
         {
           type: "text",
@@ -383,7 +389,7 @@ export const cateringData: ServicePageData = {
       title: "Kaker og bakervarer",
       description:
         "Vi tilbyr alle slag bakervarer fra wienerbrød og boller til et godt utvalg av store og små kaker.",
-      image: `${thumbs}/8b7ff6700fea5e4a1b4f16ff4e9863cb.jpg`,
+      image: kakerImg,
       content: [
         {
           type: "text",
@@ -391,6 +397,11 @@ export const cateringData: ServicePageData = {
             "Marsipan og kremkaker fra 6 til 120 personer. Nydelige ostekaker, bringebærkaker, sjokoladekaker mm.",
             "Av bakervarer leverer vi blant annet ferske sprøe wienerstenger, boller, skolebrød, croissant, muffins, mm. Vi har alt du trenger til møter, fredagssamlingen, eller en markering på kontoret.",
           ],
+        },
+        {
+          type: "image",
+          src: kakerKaffeImg,
+          alt: "Kake og kaffe servert på kontoret",
         },
       ],
     },

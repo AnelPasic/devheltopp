@@ -119,7 +119,7 @@ export function OmOssPage() {
           className={`${CONTAINER} grid items-center gap-12 lg:grid-cols-2 lg:gap-20`}
         >
           <div className="relative mx-auto w-full max-w-[36rem] lg:max-w-none">
-            <div className="aspect-[3/2] overflow-hidden rounded-2xl">
+            <div className="aspect-[3/2] overflow-hidden rounded-[0.875rem]">
               <img
                 src={buildingImg}
                 alt="Helt Opplagt på jobben sitt bygg på Bjørnholt i Oslo"
