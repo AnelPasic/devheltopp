@@ -1,4 +1,5 @@
-import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import { ArrowUpRight, UserRound } from "lucide-react";
 import { CONTAINER, Pill } from "../components/site";
 import { PageHeader } from "../components/PageHeader";
 import { Head } from "../components/ServicePage";
@@ -101,7 +102,30 @@ const timeline: HistoryEntry[] = [
   },
 ];
 
+/* DUMMY people for the staff section layout. Replace with the real names,
+   titles and photos (import the photo and set `image`). */
+const departments = ["Ledelse", "Salg", "Kundeservice", "Drift", "Økonomi"] as const;
+type Department = (typeof departments)[number];
+
+const team: { name: string; role: string; department: Department; image?: string }[] = [
+  { name: "Ola Nordmann", role: "Daglig leder", department: "Ledelse" },
+  { name: "Mona Lie", role: "Driftsdirektør", department: "Ledelse" },
+  { name: "Kari Nordmann", role: "Salgssjef", department: "Salg" },
+  { name: "Erik Dahl", role: "Key account manager", department: "Salg" },
+  { name: "Anne Olsen", role: "Kundeansvarlig", department: "Kundeservice" },
+  { name: "Sara Moen", role: "Kundeservicemedarbeider", department: "Kundeservice" },
+  { name: "Per Hansen", role: "Driftsleder", department: "Drift" },
+  { name: "Jonas Bakke", role: "Logistikkansvarlig", department: "Drift" },
+  { name: "Lars Berg", role: "Økonomiansvarlig", department: "Økonomi" },
+  { name: "Ingrid Strand", role: "Regnskapsmedarbeider", department: "Økonomi" },
+];
+
+const CHIP =
+  "inline-flex items-center gap-2 rounded-[1rem] border px-4 py-2 text-[14px] font-semibold transition-colors";
+
 export function OmOssPage() {
+  const [department, setDepartment] = useState<Department>("Ledelse");
+
   useDocumentMeta(
     "Om oss",
     "Helt Opplagt på jobben er en markedsorientert leverandør av løpende abonnementsbaserte tjenester innen helse og trivsel på arbeidsplassen. Vi leverer jobbfrukt, catering, renhold, kantine og ren luft til over 50 000 ansatte i bedrifter i Oslo."
@@ -201,6 +225,74 @@ export function OmOssPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Staff. DUMMY: placeholder photos, names and titles for the layout
+          only; swap in the real people (photo, name, title) in `team`. */}
+      <section className="bg-white pb-16 lg:pb-24">
+        <div className={CONTAINER}>
+          <Head title="Våre ansatte" />
+
+          {/* Department filter, same look as the filter on Referanser. */}
+          <div
+            role="group"
+            aria-label="Filtrer ansatte etter avdeling"
+            className="mt-8 flex flex-wrap gap-2.5"
+          >
+            {departments.map((name) => {
+              const on = department === name;
+              const count = team.filter((p) => p.department === name).length;
+              return (
+                <button
+                  key={name}
+                  type="button"
+                  aria-pressed={on}
+                  onClick={() => setDepartment(name)}
+                  className={
+                    CHIP +
+                    " " +
+                    (on
+                      ? "border-navy bg-navy text-white"
+                      : "border-navy/15 bg-white text-navy hover:border-brand hover:text-brand")
+                  }
+                >
+                  {name}
+                  <span className={on ? "text-white/60" : "text-navy/40"}>{count}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <ul className="mt-10 grid grid-cols-2 gap-x-5 gap-y-9 md:grid-cols-3 lg:grid-cols-5 lg:gap-x-6">
+            {team
+              .filter((p) => p.department === department)
+              .map((person) => (
+              <li key={person.name}>
+                <div className="flex aspect-[4/5] items-center justify-center overflow-hidden rounded-[0.875rem] bg-stone">
+                  {person.image ? (
+                    <img
+                      src={person.image}
+                      alt={person.name}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <UserRound
+                      className="h-14 w-14 text-navy/15"
+                      strokeWidth={1.25}
+                      aria-hidden="true"
+                    />
+                  )}
+                </div>
+                <p className="mt-4 font-lato text-[17px] font-bold leading-snug text-navy">
+                  {person.name}
+                </p>
+                <p className="mt-0.5 text-[14px] text-navy/55">{person.role}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

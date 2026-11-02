@@ -78,8 +78,8 @@ const SCATTER = [
   [-4, 40, -9],
   [34, 30, -20],
 ];
-const STAGGER = 70;
-const LAND = 900;
+const STAGGER = 110;
+const LAND = 1400;
 
 /**
  * "Flere tjenester fra en leverandør": a jigsaw of the Helt Opplagt
@@ -163,7 +163,7 @@ export function OneSupplier() {
                   pathLength={1}
                   strokeDasharray={1}
                   strokeDashoffset={assembled ? 0 : 1}
-                  className="transition-[stroke-dashoffset] delay-300 duration-[900ms] ease-in-out motion-reduce:transition-none"
+                  className="transition-[stroke-dashoffset] delay-[900ms] duration-[900ms] ease-in-out motion-reduce:transition-none"
                 />
               </svg>
             </span>{" "}

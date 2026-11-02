@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+// import { ConsentBanner } from "../components/ConsentBanner";
 
 /**
  * Scroll to top on route change — unless navigating to an in-page anchor, or
@@ -37,6 +38,10 @@ export function RootLayout() {
         <Outlet />
       </main>
       <Footer />
+      {/* Consent banner hidden for now. Without it nobody gives consent, so
+          the lead source is only remembered for the current visit.
+      <ConsentBanner />
+      */}
     </div>
   );
 }
