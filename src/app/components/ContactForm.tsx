@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { getAttribution } from "../../lib/attribution";
 
-const services = ["Lunsj", "Kantine", "Catering", "Frukt", "Inneklima", "Renhold"];
+const services = ["Frukt", "Lunsj", "Kantine", "Catering", "Inneklima", "Renhold"];
 
 const CHIP_ON =
   "rounded-[1rem] border border-brand bg-brand px-4 py-2 text-[13px] font-semibold text-white transition-colors";

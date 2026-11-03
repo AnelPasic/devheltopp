@@ -46,8 +46,8 @@ export function About() {
           </h2>
 
           <p className="mt-4 text-[15px] leading-[1.7] text-navy/65 lg:text-[16px]">
-            Helt Opplagt er en totalleverandør av tjenester innen helse og trivsel på arbeidsplassen. Siden oppstarten i 1985 har vi hatt fokus på høy kvalitet, presise leveranser, nærhet til kundene, høy
-            servicegrad og riktige priser. Vi ønsker å være en leverandør som gjør arbeidsdagen enklere for våre kunder, og som alltid strekker seg det lille ekstra for å møte kundens behov.
+            Siden oppstarten i 1985 har vi hatt fokus på høy kvalitet, presise leveranser, nærhet til kundene, høy
+            servicegrad og riktige priser. Vi ønsker å være en leverandør som bidrar til økt trivsel og effektivitet på arbeidsplassen tiil våre kunder, og som alltid strekker seg det lille ekstra.
           </p>
 
           <ul className="mt-8 flex flex-col gap-3.5">

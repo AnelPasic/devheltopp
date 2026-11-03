@@ -3,6 +3,8 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 /**
  * Fades and lifts its children in the first time they scroll into view.
  * CSS-only motion; users who prefer reduced motion see the content at rest.
+ * Once shown it carries `data-shown`, so children can start their own
+ * motion then with `group-data-shown/reveal:` classes.
  */
 export function Reveal({
   children,
@@ -39,9 +41,10 @@ export function Reveal({
   return (
     <div
       ref={ref}
+      data-shown={visible || undefined}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
       className={
-        "motion-safe:transition-[opacity,translate] motion-safe:duration-700 motion-safe:ease-out " +
+        "group/reveal motion-safe:transition-[opacity,translate] motion-safe:duration-700 motion-safe:ease-out " +
         (visible
           ? "translate-y-0 opacity-100"
           : "motion-safe:translate-y-4 motion-safe:opacity-0") +

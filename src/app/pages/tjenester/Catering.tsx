@@ -45,6 +45,13 @@ export const cateringData: ServicePageData = {
 
     image: explainerImg,
     imageAlt: "Kokkene i Helt Opplagt Catering på eget kjøkken",
+    video: {
+      youtubeId: "fIk7Yg3gECc",
+      title: "Catering fra Helt Opplagt",
+      length: "2:02",
+      photoTab: "Catering",
+      videoTab: "Møt oss",
+    },
   },
   catalogs: [
     {

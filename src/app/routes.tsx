@@ -16,6 +16,7 @@ import { CateringPage } from "./pages/tjenester/Catering";
 import { InneklimaPage } from "./pages/tjenester/Inneklima";
 import { KantinePage } from "./pages/tjenester/Kantine";
 import { SubServicePage } from "./pages/tjenester/SubServicePage";
+import { FruktkurverPage } from "./pages/tjenester/FruktkurverPage";
 import { TjenesterPage } from "./pages/TjenesterPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 
@@ -54,8 +55,9 @@ export const router = createBrowserRouter([
          (Hverdags-/Go'-/Superlunsjen) — keep the retired URL alive. */
       {
         path: "tjenester/lunsj/lunsjesker",
-        element: <Navigate to="/tjenester/lunsj/golunsjen" replace />,
+        element: <Navigate to="/tjenester/lunsj/hverdagslunsjen" replace />,
       },
+      { path: "tjenester/frukt/fruktkurver", Component: FruktkurverPage },
       { path: "tjenester/:service/:slug", Component: SubServicePage },
       { path: "*", Component: NotFoundPage },
     ],

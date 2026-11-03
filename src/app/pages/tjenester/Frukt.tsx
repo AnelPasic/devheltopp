@@ -50,11 +50,19 @@ export const fruktData: ServicePageData = {
     image: pakkerImg,
     imageAlt:
       "Ansatt med hårnett og forkle som setter sammen en fruktkurv i pakkehallen",
+    video: {
+      youtubeId: "zHt4zMXYNC8",
+      title: "Frukt fra Helt Opplagt",
+      length: "2:11",
+      photoTab: "Frukt",
+      videoTab: "Møt oss",
+    },
   },
 
   catalogs: [
     {
       heading: "Hvilken fruktkurv passer bedriften deres?",
+      headerLink: { label: "Se alle våre kurver", to: "/tjenester/frukt/fruktkurver" },
       proof:
         "Det finnes ikke én fruktkurv som passer alle. Noen vil ha klassisk frukt til lavest mulig pris. Andre ønsker en kurv med mer variasjon, grønnsaker, nøtter og eksotisk frukt.",
 
@@ -69,14 +77,6 @@ export const fruktData: ServicePageData = {
           to: "/tjenester/frukt/hverdagskurven",
         },
         {
-          name: "Knaskekurven",
-
-          description:
-            "For dere som ønsker frukt kombinert med grønnsaker og nøtter. Fra ca. 11 kr per person per dag.",
-          image: knaskekurvenImg,
-          to: "/tjenester/frukt/knaskekurven",
-        },
-        {
           name: "Go'kurven",
 
           description:
@@ -84,7 +84,14 @@ export const fruktData: ServicePageData = {
           image: gokurvenImg,
           to: "/tjenester/frukt/gokurven",
         },
+        {
+          name: "Knaskekurven",
 
+          description:
+            "For dere som ønsker frukt kombinert med grønnsaker og nøtter. Fra ca. 11 kr per person per dag.",
+          image: knaskekurvenImg,
+          to: "/tjenester/frukt/knaskekurven",
+        },
         {
           name: "Superkurven",
 
@@ -253,14 +260,6 @@ export const fruktData: ServicePageData = {
             },
           ],
         },
-
-        {
-          type: "text",
-          heading: "Prøv oss!",
-          paragraphs: [
-            "Ta kontakt på 0 23 46, eller bruk skjema for mer informasjon og tilbud!",
-          ],
-        },
       ],
     },
     {
@@ -293,7 +292,7 @@ export const fruktData: ServicePageData = {
             "Bilparken er nøye planlagt i forhold til utslipp.",
             "Alt avfall kildesorteres: Frukt som sorteres ut av vår strenge kvalitetskontroll, men som fremdeles er brukbar, blir gitt bort til lokale barnehager og organisasjoner, deriblant Blå Kors og Fattighuset i Oslo. Frukt som ikke lenger kan benyttes gis bort som heste- og grisefôr, eller gjenvinnes som biogass.",
             "Økologisk frukt blir benyttet såfremt det er tilgjengelig.",
-            "Vi er veldig for norsk frukt, og bruker det så godt det går i sesongen, så lenge kvaliteten og holdbarheten er god nok.",
+            "Vi er veldig for norsk frukt, og bruker det når det er i sesong, så lenge kvaliteten og holdbarheten er god nok.",
           ],
         },
       ],
@@ -303,6 +302,7 @@ export const fruktData: ServicePageData = {
       slug: "hverdagskurven",
       title: "Hverdagskurven",
       variantOf: "fruktkurver",
+      priceNote: "Fra ca. 6 kr per person per dag",
       description:
         "Den perfekte fruktkurven for dere som ønsker å oppnå helsefordelen ved å benytte frukt og samtidig holde prisen på det minimale.",
       image: hverdagskurvenImg,
@@ -311,7 +311,25 @@ export const fruktData: ServicePageData = {
           type: "text",
           paragraphs: [
             "Den perfekte fruktkurven for dere som ønsker å oppnå helsefordelen ved frukt til en lav pris. Hverdagskurven består av tre ulike typer basefrukt, der det varieres mellom eple, pære, banan og sitrus",
-            "Leveres i kurver à ca. 6 kg, 9 kg og 15 kg.",
+            "Leveres i kurver à ca. 4 kg, 6 kg, 9 kg og 15 kg.",
+          ],
+        },
+      ],
+    },
+    {
+      slug: "gokurven",
+      title: "Go'kurven",
+      variantOf: "fruktkurver",
+      priceNote: "Fra ca. 8 kr per person per dag",
+      description:
+        "Go'kurven™ er vårt mest populære alternativ, da den er både rimelig, variert og spennende.",
+      image: gokurvenImg,
+      content: [
+        {
+          type: "text",
+          paragraphs: [
+            "Go'kurven™ er vårt mest populære alternativ, da den er både rimelig, variert og spennende. Dere får friske fruktkurver bestående av eple, sitrus, banan, pære, drue, plomme og nektarin, variert etter sesong og tilgang. I tillegg får dere en gang i blant nøtter, cherrytomater eller eksotisk frukt som en hyggelig overraskelse.",
+            "Leveres i kurver à ca. 4 kg, 6 kg, 9 kg og 15 kg.",
           ],
         },
       ],
@@ -320,6 +338,7 @@ export const fruktData: ServicePageData = {
       slug: "knaskekurven",
       title: "Knaskekurven",
       variantOf: "fruktkurver",
+      priceNote: "Fra ca. 11 kr per person per dag",
       description:
         "Knaskekurven™ er et sunt og spennende alternativ som er skapt for kos.",
       image: knaskekurvenImg,
@@ -334,26 +353,10 @@ export const fruktData: ServicePageData = {
       ],
     },
     {
-      slug: "gokurven",
-      title: "Go'kurven",
-      variantOf: "fruktkurver",
-      description:
-        "Go'kurven™ er vårt mest populære alternativ, da den er både rimelig, variert og spennende.",
-      image: gokurvenImg,
-      content: [
-        {
-          type: "text",
-          paragraphs: [
-            "Go'kurven™ er vårt mest populære alternativ, da den er både rimelig, variert og spennende. Dere får friske fruktkurver bestående av eple, sitrus, banan, pære, drue, plomme og nektarin, variert etter sesong og tilgang. I tillegg får dere en gang i blant nøtter, cherrytomater eller eksotisk frukt som en hyggelig overraskelse.",
-            "Leveres i kurver à ca. 6 kg, 9 kg og 15 kg.",
-          ],
-        },
-      ],
-    },
-    {
       slug: "superkurven",
       title: "Superkurven",
       variantOf: "fruktkurver",
+      priceNote: "Fra ca. 11 kr per person per dag",
       description:
         "Superkurven™ er vårt flaggskip, for dere som ønsker «alt» i deres jobbfrukt!",
       image: superkurvenImg,
@@ -370,6 +373,7 @@ export const fruktData: ServicePageData = {
       slug: "rullekurven",
       title: "Rullekurven",
       variantOf: "fruktkurver",
+      priceNote: "Fra ca. 9 kr per person per dag",
       description:
         "Rullekurven™ er for dere som ønsker mer variasjon, eller ganske enkelt ikke klarer å bestemme dere.",
       image: rullekurvenImg,
@@ -386,6 +390,7 @@ export const fruktData: ServicePageData = {
       slug: "smoothiekurven",
       title: "Smoothiekurven",
       variantOf: "fruktkurver",
+      priceNote: "Priseksempel 12 pers: ca 11,- pr hode / dag",
       description:
         "Fruktkurv med basisfrukt og smoothie. Ideell for de som liker både å spise og drikke frukt.",
       image: smoothiekurvenImg,
@@ -394,7 +399,7 @@ export const fruktData: ServicePageData = {
           type: "text",
           paragraphs: [
             "Fruktkurv med basisfrukt og smoothie. Ideell for de som liker både å spise og drikke frukt. Våre hjemmelagede kvalitetssmoothier inneholder kun sunne og ferske ingredienser.",
-            "Leveres i kurver i to størrelser.",
+            "Leveres i kurver i to størrelser, liten og stor.",
           ],
         },
       ],

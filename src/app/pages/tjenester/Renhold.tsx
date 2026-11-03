@@ -35,6 +35,13 @@ export const renholdData: ServicePageData = {
 
     image: explainerImg,
     imageAlt: "Medarbeider fra Helt Opplagt vasker vinduer",
+    video: {
+      youtubeId: "LdcmUsoEPeQ",
+      title: "Renhold fra Helt Opplagt",
+      length: "2:00",
+      photoTab: "Renhold",
+      videoTab: "Møt oss",
+    },
   },
   catalogs: [
     {

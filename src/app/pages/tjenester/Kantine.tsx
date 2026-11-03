@@ -41,12 +41,20 @@ export const kantineData: ServicePageData = {
   explainer: {
     heading: "Hva tilbyr vi?",
     body: [
-      "Helt Opplagt leverer kantine og kantineservice til bedrifter i Oslo og Stor-Oslo. Tjenesten kan inkludere daglig matlevering, buffet, modulbasert meny, lunsjavvikling og vert eller vertinne. Løsningen passer for bedrifter som ønsker en fullverdig kantineopplevelse uten å måtte håndtere all drift, bemanning og logistikk selv.",
-      "De ansatte vil få en god kantine. Du slipper administrasjon. Helt Opplagt leverer maten, verten og lunsjflyten.",
+      "Helt opplagt tilbyr en komplett kantineløsning for alle typer bedrifter, der alt er lagt til rette for at dere får en god og velfungerende lunsj, uten ekstra arbeid.",
+      "Løsningen er modulbasert og kan enkelt tilpasses etter behov. Det gir høy fleksibilitet, mindre matsvinn og full kontroll på kvalitet og mengde. Med vår kantinetjeneste får dere en enklere hverdag – og en lunsjpause folk gleder seg til.",
+      " Vår kantinetjeneste kan også kombineres med daglig renhold.",
     ],
 
     image: explainerImg,
     imageAlt: "Kantine med buffet levert av Helt Opplagt",
+    video: {
+      youtubeId: "dWk5BL-YokE",
+      title: "Kantine fra Helt Opplagt",
+      length: "1:50",
+      photoTab: "Kantine",
+      videoTab: "Møt oss",
+    },
   },
   catalogs: [
     {
@@ -161,7 +169,7 @@ export const kantineData: ServicePageData = {
     {
       question: "Hva kan inngå i en kantineløsning?",
       answer:
-        "En kantineløsning kan inkludere brød, pålegg, salater, småretter, varmmat, drikke, buffet, daglig levering, vert/vertinne og praktisk lunsjavvikling.",
+        "En kantineløsning kan inkludere brød, pålegg, salater, småretter, varmmat, drikke, buffet, vert/vertinne og praktisk lunsjavvikling.",
     },
     {
       question: "Hva koster kantinedrift?",
@@ -177,7 +185,7 @@ export const kantineData: ServicePageData = {
   readMore: [
     {
       label: "Om våre kantiner",
-      description: "Gjennom mange års erfaring med fornøyde kunder er tjenesten spesialtilpasset bedrifter med mellom 20 og 300 ansatte.",
+      description: "Gjennom mange års erfaring med fornøyde kunder er tjenesten spesialtilpasset bedrifter mellom 20 og 300 ansatte.",
       to: "/tjenester/kantine/om-vare-kantiner",
       image: `${thumbs}/1e7046a1804a25a379a1d086b08d75ee.jpg`,
     },
@@ -211,7 +219,7 @@ export const kantineData: ServicePageData = {
       slug: "om-vare-kantiner",
       title: "Om våre kantiner",
       description:
-        "Vi kommer med maten - dere nyter. Gjennom mange års erfaring med fornøyde kunder er tjenesten spesialtilpasset bedrifter med mellom 20 og 300 ansatte.",
+        "Vi kommer med maten - dere nyter. Gjennom mange års erfaring med fornøyde kunder er tjenesten spesialtilpasset bedrifter mellom 20 og 300 ansatte.",
       image: `${thumbs}/1e7046a1804a25a379a1d086b08d75ee.jpg`,
       content: [
         {
@@ -274,7 +282,7 @@ export const kantineData: ServicePageData = {
             "Vi tilbyr alle våre kunder en prøveperiode hvor vi skal bevise hva vi duger til. Og med over 30 års bransjeerfaring kan vi skryte av å ha ekstremt få tilfeller av frafall etter denne prøveperioden. Skulle du ønske å besøke en av våre referansekunder for å se tjenesten i praksis er du velkommen til dette.",
             "Mindre selskaper kan i tillegg dra nytte av samme person på både renhold og kantine. På denne måten får vi effektivisert tidsbruken til deres vert/vertinne som igjen gjør at dere sparer penger.",
             "Du har kanskje prøvd mange leverandører tidligere som ikke leverer over tid? Tett dialog, oppfølgning og ris/ros fra dere vil holde oss på tå hev slik at vi hele tiden kan levere den tjenesten og kvaliteten dere betaler for.",
-            "Ring oss på 0 23 46 eller bruk skjema under for en uforpliktende prøveperiode.",
+
           ],
         },
       ],
@@ -283,7 +291,7 @@ export const kantineData: ServicePageData = {
       slug: "kantine-pa-jobben-uten-kjokken",
       title: "Kantine på jobben – uten kjøkken?",
       description:
-        "Når mange tenker på kantine, ser de for seg storkjøkken, industrioppvaskmaskiner og kokker i fullt firsprang. Men hva med de små bedriftene? Hva med kontorfellesskapet på 10–30 personer, uten eget kjøkken, men med like stort behov for sunn, fristende og praktisk lunsj?",
+        "Når mange tenker på kantine, ser de for seg storkjøkken, industrioppvaskmaskiner og kokker i fullt firsprang. Men hva med de små bedriftene? Hva med kontorfellesskapet på 15–30 personer, uten eget kjøkken, men med like stort behov for sunn, fristende og praktisk lunsj?",
       image: utenKjokkenImg,
       content: [
         {
@@ -297,13 +305,7 @@ export const kantineData: ServicePageData = {
             "Hos Helt Opplagt leverer vi fullverdige kantineløsninger til bedrifter helt ned i 15 personer – uten at dere trenger store kjøkkenfasiliteter.",
           ],
         },
-        {
-          type: "text",
-          heading: "Skreddersydd kantine",
-          paragraphs: [
-            "Vår kantinetjeneste er modulbasert, noe som betyr at du som kunde kan velge akkurat det nivået som passer dere – både innhold og budsjett. Enten det er en enkel løsning med brød, pålegg og salater, eller en mer omfattende meny med daglig varmretter og småbakst, så leveres alt ferdig til kontoret – pakket i resirkulerte esker, klare til servering.",
-          ],
-        },
+
         {
           type: "text",
           heading: "Ingen kjøkken? Ikke noe problem!",

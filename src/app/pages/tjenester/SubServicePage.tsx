@@ -6,7 +6,8 @@ import {
   ServiceFooter,
   ServicePageData,
 } from "../../components/ServicePage";
-import { VariantSwitcher } from "../../components/VariantSwitcher";
+import { VariantPage } from "../../components/VariantPage";
+import { FruktkurverPage } from "./FruktkurverPage";
 import { CONTAINER, ENTER_DESKTOP, FADE_DESKTOP, Kicker, Pill } from "../../components/site";
 import { fruktData } from "./Frukt";
 import { cateringData } from "./Catering";
@@ -31,7 +32,20 @@ const VARIANT_LABELS: Record<string, string> = {
   lunsjesker: "Velg lunsjeske",
 };
 
+/* Pages under /tjenester/:service/ that aren't sub-services. They also have
+   their own routes; this keeps them working even when the router matches
+   them here instead (for example a tab still running an older route list). */
+const OWN_PAGES: Record<string, () => JSX.Element> = {
+  "frukt/fruktkurver": FruktkurverPage,
+};
+
 export function SubServicePage() {
+  const { service, slug } = useParams<{ service: string; slug: string }>();
+  const OwnPage = OWN_PAGES[`${service}/${slug}`];
+  return OwnPage ? <OwnPage /> : <SubServiceDetail />;
+}
+
+function SubServiceDetail() {
   const { service, slug } = useParams<{ service: string; slug: string }>();
   const entry = service ? services[service] : undefined;
   const sub = entry?.data.subServices.find((s) => s.slug === slug);
@@ -88,6 +102,18 @@ export function SubServicePage() {
 
   return (
     <div className="min-h-dvh bg-white">
+      {/* Product variants (fruit baskets, lunch boxes) get their own detail
+          layout; everything else the regular sub-page hero. */}
+      {hasVariants ? (
+        <VariantPage
+          sub={sub}
+          variants={variants}
+          basePath={entry.data.path}
+          serviceLabel={entry.label}
+          label={VARIANT_LABELS[sub.variantOf!] ?? "Velg variant"}
+        />
+      ) : (
+      <>
       {/* Hero: on white with generous space around it, and a fine rule
           underneath with a short brand-blue mark, so the page body has a
           clear start instead of running into the hero. */}
@@ -166,6 +192,8 @@ export function SubServicePage() {
           <span className="absolute left-0 top-1/2 h-[3px] w-14 -translate-y-1/2 rounded-full bg-brand" />
         </div>
       </section>
+      </>
+      )}
 
       {!hasVariants && body.length > 0 && (
         <section className="border-b border-navy/10 bg-white pb-14 pt-14 lg:pb-20 lg:pt-20">
@@ -203,19 +231,6 @@ export function SubServicePage() {
                 ))}
               </div>
             )}
-          </div>
-        </section>
-      )}
-
-      {hasVariants && (
-        <section className="border-b border-navy/10 bg-white pb-14 pt-14 lg:pt-20">
-          <div className={CONTAINER}>
-            <VariantSwitcher
-              label={VARIANT_LABELS[sub.variantOf!] ?? "Velg variant"}
-              items={variants}
-              activeSlug={sub.slug}
-              basePath={entry.data.path}
-            />
           </div>
         </section>
       )}

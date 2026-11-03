@@ -1,16 +1,56 @@
-import { ExternalLink, Mail, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
+import type { ReactNode } from "react";
 import { Link } from "react-router";
 import logoSrc from "../../images/logo/helt-opplagt.png";
+import miljofyrtarnImg from "../../images/ansvar/miljofyrtarn-logo.svg";
 import { CONTAINER, LinePiece, Pill } from "./site";
 import { SERVICES } from "./livery";
 
 const companyLinks: { label: string; to?: string; href?: string }[] = [
   { label: "Om oss", to: "/om-oss" },
-  { label: "Referanser", to: "/referanser" },
   { label: "Aktuelt", to: "/aktuelt" },
   { label: "Ansvar", to: "/ansvar" },
+  { label: "Referanser", to: "/referanser" },
   { label: "Karriere", href: "https://karriere.heltopplagt.com/" },
   { label: "Kontakt", to: "/kontakt" },
+];
+
+/* lucide-react 1.x dropped brand logos, so these three are drawn here in
+   the same outline style (24px grid, 2px stroke) as the other icons. */
+function BrandIcon({ children, className }: { children: ReactNode; className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className}>
+      {children}
+    </svg>
+  );
+}
+
+const Facebook = ({ className }: { className?: string }) => (
+  <BrandIcon className={className}>
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+  </BrandIcon>
+);
+
+const Linkedin = ({ className }: { className?: string }) => (
+  <BrandIcon className={className}>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
+  </BrandIcon>
+);
+
+const Instagram = ({ className }: { className?: string }) => (
+  <BrandIcon className={className}>
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+  </BrandIcon>
+);
+
+const socialLinks = [
+  { label: "Facebook", href: "https://www.facebook.com/Heltopplagt", Icon: Facebook },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/helt-opplagt-as/", Icon: Linkedin },
+  { label: "Instagram", href: "https://www.instagram.com/heltopplagt/", Icon: Instagram },
 ];
 
 const HEADING =
@@ -33,15 +73,18 @@ export function Footer() {
             Det Helt Opplagte valg for en sunnere, renere og enklere hverdag!
           </p>
           <div className="flex gap-2.5">
-            <a
-              href="https://www.linkedin.com/company/helt-opplagt"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/60 transition-colors hover:border-aqua hover:text-aqua"
-            >
-              <ExternalLink className="h-4 w-4" />
-            </a>
+            {socialLinks.map(({ label, href, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/60 transition-colors hover:border-aqua hover:text-aqua"
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
             <a
               href="mailto:bli@heltopplagt.no"
               aria-label="E-post"
@@ -50,6 +93,24 @@ export function Footer() {
               <Mail className="h-4 w-4" />
             </a>
           </div>
+
+          {/* Miljøfyrtårn badge: the logo, a thin divider and the
+              certification line, linking to our responsibility page. */}
+          <Link
+            to="/ansvar"
+            aria-label="Miljøfyrtårn-sertifisert virksomhet. Les om vårt samfunnsansvar"
+            className="mt-8 inline-flex items-center gap-4 opacity-90 transition-opacity hover:opacity-100"
+          >
+            <span className="flex h-16 w-[4.75rem] flex-shrink-0 items-center justify-center overflow-hidden rounded-[0.5rem] bg-white">
+              <img src={miljofyrtarnImg} alt="" className="h-full w-full object-contain" />
+            </span>
+            <span aria-hidden="true" className="h-14 w-px bg-white/35" />
+            <span className="font-archivo text-[14px] font-bold uppercase leading-tight tracking-[0.04em] text-white">
+              Sertifisert
+              <br />
+              virksomhet
+            </span>
+          </Link>
         </div>
 
         <nav className="flex flex-col gap-2.5">
