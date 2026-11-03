@@ -35,12 +35,19 @@ export const lunsjData: ServicePageData = {
   explainer: {
     heading: "Hva tilbyr vi?",
     body: [
-      "Helt Opplagt leverer lunsjordninger for alle type arbeidsplasser. Start med en av våre ferdig komponerte lunsjesker, og tilpass etter ønske. Alle lunsjeskene har et basis innhold av fersk brød, utvalgt pålegg, grønnsaker, frukt og drikke. Vi varierer innholdet fra dag til dag, med over 50 ulike rullerende menyer. Lunsjeskene er tilpasset fra fem personer og oppover, og leveres hver dag helt inn til ønsket rom før kl. 11.00.",
+      "Helt Opplagt leverer lunsjordninger for alle type arbeidsplasser. Start med en av våre ferdig komponerte lunsjesker, og tilpass etter ønske. Alle lunsjeskene har et basis innhold av fersk brød, utvalgt pålegg, grønnsaker, frukt og drikke. Vi varierer innholdet fra dag til dag, med over 50 ulike rullerende menyer. Lunsjeskene er tilpasset fra fem personer og oppover, og leveres hver dag før kl. 11.00.",
       "Vi leverer også varm lunsj på jobb, ferdige fat med pålegg og fullservice kantineordninger. Vi tilpasser lunsjordningen etter deres behov, og hjelper dere med å skape en hyggelig og sosial lunsjpause for alle ansatte.",
     ],
 
     image: explainerImg,
     imageAlt: "Kokk fra Helt Opplagt anretter påleggsfat",
+    video: {
+      youtubeId: "ElqfdKrEfkM",
+      title: "Lunsj fra Helt Opplagt",
+      length: "0:58",
+      photoTab: "Lunsj",
+      videoTab: "Møt oss",
+    },
   },
   catalogs: [
     {
@@ -52,7 +59,7 @@ export const lunsjData: ServicePageData = {
           name: "Hverdagslunsjen",
           //tag: "Rimelig",
           description:
-            "Vår enkleste og rimeligste lunsjordning. Passer for dere som ønsker å spare penger, men samtidig ha noe som er ferskere og friskere enn matpakke.",
+            "Vår enkleste og rimeligste lunsjordning. Passer for dere som ønsker å spare penger, og samtidig ha noe som er ferskere og friskere enn matpakke.",
           image: hverdagslunsjenImg,
           to: "/tjenester/lunsj/hverdagslunsjen",
         },
@@ -84,7 +91,7 @@ export const lunsjData: ServicePageData = {
           tag: "Passer best fra ca 10 pers og oppover",
           description:
 
-            "Ønsker dere dagens meny lekkert dandert på fat? Kjøtt- og fiskepålegg, ost, egg, grønnsaker osv pakkes på fat. Fatene setter vi rett inn i kjøleskapet hos dere ved våre daglige leveranser. ",
+            "Ønsker dere dagens meny lekkert dandert på fat? Basert på Go’lunsjen, får dere et variert utvalg av kjøtt, fisk, ost, egg og grønnsaker – med tilbehør som drikke, smør og syltetøy pakket ved siden av. Fredager byr på ekstra variasjon med varme innslag som karbonader, roastbiff eller kyllingvinger. ",
           image: fatHof3,
         },
       ],
@@ -111,7 +118,7 @@ export const lunsjData: ServicePageData = {
     {
       question: "Hvor mange må vi være for å få lunsjlevering?",
       answer:
-        "Er du en bedrift med mellom 5-300 ansatte kan vi levere alt fra enkle lunsjbokser til proffkantine. Ferdige fat passer best fra ca 10 pers og oppover.",
+        "Er du en bedrift mellom 5-300 ansatte kan vi levere alt fra enkle lunsjbokser til proffkantine. Ferdige fat passer best fra ca 10 pers og oppover.",
     },
     {
       question: "Når leveres lunsjen på jobben?",
@@ -133,12 +140,12 @@ export const lunsjData: ServicePageData = {
     {
       label: "Lunsjesker",
       description: "Velg blant vår enkle Hverdagslunsj™, populære Go'lunsj™ eller luksuriøse Superlunsj™.",
-      to: "/tjenester/lunsj/golunsjen",
+      to: "/tjenester/lunsj/hverdagslunsjen",
       image: `${thumbs}/4b5debec2dd9e84aaaa4847cf6ad5852.png`,
     },
     {
       label: "Ferdige fat",
-      description: "Vårt nyeste lunsjkonsept, der det aller meste er tilrettelagt på forhånd.",
+      description: "Lekre fat, levert rett i kjøleskapet - klart til lunsj når dere er det",
       to: "/tjenester/lunsj/ferdige-fat",
       image: `${thumbs}/41d9e0eadce975c155ef731dbce1b6a8.jpg`,
     },
@@ -226,7 +233,7 @@ export const lunsjData: ServicePageData = {
           type: "text",
           heading: "Ønsker dere en ordning som er enda mer tilrettelagt?",
           paragraphs: [
-            "Vi kommer hver dag med dagens meny lekkert dandert på fat. Lunsjfatene baserer seg på det store utvalget vi leverer i Go'lunsjen og passer best fra ca. ti personer og oppover. Dere får en kjøtt- og fiskepålegg, ost , egg og friske grønnsaker. Drikke, smør, syltetøy og annet som ikke gener seg på fat, kommer ved siden av. Dere får en flere typer pålegg hver dag, med stor variasjon.\n \nVi rullerer mellom 50  forskjellige påleggsmenyer, slik at dere ikke går lei.Dere får også egen fredagsmeny, der det varieres mellom blant annet karbonader, roastbiff, fiskekaer og kyllingvinger.",
+            "Vi kommer hver dag med dagens meny lekkert dandert på fat. Lunsjfatene baserer seg på det store utvalget vi leverer i Go'lunsjen og passer best fra ca. ti personer og oppover. Dere får en kjøtt- og fiskepålegg, ost , egg og friske grønnsaker. Drikke, smør, syltetøy og annet som ikke egner seg på fat, kommer ved siden av. Dere får en flere typer pålegg hver dag, med stor variasjon.\n \nVi rullerer mellom 50  forskjellige påleggsmenyer, slik at dere ikke går lei.Dere får også egen fredagsmeny, der det varieres mellom blant annet karbonader, roastbiff, fiskekaker og kyllingvinger.",
           ],
         },
 
@@ -297,7 +304,7 @@ export const lunsjData: ServicePageData = {
           paragraphs: [
             "Vi leverer daglig, noe som gir store fordeler i forhold til ferskhet, kvalitet og fleksibilitet. Det gir lettere tilpasning til variasjoner i antall brukere og gjester, og fjerner svinnproblematikk.",
             "Vi presenterer helst maten på fat i en buffetløsning. Dette hindrer unødvendig svinn, sparer tidsbruk og dermed også kostnader, samt ikke minst er det den gunstigste løsningen for miljøet, sammenlignet med å servere maten i kuvertbegre.",
-            "Våre utmerkede verter og vertinner sørger for at dere bare kan komme og nyte maten da vi tar oss av alt arbeidet rundt, herunder gjøremål som: av- og pådekking, tilbereding av all maten i buffeten, oppvask, holde kjøkken og kantineområdet rent og ryddig etc. Vi kan også påta oss annet forefallende kontorarbeid og/eller vask av deres lokaler.",
+            "Våre utmerkede verter og vertinner sørger for at dere bare kan komme og nyte maten da vi tar oss av alt arbeidet rundt, herunder gjøremål som: av- og pådekking, tilbereding av all maten i buffeten, oppvask, holde kjøkken og kantineområdet rent og ryddig.",
           ],
         },
       ],

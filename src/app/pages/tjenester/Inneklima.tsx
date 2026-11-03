@@ -78,6 +78,13 @@ export const inneklimaData: ServicePageData = {
 
     image: explainerImg,
     imageAlt: "Møterom med luftrenser fra Helt Opplagt",
+    video: {
+      youtubeId: "4q1heJeTgp0",
+      title: "Inneklima fra Helt Opplagt",
+      length: "2:01",
+      photoTab: "Inneklima",
+      videoTab: "Møt oss",
+    },
   },
   catalogs: [
     {

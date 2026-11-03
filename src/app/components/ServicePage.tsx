@@ -1,8 +1,8 @@
 import { ReactNode, useEffect, useId, useRef, useState } from "react";
 import type { LucideIcon } from "lucide-react";
-import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronRight, Download, Phone, Plus } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronRight, Download, Image as ImageIcon, Phone, Play, Plus } from "lucide-react";
 import { Link } from "react-router";
-import { CONTAINER, ENTER_DESKTOP, FADE_DESKTOP, LinePiece, Pill } from "./site";
+import { BrushUnderline, CONTAINER, ENTER_DESKTOP, FADE_DESKTOP, LinePiece, Pill } from "./site";
 import { useDocumentMeta } from "../../lib/use-document-meta";
 import { Reveal } from "./Reveal";
 
@@ -104,9 +104,9 @@ export function ServiceFooter({
       <Reveal className={`${CONTAINER} relative z-10`}>
         <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="payoff-marker font-payoff text-[30px] font-bold leading-[1.1] text-navy sm:text-[38px] lg:text-[44px]">
-              Bli {" "}
-              <span className="text-brand">Helt Opplagt!</span>
+            <h2 className="h2-plain font-payoff text-[32px] font-bold leading-[1.1] text-navy sm:text-[40px] lg:text-[48px]">
+              Bli{" "}
+              <BrushUnderline className="text-navy">Helt Opplagt!</BrushUnderline>
             </h2>
           </div>
 
@@ -208,6 +208,66 @@ export interface Explainer {
   points?: string[];
   image: string;
   imageAlt: string;
+  /** A YouTube film about the service. A Bilde / Video tab switch sits
+      above the photo; the player only loads once someone picks Video. */
+  video?: {
+    youtubeId: string;
+    start?: number;
+    title: string;
+    length?: string;
+    /** Tab names, e.g. "Lunsj" / "Møt oss". Default Bilde / Video. */
+    photoTab?: string;
+    videoTab?: string;
+  };
+}
+
+/** The explainer photo with a photo / video tab switch above it, so it is
+    plain that there is a film to watch. Nothing is loaded from YouTube (and
+    no cookies set) until the visitor picks the video tab; then the privacy-enhanced
+    player takes the photo's place in the same frame and starts playing.
+    Going back to the photo tab removes the player, which stops the film. */
+function ExplainerMedia({ image, imageAlt, video }: Pick<Explainer, "image" | "imageAlt"> & { video: NonNullable<Explainer["video"]> }) {
+  const [tab, setTab] = useState<"bilde" | "video">("bilde");
+  const panelId = useId();
+  const params = new URLSearchParams({ autoplay: "1", rel: "0", modestbranding: "1" });
+  if (video.start) params.set("start", String(video.start));
+  const tabClass = (active: boolean) =>
+    "inline-flex items-center gap-2 rounded-[0.75rem] px-4 py-2 text-[14px] font-semibold transition-colors " +
+    (active ? "bg-white text-navy shadow-[0_2px_8px_-2px_rgba(13,43,64,0.18)]" : "text-navy/60 hover:text-navy");
+  return (
+    <div>
+      <div role="tablist" aria-label="Vis bilde eller video" className="mb-4 inline-flex rounded-[1rem] bg-stone p-1">
+        <button type="button" role="tab" aria-selected={tab === "bilde"} aria-controls={panelId} onClick={() => setTab("bilde")} className={tabClass(tab === "bilde")}>
+          <ImageIcon className="h-4 w-4" strokeWidth={1.75} />
+          {video.photoTab ?? "Bilde"}
+        </button>
+        <button type="button" role="tab" aria-selected={tab === "video"} aria-controls={panelId} onClick={() => setTab("video")} className={tabClass(tab === "video")}>
+          <Play className="h-4 w-4" strokeWidth={1.75} />
+          {video.videoTab ?? "Video"}
+          {video.length && <span className="font-normal text-navy/50">{video.length}</span>}
+        </button>
+      </div>
+      <div id={panelId} role="tabpanel" className="relative aspect-video overflow-hidden rounded-[1.5rem] bg-navy">
+        {tab === "video" ? (
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?${params}`}
+            title={video.title}
+            allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+            allowFullScreen
+            className="absolute inset-0 h-full w-full"
+          />
+        ) : (
+          <img
+            src={image}
+            alt={imageAlt}
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        )}
+      </div>
+    </div>
+  );
 }
 
 /** One entry in the "Les mer" section at the foot of the page. */
@@ -256,6 +316,8 @@ export interface CatalogSection {
   /** true = real photographs (object-cover). Default false = white-background cut-outs (mix-blend-multiply). */
   photo?: boolean;
   link?: { label: string; to: string };
+  /** A button on the right of the heading, e.g. "Se alle våre kurver". */
+  headerLink?: { label: string; to: string };
 }
 
 export interface ServicePageData {
@@ -412,7 +474,17 @@ function CatalogSectionView({
 
   return (
     <>
-      <Head title={catalog.heading} proof={catalog.proof} />
+      {catalog.headerLink ? (
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
+          <Head title={catalog.heading} proof={catalog.proof} />
+          <Pill to={catalog.headerLink.to} variant="outline" className="flex-shrink-0 self-start sm:self-end">
+            {catalog.headerLink.label}
+            <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.5} />
+          </Pill>
+        </div>
+      ) : (
+        <Head title={catalog.heading} proof={catalog.proof} />
+      )}
 
       {catalog.note && (
         <p className="mt-5 max-w-[70ch] text-[15px] font-semibold text-brand">
@@ -756,7 +828,11 @@ export function ServicePage({ data }: { data: ServicePageData }) {
     blocks.push({ kind: "photo", node: (
       <>
         <div className={`grid items-center gap-10 ${PHOTO_SPLIT_LEFT}`}>
-          <div className={PHOTO_COL}>
+          {/* A film gets the full column on phones too; photos stay capped. */}
+          <div className={ex.video ? "w-full" : PHOTO_COL}>
+            {ex.video ? (
+              <ExplainerMedia image={ex.image} imageAlt={ex.imageAlt} video={ex.video} />
+            ) : (
             <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem]">
               <img
                 src={ex.image}
@@ -766,6 +842,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
                 className="absolute inset-0 h-full w-full object-cover"
               />
             </div>
+            )}
           </div>
 
           <div>
@@ -775,7 +852,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
             {ex.body.map((p, n) => (
               <p
                 key={n}
-                className="mt-5 max-w-[54ch] text-[16px] leading-relaxed text-navy/70"
+                className="mt-5 max-w-[54ch] whitespace-pre-line text-[16px] leading-relaxed text-navy/70"
               >
                 {p}
               </p>

@@ -9,14 +9,14 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router";
 import logoSrc from "../../images/logo/helt-opplagt.png";
-import { CONTAINER, LinePiece } from "./site";
+import { BrushStroke, CONTAINER, LinePiece } from "./site";
 import { SERVICE_ICONS, SERVICES } from "./livery";
 
 const secondaryLinks: { label: string; to?: string; href?: string }[] = [
   { label: "Om oss", to: "/om-oss" },
-  { label: "Referanser", to: "/referanser" },
   { label: "Aktuelt", to: "/aktuelt" },
   { label: "Ansvar", to: "/ansvar" },
+  { label: "Referanser", to: "/referanser" },
   { label: "Karriere", href: "https://karriere.heltopplagt.com/" },
   { label: "Kontakt", to: "/kontakt" },
 ];
@@ -101,13 +101,26 @@ export function Header() {
               key={s.href}
               to={s.href}
               className={({ isActive }) =>
-                /* Blue underline grows in from the left on hover and stays
-                   under the current page. */
-                "relative py-1 text-[14px] font-medium transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-[2px] after:origin-left after:rounded-full after:bg-brand after:transition-transform after:duration-300 after:ease-out hover:text-navy hover:after:scale-x-100 " +
-                (isActive ? "text-navy after:scale-x-100" : "text-navy/65 after:scale-x-0")
+                "group relative isolate py-1 text-[14px] font-medium transition-colors hover:text-navy " +
+                (isActive ? "text-navy" : "text-navy/65")
               }
             >
-              {s.name}
+              {({ isActive }) => (
+                <>
+                  {s.name}
+                  {/* The hand-drawn brush stroke from the home hero: wipes
+                      in from the left on hover and stays under the current
+                      page. */}
+                  <BrushStroke
+                    className={
+                      "-left-[6%] bottom-[1px] h-[8px] w-[112%] transition-[clip-path] duration-300 ease-out " +
+                      (isActive
+                        ? "[clip-path:inset(0_0_0_0)]"
+                        : "[clip-path:inset(0_100%_0_0)] group-hover:[clip-path:inset(0_0_0_0)]")
+                    }
+                  />
+                </>
+              )}
             </NavLink>
           ))}
         </nav>
@@ -207,7 +220,7 @@ export function Header() {
           </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto px-6 py-6 sm:px-8 sm:py-14">
+          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 py-6 sm:px-8 sm:py-14">
             <div className="mx-auto grid max-w-[1280px] gap-6 sm:grid-cols-2 sm:gap-16">
               <nav>
                 <p className="mb-2.5 flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.16em] text-white/50 sm:mb-5">

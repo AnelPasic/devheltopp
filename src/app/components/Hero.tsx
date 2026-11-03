@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import heroLunsj from "../../images/hero/hero-lunsj.jpg";
 import heroKantine from "../../images/hero/hero-kantine.jpg";
@@ -7,7 +7,7 @@ import heroFrukt from "../../images/hero/hero-frukt.jpg";
 import heroCatering from "../../images/hero/hero-catering.jpg";
 import heroInneklima from "../../images/hero/hero-inneklima-dno.jpg";
 import heroRenhold from "../../images/hero/hero-renhold.jpg";
-import { CONTAINER, ENTER, Kicker, LinePiece, Pill } from "./site";
+import { BrushUnderline, CONTAINER, ENTER, Kicker, LinePiece, Pill } from "./site";
 
 const SLIDE_DURATION = 6000;
 
@@ -22,7 +22,6 @@ const slides = [
 
 export function Hero() {
   const [active, setActive] = useState(0);
-  const brushId = `brush-${useId().replace(/:/g, "")}`;
 
   useEffect(() => {
     const timer = setInterval(
@@ -49,37 +48,14 @@ export function Hero() {
             className={`mt-5 font-lato text-[38px] font-light leading-[1.1] tracking-[-0.01em] text-navy sm:text-[48px] lg:text-[54px] xl:text-[64px] ${ENTER} [transition-delay:80ms]`}
           >
             Det{" "}
-            <span className="relative isolate inline-block whitespace-nowrap font-payoff font-bold text-navy">
-              Helt Opplagte
-              {/* A blue brush stroke under the words: thick at the left,
-                  tapering to a point at the right, with rough edges. It
-                  wipes in from the left after the heading has appeared. */}
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 300 24"
-                preserveAspectRatio="none"
-                className="pointer-events-none absolute -z-10 -left-[2%] top-[80%] h-[0.3em] w-[104%] overflow-visible text-brand [clip-path:inset(0_0_0_0)] motion-safe:transition-[clip-path] motion-safe:duration-700 motion-safe:ease-out motion-safe:[transition-delay:700ms] motion-safe:starting:[clip-path:inset(0_100%_0_0)]"
-              >
-                <defs>
-                  <filter id={brushId} x="-2%" y="-40%" width="104%" height="180%">
-                    <feTurbulence type="fractalNoise" baseFrequency="0.7 0.35" numOctaves="2" seed="8" />
-                    <feDisplacementMap in="SourceGraphic" scale="2.5" />
-                  </filter>
-                </defs>
-                <path
-                  d="M6 14 C 90 9, 190 6, 296 8 C 200 11, 110 16, 6 22 C 1 21, 1 15, 6 14 Z"
-                  fill="currentColor"
-                  filter={`url(#${brushId})`}
-                />
-              </svg>
-            </span>{" "}
+            <BrushUnderline className="text-navy">Helt Opplagte</BrushUnderline>{" "}
             valg for en sunnere, renere og enklere hverdag
           </h1>
 
           <p
             className={`mt-6 max-w-[36rem] text-[15px] leading-relaxed text-navy/65 lg:text-[17px] xl:mt-7 ${ENTER} [transition-delay:160ms]`}
           >
-            Helt Opplagt på jobben er en fast leverandør av helse- og trivselstjenester til bedrifter. Vi leverer jobbfrukt, lunsj, catering, kantine, renhold og ren luft til over 50 000 ansatte.
+            Helt Opplagt på jobben er en fast leverandør av helse- og trivselstjenester til bedrifter. Vi leverer jobbfrukt, lunsj, catering, kantine, renhold og ren luft til over 50 000 ansatte hver dag.
           </p>
 
           <div className={`mt-9 flex flex-col gap-3 sm:flex-row ${ENTER} [transition-delay:240ms]`}>

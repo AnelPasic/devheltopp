@@ -14,82 +14,13 @@ import filtreImg from "../../images/ansvar/vaskbare-filtre.jpg";
 interface Tiltak {
   title: string;
   body: string;
+  /** The photo that shows this topic, if there is one. */
+  photo?: Photo;
 }
 
 interface Photo {
   src: string;
   alt: string;
-}
-
-/** The section's photos as one collage: a wide lead photo, the rest below it. */
-function Collage({ photos }: { photos: Photo[] }) {
-  const [lead, ...rest] = photos;
-  const img = "h-full w-full object-cover";
-  return (
-    <div className="grid grid-cols-2 gap-3">
-      <div className="col-span-2 aspect-[16/10] overflow-hidden rounded-[1rem]">
-        <img src={lead.src} alt={lead.alt} loading="lazy" decoding="async" className={img} />
-      </div>
-      {rest.map((p) => (
-        <div
-          key={p.src}
-          className={
-            "overflow-hidden rounded-[1rem] " +
-            (rest.length === 1 ? "col-span-2 aspect-[16/10]" : "aspect-square")
-          }
-        >
-          <img src={p.src} alt={p.alt} loading="lazy" decoding="async" className={img} />
-        </div>
-      ))}
-    </div>
-  );
-}
-
-/**
- * Heading and photo collage in one column (sticky on desktop), every topic
- * as plain text in the other. Photos illustrate the section as a whole, so
- * no single topic looks like it is missing one.
- */
-function TiltakSection({
-  title,
-  proof,
-  items,
-  photos,
-  reverse = false,
-  children,
-}: {
-  title: string;
-  proof: string;
-  items: Tiltak[];
-  photos: Photo[];
-  reverse?: boolean;
-  children?: ReactNode;
-}) {
-  return (
-    <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
-      <div className={"lg:sticky lg:top-24 lg:self-start " + (reverse ? "lg:order-last" : "")}>
-        <Head title={title} proof={proof} />
-        <div className="mt-8">
-          <Collage photos={photos} />
-        </div>
-      </div>
-      <div>
-        <div className="border-b border-navy/10">
-          {items.map((t) => (
-            <div key={t.title} className="border-t border-navy/10 py-7 first:border-t-0 first:pt-0">
-              <h3 className="font-lato text-[19px] font-bold leading-snug text-navy">
-                {t.title}
-              </h3>
-              <p className="mt-2.5 text-[15px] leading-relaxed text-navy/70 lg:text-[16px]">
-                {t.body}
-              </p>
-            </div>
-          ))}
-        </div>
-        {children}
-      </div>
-    </div>
-  );
 }
 
 const miljoTiltak: Tiltak[] = [
@@ -153,7 +84,133 @@ const sosialtPhotos: Photo[] = [
   { src: norskkursImg, alt: "Ansatte på norskkurs hos Helt Opplagt" },
 ];
 
+/* Each photo next to the topic it shows. */
+const withPhotos = (items: Tiltak[], photos: Record<string, Photo>) =>
+  items.map((t) => ({ ...t, photo: photos[t.title] }));
+
+const miljoItems = withPhotos(miljoTiltak, {
+  "Elbiler, hybridbiler og miljømål for 2030": miljoPhotos[0],
+  "Kvalitetskontroll av frukt og grønnsaker": miljoPhotos[1],
+  "Vaskbare filtre til inneklima": miljoPhotos[2],
+});
+const sosialtItems = withPhotos(sosialt, {
+  Arbeidstrening: sosialtPhotos[0],
+  "Norskkurs hos Helt Opplagt": sosialtPhotos[1],
+});
+
+const MILJO = {
+  title: "Miljø",
+  proof: "Vi søker hele tiden etter nye metoder for å gjøre miljøet enda bedre – det er vårt miljøansvar!",
+};
+const SOSIALT = {
+  title: "Mennesker og samfunn",
+  proof: "Vi i Helt Opplagt har stor tro på mennesket, også de som trenger en ny sjanse.",
+};
+
+function FordLink() {
+  return (
+    <Link
+      to="/aktuelt/helt-opplagt-samarbeider-med-ford-pa-veien-mot-nullutslipp"
+      className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-brand"
+    >
+      Les om overgangen til elektriske varebiler
+      <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+    </Link>
+  );
+}
+
+function PhotoRow({ t, flip }: { t: Tiltak; flip: boolean }) {
+  return (
+    <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
+      <div className={"overflow-hidden rounded-[1.25rem] " + (flip ? "lg:order-last" : "")}>
+        <img src={t.photo!.src} alt={t.photo!.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
+      </div>
+      <div>
+        <h3 className="font-lato text-[24px] font-light leading-tight text-navy sm:text-[28px]">{t.title}</h3>
+        <p className="mt-4 text-[16px] leading-relaxed text-navy/70">{t.body}</p>
+      </div>
+    </div>
+  );
+}
+
+/** One area of the page: the topics with a photo as large alternating
+    photo/text rows, the rest as a compact two-column list underneath.
+    With `band`, the heading and the first photo row sit together on a grey
+    band like the opening of /om-oss (photo left, heading and text right). */
+function Story({
+  title,
+  proof,
+  items,
+  band = false,
+  children,
+}: {
+  title: string;
+  proof: string;
+  items: Tiltak[];
+  band?: boolean;
+  children?: ReactNode;
+}) {
+  const featured = items.filter((t) => t.photo);
+  const rest = items.filter((t) => !t.photo);
+  const [lead, ...others] = band ? featured : [];
+  const rows = band ? others : featured;
+  return (
+    <>
+      {band && lead && (
+        <section className="border-y border-navy/[0.06] bg-stone py-10 lg:py-14">
+          <div className={CONTAINER}>
+            <Head title={title} proof={proof} />
+          </div>
+          <div className={`${CONTAINER} mt-10 grid items-center gap-10 lg:mt-12 lg:grid-cols-2 lg:gap-20`}>
+            <div className="overflow-hidden rounded-[1.25rem]">
+              <img src={lead.photo!.src} alt={lead.photo!.alt} className="aspect-[4/3] w-full object-cover" />
+            </div>
+            <div>
+              <h3 className="font-lato text-[24px] font-light leading-tight text-navy sm:text-[28px]">{lead.title}</h3>
+              <p className="mt-4 text-[16px] leading-relaxed text-navy/70">{lead.body}</p>
+            </div>
+          </div>
+        </section>
+      )}
+      <section className={band ? "pb-14 pt-14 lg:pb-24 lg:pt-20" : "pb-14 lg:pb-24"}>
+        <div className={CONTAINER}>
+          {!band && <Head title={title} proof={proof} />}
+          <div className={(band ? "" : "mt-12 lg:mt-16 ") + "space-y-14 lg:space-y-20"}>
+            {/* Alternation carries on from the band, whose photo is left. */}
+            {rows.map((t, i) => (
+              <PhotoRow key={t.title} t={t} flip={band ? i % 2 === 0 : i % 2 === 1} />
+            ))}
+          </div>
+          {rest.length > 0 && (
+            <div className="mt-14 grid gap-x-14 border-t border-navy/10 lg:mt-20 lg:grid-cols-2">
+              {rest.map((t) => (
+                <div key={t.title} className="border-b border-navy/10 py-7">
+                  <h3 className="font-lato text-[19px] font-bold leading-snug text-navy">{t.title}</h3>
+                  <p className="mt-2.5 text-[15px] leading-relaxed text-navy/70">{t.body}</p>
+                </div>
+              ))}
+            </div>
+          )}
+          {children}
+        </div>
+      </section>
+    </>
+  );
+}
+
+function LookStory() {
+  return (
+    <>
+      <Story {...MILJO} items={miljoItems} band>
+        <div className="mt-8"><FordLink /></div>
+      </Story>
+      <Story {...SOSIALT} items={sosialtItems} />
+    </>
+  );
+}
+
 export function AnsvarPage() {
+
   useDocumentMeta(
     "Samfunnsansvar",
     "Vi i Helt Opplagt vet at vi ikke kan redde verden på egenhånd, men vi ønsker å bidra der vi kan, og håper å inspirere andre til å gjøre det samme."
@@ -177,42 +234,7 @@ export function AnsvarPage() {
         }
       />
 
-      <section className="bg-white py-16 lg:py-24">
-        <div className={CONTAINER}>
-          <TiltakSection
-            title="Miljø"
-            proof="Vi søker hele tiden etter nye metoder for å gjøre miljøet enda bedre – det er vårt miljøansvar!"
-            items={miljoTiltak}
-            photos={miljoPhotos}
-          >
-          <div className="mt-8">
-            <Link
-              to="/aktuelt/helt-opplagt-samarbeider-med-ford-pa-veien-mot-nullutslipp"
-              className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-brand"
-            >
-              Les om overgangen til elektriske varebiler
-              <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
-            </Link>
-          </div>
-          </TiltakSection>
-        </div>
-      </section>
-
-      <section className="relative isolate overflow-hidden bg-stone border-y border-navy/[0.06] py-16 lg:py-24">
-        <span
-          aria-hidden="true"
-          className="livery-puzzle aspect-[100/129] -left-16 -bottom-12 w-40 -rotate-[15deg] bg-brand/10 lg:-left-8 lg:w-60"
-        />
-        <div className={`${CONTAINER} relative z-10`}>
-          <TiltakSection
-            title="Mennesker og samfunn"
-            proof="Vi i Helt Opplagt har stor tro på mennesket, også de som trenger en ny sjanse."
-            items={sosialt}
-            photos={sosialtPhotos}
-            reverse
-          />
-        </div>
-      </section>
+      <LookStory />
 
       <section className="bg-white py-16 lg:py-20">
         <div className={CONTAINER}>

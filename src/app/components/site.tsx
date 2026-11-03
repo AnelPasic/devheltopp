@@ -1,5 +1,46 @@
-import { type ReactNode } from "react";
+import { useId, type ReactNode } from "react";
 import { Link } from "react-router";
+
+/**
+ * Words with a hand-painted blue brush stroke underneath: thick at the left,
+ * tapering to a point at the right, with rough edges, sitting behind the
+ * letters. It wipes in from the left once the words appear. Used for
+ * "Helt Opplagte" in the home hero and "Helt Opplagt!" in the contact box.
+ */
+export function BrushUnderline({ children, className = "" }: { children: ReactNode; className?: string }) {
+  return (
+    <span className={`relative isolate inline-block whitespace-nowrap font-payoff font-bold ${className}`}>
+      {children}
+      <BrushStroke className="-left-[2%] top-[80%] h-[0.3em] w-[104%] [clip-path:inset(0_0_0_0)] motion-safe:transition-[clip-path] motion-safe:duration-700 motion-safe:ease-out motion-safe:[transition-delay:700ms] motion-safe:starting:[clip-path:inset(0_100%_0_0)]" />
+    </span>
+  );
+}
+
+/** The blue brush stroke on its own, positioned by the caller. It sits
+    behind the text of a `relative isolate` parent. */
+export function BrushStroke({ className = "" }: { className?: string }) {
+  const filterId = `brush-${useId().replace(/:/g, "")}`;
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 300 24"
+      preserveAspectRatio="none"
+      className={`pointer-events-none absolute -z-10 overflow-visible text-brand ${className}`}
+    >
+      <defs>
+        <filter id={filterId} x="-2%" y="-40%" width="104%" height="180%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.7 0.35" numOctaves="2" seed="8" />
+          <feDisplacementMap in="SourceGraphic" scale="2.5" />
+        </filter>
+      </defs>
+      <path
+        d="M6 14 C 90 9, 190 6, 296 8 C 200 11, 110 16, 6 22 C 1 21, 1 15, 6 14 Z"
+        fill="currentColor"
+        filter={`url(#${filterId})`}
+      />
+    </svg>
+  );
+}
 
 export const CONTAINER =
   "mx-auto w-full max-w-[1360px] px-5 sm:px-8 lg:px-10";
@@ -76,7 +117,7 @@ export function SectionHead({
   onDark = false,
 }: {
   kicker: string;
-  title: string;
+  title: ReactNode;
   lede?: string;
   action?: ReactNode;
   onDark?: boolean;

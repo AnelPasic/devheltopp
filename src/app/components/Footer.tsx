@@ -1,16 +1,23 @@
-import { ExternalLink, Mail, Phone } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, Phone } from "lucide-react";
 import { Link } from "react-router";
 import logoSrc from "../../images/logo/helt-opplagt.png";
+import miljofyrtarnImg from "../../images/ansvar/miljofyrtarn-logo.svg";
 import { CONTAINER, LinePiece, Pill } from "./site";
 import { SERVICES } from "./livery";
 
 const companyLinks: { label: string; to?: string; href?: string }[] = [
   { label: "Om oss", to: "/om-oss" },
-  { label: "Referanser", to: "/referanser" },
   { label: "Aktuelt", to: "/aktuelt" },
   { label: "Ansvar", to: "/ansvar" },
+  { label: "Referanser", to: "/referanser" },
   { label: "Karriere", href: "https://karriere.heltopplagt.com/" },
   { label: "Kontakt", to: "/kontakt" },
+];
+
+const socialLinks = [
+  { label: "Facebook", href: "https://www.facebook.com/Heltopplagt", Icon: Facebook },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/helt-opplagt-as/", Icon: Linkedin },
+  { label: "Instagram", href: "https://www.instagram.com/heltopplagt/", Icon: Instagram },
 ];
 
 const HEADING =
@@ -33,15 +40,18 @@ export function Footer() {
             Det Helt Opplagte valg for en sunnere, renere og enklere hverdag!
           </p>
           <div className="flex gap-2.5">
-            <a
-              href="https://www.linkedin.com/company/helt-opplagt"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/60 transition-colors hover:border-aqua hover:text-aqua"
-            >
-              <ExternalLink className="h-4 w-4" />
-            </a>
+            {socialLinks.map(({ label, href, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/60 transition-colors hover:border-aqua hover:text-aqua"
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
             <a
               href="mailto:bli@heltopplagt.no"
               aria-label="E-post"
@@ -50,6 +60,24 @@ export function Footer() {
               <Mail className="h-4 w-4" />
             </a>
           </div>
+
+          {/* Miljøfyrtårn badge: the logo, a thin divider and the
+              certification line, linking to our responsibility page. */}
+          <Link
+            to="/ansvar"
+            aria-label="Miljøfyrtårn-sertifisert virksomhet. Les om vårt samfunnsansvar"
+            className="mt-8 inline-flex items-center gap-4 opacity-90 transition-opacity hover:opacity-100"
+          >
+            <span className="flex h-16 w-[4.75rem] flex-shrink-0 items-center justify-center overflow-hidden rounded-[0.5rem] bg-white">
+              <img src={miljofyrtarnImg} alt="" className="h-full w-full object-contain" />
+            </span>
+            <span aria-hidden="true" className="h-14 w-px bg-white/35" />
+            <span className="font-archivo text-[14px] font-bold uppercase leading-tight tracking-[0.04em] text-white">
+              Sertifisert
+              <br />
+              virksomhet
+            </span>
+          </Link>
         </div>
 
         <nav className="flex flex-col gap-2.5">
