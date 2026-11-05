@@ -5,11 +5,11 @@ import { CONTAINER, Pill } from "../components/site";
 import { PageHeader } from "../components/PageHeader";
 import { Head } from "../components/ServicePage";
 import { useDocumentMeta } from "../../lib/use-document-meta";
-import skredderstuaImg from "../../images/ansvar/skredderstua-radarveien.jpg";
-import norskkursImg from "../../images/ansvar/norskkurs.jpg";
-import kurverImg from "../../images/ansvar/fruktpakking-kurver.jpg";
-import elbilerImg from "../../images/ansvar/elbiler-bilpark.jpg";
-import filtreImg from "../../images/ansvar/vaskbare-filtre.jpg";
+import skredderstuaImg from "../../images/ansvar/skredderstua-radarveien.webp";
+import norskkursImg from "../../images/ansvar/norskkurs.webp";
+import kurverImg from "../../images/ansvar/fruktpakking-kurver.webp";
+import elbilerImg from "../../images/ansvar/elbiler-bilpark.webp";
+import filtreImg from "../../images/ansvar/vaskbare-filtre.webp";
 
 interface Tiltak {
   title: string;

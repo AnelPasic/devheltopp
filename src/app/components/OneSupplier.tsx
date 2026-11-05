@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { CONTAINER, Kicker, Pill } from "./site";
 import { SERVICES } from "./livery";
 import { Reveal } from "./Reveal";
-import buildingImg from "../../images/om-oss/bygg-skilt.jpg";
+import buildingImg from "../../images/om-oss/bygg-skilt.webp";
 
 const COLS = 3;
 

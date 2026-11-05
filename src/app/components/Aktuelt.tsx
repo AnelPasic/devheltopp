@@ -31,6 +31,8 @@ export function Aktuelt() {
               <img
                 src={featured.image}
                 alt={featured.imageAlt}
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 h-full w-full object-cover object-[center_35%] transition-transform duration-500 group-hover:scale-[1.02]"
               />
               <span className="absolute left-4 top-4 rounded-full bg-white/90 px-4 py-1.5 text-[12px] font-semibold text-navy backdrop-blur">

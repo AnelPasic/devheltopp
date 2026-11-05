@@ -1,19 +1,19 @@
 import { ServicePage, ServicePageData } from "../../components/ServicePage";
-import packehallImg from "../../../images/frukt/frukt2.png";
-import pakkerImg from "../../../images/frukt/frukt.png";
-import heroFruktImg from "../../../images/hero/hero-frukt.jpg";
-import teamImg from "../../../images/om-oss/hele-gjengen.png";
-import lunsjCardImg from "../../../images/lunsj/lunsj.png";
-import gokurvenImg from "../../../images/frukt/cards/gokurven.jpg";
+import packehallImg from "../../../images/frukt/frukt2.webp";
+import pakkerImg from "../../../images/frukt/frukt.webp";
+import heroFruktImg from "../../../images/hero/hero-frukt.webp";
+import teamImg from "../../../images/om-oss/hele-gjengen.webp";
+import lunsjCardImg from "../../../images/lunsj/lunsj.webp";
+import gokurvenImg from "../../../images/frukt/cards/gokurven.webp";
 import knaskekurvenImg from "../../../images/frukt/cards/knaskekurven.jpg";
 import hverdagskurvenImg from "../../../images/frukt/cards/hverdagskurven.jpg";
 import superkurvenImg from "../../../images/frukt/cards/superkurven.jpg";
 /* NOTE: the Rullekurven photo has green promo text burned into it. Replace
    with the brochure's clean Rullekurven photo when it is available. */
-import rullekurvenImg from "../../../images/frukt/cards/rullekurven.jpg";
-import smoothiekurvenImg from "../../../images/frukt/cards/smoothiekurven.jpg";
+import rullekurvenImg from "../../../images/frukt/cards/rullekurven.webp";
+import smoothiekurvenImg from "../../../images/frukt/cards/smoothiekurven.webp";
+import { cms } from "../../../images/cms";
 
-const thumbs = "https://heltopplagt.no/application/files/cache/thumbnails";
 
 export const fruktData: ServicePageData = {
   path: "/tjenester/frukt",
@@ -31,7 +31,7 @@ export const fruktData: ServicePageData = {
   imageAlt: "Fruktkurv fra Helt Opplagt levert på et kontor",
   heroImage: heroFruktImg,
   brochureUrl:
-    "https://heltopplagt.no/application/files/7317/6785/9195/HeltOpplagt_Fruktbrosjyre_januar_2026_web.pdf",
+    "/brosjyrer/helt-opplagt-fruktbrosjyre-2026.pdf",
 
   heroPoints: [
     { label: "Gir umiddelbar energi og økt konsentrasjon" },
@@ -126,7 +126,7 @@ export const fruktData: ServicePageData = {
           name: "Jobbsmoothie",
           description:
             "",
-          image: `${thumbs}/84880641e437bfb7b441396f2b721a9d.jpg`,
+          image: cms("84880641e437bfb7b441396f2b721a9d"),
         },
       ],
       link: { label: "Les mer om jobbsmoothie", to: "/tjenester/frukt/jobbsmoothie" },
@@ -172,13 +172,13 @@ export const fruktData: ServicePageData = {
       description:
         "Gode rutiner på renhold og hygiene er selve nøkkelen til at våre kunder alltid mottar sunn, frisk og velsmakende frukt, hver dag.",
       to: "/tjenester/frukt/vare-fruktrutiner",
-      image: `${thumbs}/3660ed1a222d7d3dde58c2ee0b824500.jpg`,
+      image: cms("3660ed1a222d7d3dde58c2ee0b824500"),
     },
     {
       label: "Jobbsmoothie",
       description: "Våre spennende, næringsrike og ferske smoothies er laget fra bunnen av på vårt eget kjøkken med ekte frukt og bær.",
       to: "/tjenester/frukt/jobbsmoothie",
-      image: `${thumbs}/0f4e0649d2119d89e9f23b17cfc2ae78.jpg`,
+      image: cms("0f4e0649d2119d89e9f23b17cfc2ae78"),
     },
     {
       label: "Vårt samfunnsansvar",
@@ -201,7 +201,7 @@ export const fruktData: ServicePageData = {
       title: "Jobbsmoothie",
       description:
         "En litt annerledes fruktkurv. Vi tilbyr næringsrike og ferske smoothies, laget fra bunnen av på vårt eget kjøkken.",
-      image: `${thumbs}/0f4e0649d2119d89e9f23b17cfc2ae78.jpg`,
+      image: cms("0f4e0649d2119d89e9f23b17cfc2ae78"),
       content: [
         {
           type: "text",
@@ -250,13 +250,13 @@ export const fruktData: ServicePageData = {
               title: "Liten Smoothie-pakke",
               description:
                 "3 flasker a 1 liter – 3 liter i uka – 985,- inkl levering per måned.",
-              image: `${thumbs}/1ff3dd9faf6885160c0cd585489a6ba6.jpg`,
+              image: cms("1ff3dd9faf6885160c0cd585489a6ba6"),
             },
             {
               title: "Stor Smoothie-pakke",
               description:
                 "5 flasker a 1 liter – 5 liter i uka – 1495,- inkl levering per måned.",
-              image: `${thumbs}/84880641e437bfb7b441396f2b721a9d.jpg`,
+              image: cms("84880641e437bfb7b441396f2b721a9d"),
             },
           ],
         },
@@ -267,7 +267,7 @@ export const fruktData: ServicePageData = {
       title: "Våre fruktrutiner",
       description:
         "Gode rutiner på renhold og hygiene er selve nøkkelen til at våre kunder alltid mottar sunn, frisk og velsmakende frukt, hver dag.",
-      image: `${thumbs}/3660ed1a222d7d3dde58c2ee0b824500.jpg`,
+      image: cms("3660ed1a222d7d3dde58c2ee0b824500"),
       content: [
         {
           type: "text",

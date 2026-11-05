@@ -3,24 +3,22 @@ import {
   ServicePage,
   ServicePageData,
 } from "../../components/ServicePage";
-import heroImg from "../../../images/inneklima/inneklima.png";
-import openingImg from "../../../images/hero/hero-inneklima-dno.jpg";
-import explainerImg from "../../../images/inneklima/dno-moterom.jpg";
-import luftrensereImg from "../../../images/inneklima/luftrensere.jpg";
-import graceImg from "../../../images/inneklima/grace.jpg";
-import varmepumpeImg from "../../../images/inneklima/varmepumpe.jpg";
-import safelungsImg from "../../../images/inneklima/safelungs.jpg";
-import kontorImg from "../../../images/inneklima/dno-kontorlandskap.jpg";
-import industriImg from "../../../images/inneklima/njord-lager.jpg";
-import industri2Img from "../../../images/inneklima/njord-lager-2.jpg";
-import matproduksjonImg from "../../../images/inneklima/rystad-07.jpg";
-import helsesektorImg from "../../../images/inneklima/oris-klinikk.jpg";
+import heroImg from "../../../images/inneklima/inneklima.webp";
+import openingImg from "../../../images/hero/hero-inneklima-dno.webp";
+import explainerImg from "../../../images/inneklima/dno-moterom.webp";
+import luftrensereImg from "../../../images/inneklima/luftrensere.webp";
+import graceImg from "../../../images/inneklima/grace.webp";
+import varmepumpeImg from "../../../images/inneklima/varmepumpe.webp";
+import safelungsImg from "../../../images/inneklima/safelungs.webp";
+import industriImg from "../../../images/inneklima/njord-lager.webp";
+import matproduksjonImg from "../../../images/inneklima/rystad-07.webp";
+import helsesektorImg from "../../../images/inneklima/oris-klinikk.webp";
 /* Njord Clean Air product photos (downloaded from njordcleanair.com). */
-import njordXpF from "../../../images/inneklima/njord/xp-f.jpg";
-import njordXp2 from "../../../images/inneklima/njord/xp-2.jpg";
-import njordXp4 from "../../../images/inneklima/njord/xp-4.jpg";
+import njordXpF from "../../../images/inneklima/njord/xp-f.webp";
+import njordXp2 from "../../../images/inneklima/njord/xp-2.webp";
+import njordXp4 from "../../../images/inneklima/njord/xp-4.webp";
+import { cms } from "../../../images/cms";
 
-const thumbs = "https://heltopplagt.no/application/files/cache/thumbnails";
 
 /* Shared Njord XP blocks, reused by the three Njord product pages. Facts from njordcleanair.com/no. */
 const njordPlattform: ContentBlock = {
@@ -61,8 +59,6 @@ export const inneklimaData: ServicePageData = {
   image: heroImg,
   imageAlt: "Inneklima fra Helt Opplagt",
   heroImage: openingImg,
-  brochureUrl:
-    "https://heltopplagt.no/application/files/7716/8682/5172/Helt_Opplagt_Inneklima_2023.pdf",
   heroPoints: [
     { label: "Vi leverer ren luft og rett temperatur, helt uten byggtekniske endringer." },
     { label: "Bli kvitt hodepine, tretthet og andre symptomer av dårlig luft." },
@@ -99,7 +95,7 @@ export const inneklimaData: ServicePageData = {
           tag: "Tak, vegg eller gulv",
           description:
             "VisionAir er perfekt for lokaler opptil ca 80 m2. Den kommer i to størrelser og kan plasseres i tak, vegg og/eller gulv. Perfekt for kopirom, kontorlandskap og fellesområder.",
-          image: `${thumbs}/583c513de688c3e5727153b9ff5ad0e2.jpg`,
+          image: cms("583c513de688c3e5727153b9ff5ad0e2"),
           to: "/tjenester/inneklima/visionair",
         },
         {
@@ -148,7 +144,7 @@ export const inneklimaData: ServicePageData = {
           name: "Euromate HFE-serien",
           description:
             "Tilgjengelig i flere modeller avhengig av luftvolum og forurensningstype. Filtrerer selv de minste partikler og eventuelle gasser og lukter. Elektrofiltrene er enkle å rense og gjenbruke - ikke kast etter bruk!",
-          image: `${thumbs}/668745cf1fc2f86ff706874e3bf7a44d.jpg`,
+          image: cms("668745cf1fc2f86ff706874e3bf7a44d"),
           to: "/tjenester/inneklima/hfe-serien",
         },
         {
@@ -156,7 +152,7 @@ export const inneklimaData: ServicePageData = {
           tag: "Inn i eksisterende ventilasjon",
           description:
             "KAF-filtreringssystemet installeres direkte inn i eksisterende ventilasjonssystem og passer utmerket for kantiner, kommersielt kjøkken, fast food-restauranter og tradisjonelle restauranter.",
-          image: `${thumbs}/6c93d124acf8f09f9a662bf63f60bff3.jpg`,
+          image: cms("6c93d124acf8f09f9a662bf63f60bff3"),
           to: "/tjenester/inneklima/kaf",
         },
       ],
@@ -261,7 +257,7 @@ export const inneklimaData: ServicePageData = {
       label: "Sesong for såre øyne og luftveisplager",
       description: "Visste du at en av fire på kontoret sliter med allergier som gir plager og nedsatt effektivitet?",
       to: "/tjenester/inneklima/sesong-sare-oyne-og-luftveisplager",
-      image: `${thumbs}/6a989ffd1db602cbc63770c77ea10689.jpg`,
+      image: cms("6a989ffd1db602cbc63770c77ea10689"),
     },
   ],
   subServices: [
@@ -458,7 +454,7 @@ export const inneklimaData: ServicePageData = {
               title: "VisionAir Blue Line",
               description:
                 "VisionAir er perfekt for lokaler opptil ca 80 m2. Den kommer i to størrelser og kan plasseres i tak, vegg og/eller gulv. Vi tilpasser løsningen etter deres behov og lokaler, uten at dere trenger å gjøre noen byggtekniske endringer. Luftrenseren kan også utstyres med UV (SterilAir).",
-              image: `${thumbs}/583c513de688c3e5727153b9ff5ad0e2.jpg`,
+              image: cms("583c513de688c3e5727153b9ff5ad0e2"),
             },
             {
               title: "Grace",
@@ -470,13 +466,13 @@ export const inneklimaData: ServicePageData = {
               title: "Kitchen Air Filtration (KAF)",
               description:
                 "KAF-filtreringssystemet installeres direkte inn i eksisterende ventilasjonssystem og passer utmerket for kantiner, kommersielle kjøkken, fast food-restauranter og tradisjonelle restauranter. Kan tilpasses ulike kapasitetsmengder for et skreddersydd system.",
-              image: `${thumbs}/6c93d124acf8f09f9a662bf63f60bff3.jpg`,
+              image: cms("6c93d124acf8f09f9a662bf63f60bff3"),
             },
             {
               title: "Euromate HFE-serien",
               description:
                 "Tilgjengelig i flere modeller avhengig av luftvolum og forurensningstype. Filtrerer selv de minste partikler og eventuelle gasser og lukter. Elektrofiltrene er enkle å rense og gjenbruke - ikke kast etter bruk!",
-              image: `${thumbs}/668745cf1fc2f86ff706874e3bf7a44d.jpg`,
+              image: cms("668745cf1fc2f86ff706874e3bf7a44d"),
             },
           ],
         },
@@ -488,7 +484,7 @@ export const inneklimaData: ServicePageData = {
       title: "Sesong for såre øyne og luftveisplager",
       description:
         "Visste du at en av fire på kontoret sliter med allergier som gir plager og nedsatt effektivitet?.",
-      image: `${thumbs}/6a989ffd1db602cbc63770c77ea10689.jpg`,
+      image: cms("6a989ffd1db602cbc63770c77ea10689"),
       content: [
         {
           type: "text",
@@ -655,7 +651,7 @@ export const inneklimaData: ServicePageData = {
       title: "VisionAir Blue Line",
       description:
         "VisionAir er perfekt for lokaler opptil ca 80 m2. Den kommer i to størrelser og kan plasseres i tak, vegg og/eller gulv. Vi tilpasser løsningen etter deres behov og lokaler, uten at dere trenger å gjøre noen byggtekniske endringer.",
-      image: `${thumbs}/583c513de688c3e5727153b9ff5ad0e2.jpg`,
+      image: cms("583c513de688c3e5727153b9ff5ad0e2"),
       content: [
         {
           type: "text",
@@ -706,7 +702,7 @@ export const inneklimaData: ServicePageData = {
       title: "Euromate HFE-serien",
       description:
         "Tilgjengelig i flere modeller avhengig av luftvolum og forurensningstype. Filtrerer selv de minste partikler og eventuelle gasser og lukter. Elektrofiltrene er enkle å rense og gjenbruke - ikke kast etter bruk!",
-      image: `${thumbs}/668745cf1fc2f86ff706874e3bf7a44d.jpg`,
+      image: cms("668745cf1fc2f86ff706874e3bf7a44d"),
       content: [
         {
           type: "text",
@@ -763,7 +759,7 @@ export const inneklimaData: ServicePageData = {
       title: "Kitchen Air Filtration (KAF)",
       description:
         "KAF-filtreringssystemet installeres direkte inn i eksisterende ventilasjonssystem og passer utmerket for kantiner, kommersielt kjøkken, fast food-restauranter og tradisjonelle restauranter. KAF-filtreringssystem for kjøkken kan tilpasses ulike kapasitetsmengder. Det betyr at du får et skreddersydd system som passer perfekt til akkurat ditt kjøkken.",
-      image: `${thumbs}/6c93d124acf8f09f9a662bf63f60bff3.jpg`,
+      image: cms("6c93d124acf8f09f9a662bf63f60bff3"),
       content: [
         {
           type: "text",

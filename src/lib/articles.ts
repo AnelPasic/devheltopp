@@ -1,8 +1,8 @@
 /* Article images are self-hosted; hotlinking the CMS was flaky. */
-import gardshusImg from "../images/catering/garden/gardshus.jpg";
-import fordEtransitImg from "../images/aktuelt/ford-etransit.jpg";
-import fordTilpassetImg from "../images/aktuelt/ford-tilpasset.jpg";
-import dawidImg from "../images/aktuelt/dawid.jpg";
+import gardshusImg from "../images/catering/garden/gardshus.webp";
+import fordEtransitImg from "../images/aktuelt/ford-etransit.webp";
+import fordTilpassetImg from "../images/aktuelt/ford-tilpasset.webp";
+import dawidImg from "../images/aktuelt/dawid.webp";
 import ukrainaImg from "../images/aktuelt/ukraina.jpg";
 
 export type ArticleBlock =

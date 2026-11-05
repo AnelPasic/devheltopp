@@ -102,7 +102,7 @@ export function Footer() {
             className="mt-8 inline-flex items-center gap-4 opacity-90 transition-opacity hover:opacity-100"
           >
             <span className="flex h-16 w-[4.75rem] flex-shrink-0 items-center justify-center overflow-hidden rounded-[0.5rem] bg-white">
-              <img src={miljofyrtarnImg} alt="" className="h-full w-full object-contain" />
+              <img src={miljofyrtarnImg} alt="" loading="lazy" decoding="async" className="h-full w-full object-contain" />
             </span>
             <span aria-hidden="true" className="h-14 w-px bg-white/35" />
             <span className="font-archivo text-[14px] font-bold uppercase leading-tight tracking-[0.04em] text-white">

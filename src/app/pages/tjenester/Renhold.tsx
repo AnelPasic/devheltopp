@@ -1,12 +1,11 @@
 import { ServicePage, ServicePageData } from "../../components/ServicePage";
-import heroImg from "../../../images/renhold/renhold.png";
-import openingImg from "../../../images/hero/hero-renhold.jpg";
-import explainerImg from "../../../images/renhold/vinduspuss.jpg";
-import inneklimaCardImg from "../../../images/hero/hero-inneklima-dno.jpg";
-import kantineCardImg from "../../../images/kantine/kantine.png";
-import renholdTeamImg from "../../../images/renhold/renhold-team.jpg";
+import heroImg from "../../../images/renhold/renhold.webp";
+import openingImg from "../../../images/hero/hero-renhold.webp";
+import explainerImg from "../../../images/renhold/vinduspuss.webp";
+import inneklimaCardImg from "../../../images/hero/hero-inneklima-dno.webp";
+import kantineCardImg from "../../../images/kantine/kantine.webp";
+import { cms } from "../../../images/cms";
 
-const thumbs = "https://heltopplagt.no/application/files/cache/thumbnails";
 
 export const renholdData: ServicePageData = {
   path: "/tjenester/renhold",
@@ -57,42 +56,42 @@ export const renholdData: ServicePageData = {
           name: "Daglig renhold",
           description:
             "Vi kan bistå dere med en behovstilpasset renholdsavtale som på en bærekraftig og effektiv måte forlenger levetid på gulv og inventar.",
-          image: `${thumbs}/25ddb625b59a219605acc899d9230432.jpg`,
+          image: cms("25ddb625b59a219605acc899d9230432"),
           to: "/tjenester/renhold/daglig-renhold",
         },
         {
           name: "Hovedrengjøring",
           description:
             "En hovedrengjøring innebærer en grundig rengjøring av både vegger og tak. Det kan også innbefatte andre områder som ikke blir rengjort ved daglig rengjøring.",
-          image: `${thumbs}/77582f78736eb1356bae7dd359ef7852.jpg`,
+          image: cms("77582f78736eb1356bae7dd359ef7852"),
           to: "/tjenester/renhold/hovedrengjoring",
         },
         {
           name: "Gulvvedlikehold",
           description:
             "Gulvvedlikehold er viktig for å unngå store renovasjonskostnader i fremtiden. Med våre moderne maskiner kan vi rense, skure, bone, olje og vedlikeholde alle typer gulv.",
-          image: `${thumbs}/dca037a67392f3e04161f36a0e694b15.jpg`,
+          image: cms("dca037a67392f3e04161f36a0e694b15"),
           to: "/tjenester/renhold/gulvvedlikehold",
         },
         {
           name: "Vinduspuss",
           description:
             "Vi utfører vinduspuss og bruker moderne utstyr for å gjøre vinduene rene og flekkfrie på en fagmessig og riktig måte. Slik at du kan se gjennom vinduene – ikke på vinduene.",
-          image: `${thumbs}/345d12b02398938002207c1977b9faac.jpg`,
+          image: cms("345d12b02398938002207c1977b9faac"),
           to: "/tjenester/renhold/vinduspuss",
         },
         {
           name: "Tepperens og møbelrens",
           description:
             "Regelmessig støvsuging av tepper er en viktig del av vedlikeholdet. I tillegg bør man årlig ta en dypere rens av teppet, for å fjerne støv og bakterier som har samlet seg i teppets fibre.",
-          image: `${thumbs}/42921c719d882a03f23a614b86a36794.jpg`,
+          image: cms("42921c719d882a03f23a614b86a36794"),
           to: "/tjenester/renhold/tepperens-og-mobelrens",
         },
         {
           name: "Vedlikehold, feiing, snø og gress",
           description:
             "Vi kan utføre en rekke oppgaver innen vaktmesterservice, små reparasjoner, montering, avfallshåndtering, skifting av lyspærer etc.",
-          image: `${thumbs}/b150c85e26357ff9c7b793aaaaaa6351.jpg`,
+          image: cms("b150c85e26357ff9c7b793aaaaaa6351"),
           to: "/tjenester/renhold/vedlikehold-feiing-sno-og-gress",
         },
       ],
@@ -126,7 +125,7 @@ export const renholdData: ServicePageData = {
       label: "Kombiner kantine og renhold",
       description: "Ved å samle dine tjenester hos en leverandør vil du forenkle din arbeidshverdag. Færre leverandører bidrar til store besparelser.",
       to: "/tjenester/kantine/kombiner-kantine-og-renhold",
-      image: `${thumbs}/37b164159bb2d27e7dd7c3be6e7d98de.jpg`,
+      image: cms("37b164159bb2d27e7dd7c3be6e7d98de"),
     },
     {
       label: "Inneklima",
@@ -148,7 +147,7 @@ export const renholdData: ServicePageData = {
       title: "Daglig renhold",
       description:
         "Vi er en renholdsentreprenør som ivaretar dine behov på en profesjonell måte. Vi kan bistå dere med en behovstilpasset renholdsavtale som på en bærekraftig og effektiv måte forlenger levetid på gulv og inventar. Samtidig vil et godt renhold bidra positivt til et lavere sykefravær og bedre lønnsomhet.",
-      image: `${thumbs}/25ddb625b59a219605acc899d9230432.jpg`,
+      image: cms("25ddb625b59a219605acc899d9230432"),
       content: [
         {
           type: "text",
@@ -164,11 +163,11 @@ export const renholdData: ServicePageData = {
       title: "Vedlikehold, feiing, snø og gress",
       description:
         "Vi kan utføre en rekke oppgaver innen vaktmesterservice, små reparasjoner, montering, avfallshåndtering, skifting av lyspærer etc. Kort fortalt det meste du behøver av både innendørs og utendørs vedlikehold.",
-      image: `${thumbs}/b150c85e26357ff9c7b793aaaaaa6351.jpg`,
+      image: cms("b150c85e26357ff9c7b793aaaaaa6351"),
       content: [
         {
           type: "image",
-          src: `${thumbs}/25ee209e6fa9f31e2b3c02b4ad38bb6d.jpg`,
+          src: cms("25ee209e6fa9f31e2b3c02b4ad38bb6d"),
           alt: "Vedlikehold, feiing, snø og gress",
         },
         {
@@ -200,7 +199,7 @@ export const renholdData: ServicePageData = {
       title: "Hovedrengjøring",
       description:
         "Godt renhold og rengjøring på arbeidsplassen gir større trivsel og bedre arbeidsmiljø. Mindre støv gir også et bedre inneklima og reduserer risikoen for astma- og allergiplager. Godt renhold har også en positiv effekt på sykefraværet.",
-      image: `${thumbs}/77582f78736eb1356bae7dd359ef7852.jpg`,
+      image: cms("77582f78736eb1356bae7dd359ef7852"),
       content: [
         {
           type: "text",
@@ -216,7 +215,7 @@ export const renholdData: ServicePageData = {
       title: "Gulvvedlikehold",
       description:
         "Gulvvedlikehold er viktig for å unngå store renovasjonskostnader i fremtiden.",
-      image: `${thumbs}/dca037a67392f3e04161f36a0e694b15.jpg`,
+      image: cms("dca037a67392f3e04161f36a0e694b15"),
       content: [
         {
           type: "text",
@@ -231,7 +230,7 @@ export const renholdData: ServicePageData = {
       title: "Vinduspuss",
       description:
         "Godt renhold på arbeidsplassen gir større trivsel og bedre arbeidsmiljø. Mindre støv gir også et bedre inneklima og reduserer risikoen for astma- og allergiplager.",
-      image: `${thumbs}/345d12b02398938002207c1977b9faac.jpg`,
+      image: cms("345d12b02398938002207c1977b9faac"),
       content: [
         {
           type: "text",
@@ -248,7 +247,7 @@ export const renholdData: ServicePageData = {
       title: "Tepperens og møbelrens",
       description:
         "Godt renhold på arbeidsplassen gir større trivsel og bedre arbeidsmiljø. Mindre støv gir også et bedre inneklima og reduserer risikoen for astma- og allergiplager.",
-      image: `${thumbs}/42921c719d882a03f23a614b86a36794.jpg`,
+      image: cms("42921c719d882a03f23a614b86a36794"),
       content: [
         {
           type: "text",

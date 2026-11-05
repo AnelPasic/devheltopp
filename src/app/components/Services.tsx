@@ -1,12 +1,12 @@
 import { ArrowUpRight } from "lucide-react";
 import { useId } from "react";
 import { Link } from "react-router";
-import fruktImg from "../../images/frukt/frukt.png";
-import lunsjImg from "../../images/lunsj/lunsj.png";
-import kantineImg from "../../images/kantine/kantine.png";
-import cateringImg from "../../images/catering/catering.png";
-import inneklimaImg from "../../images/hero/hero-inneklima-dno.jpg";
-import renholdImg from "../../images/renhold/renhold.png";
+import fruktImg from "../../images/frukt/frukt.webp";
+import lunsjImg from "../../images/lunsj/lunsj.webp";
+import kantineImg from "../../images/kantine/kantine.webp";
+import cateringImg from "../../images/catering/catering.webp";
+import inneklimaImg from "../../images/hero/hero-inneklima-dno.webp";
+import renholdImg from "../../images/renhold/renhold.webp";
 import { BrushStroke, CONTAINER, Pill, SectionHead } from "./site";
 import { SERVICES, type LiveryService } from "./livery";
 import { Reveal } from "./Reveal";
@@ -31,6 +31,8 @@ export function ServiceCard({ service }: { service: LiveryService }) {
       <img
         src={PHOTO[service.name]}
         alt=""
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
       />
       <span

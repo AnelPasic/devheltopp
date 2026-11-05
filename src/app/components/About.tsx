@@ -1,5 +1,5 @@
 import { ArrowRight, Check } from "lucide-react";
-import teamImg from "../../images/om-oss/hele-gjengen.png";
+import teamImg from "../../images/om-oss/hele-gjengen.webp";
 import { CONTAINER, Kicker, LinePiece, Pill } from "./site";
 import { Reveal } from "./Reveal";
 
@@ -22,6 +22,8 @@ export function About() {
             <img
               src={teamImg}
               alt="Teamet i Helt Opplagt"
+              loading="lazy"
+              decoding="async"
               className="h-full w-full object-cover"
             />
           </div>

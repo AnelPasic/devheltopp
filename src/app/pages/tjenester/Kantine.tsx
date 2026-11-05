@@ -1,20 +1,21 @@
 import { ServicePage, ServicePageData } from "../../components/ServicePage";
-import heroImg from "../../../images/kantine/kantine.png";
-import openingImg from "../../../images/hero/hero-kantine.jpg";
-import explainerImg from "../../../images/kantine/sport-1-07.jpg";
-import utenKjokkenImg from "../../../images/kantine/sport-1-13.jpg";
-import lunsjCardImg from "../../../images/lunsj/lunsj.png";
+import heroImg from "../../../images/kantine/kantine.webp";
+import openingImg from "../../../images/hero/hero-kantine.webp";
+import explainerImg from "../../../images/kantine/sport-1-07.webp";
+import utenKjokkenImg from "../../../images/kantine/sport-1-13.webp";
+import lunsjCardImg from "../../../images/lunsj/lunsj.webp";
 /* Module photos are Unsplash stock (free license); palegg.jpg is Helt Opplagt's own tray photo. */
-import modFrokost from "../../../images/kantine/moduler/frokost.jpg";
-import modBrod from "../../../images/kantine/moduler/brod.jpg";
-import modPalegg from "../../../images/kantine/moduler/palegg.jpg";
-import modSalater from "../../../images/kantine/moduler/salater.jpg";
-import modSmaretter from "../../../images/kantine/moduler/smaretter.jpg";
-import modVarmmat from "../../../images/kantine/moduler/varmmat.jpg";
-import modDrikke from "../../../images/kantine/moduler/drikke.jpg";
-import modVafler from "../../../images/kantine/moduler/vafler.jpg";
+import modFrokost from "../../../images/kantine/moduler/frokost.webp";
+import modBrod from "../../../images/kantine/moduler/brod.webp";
+import modPalegg from "../../../images/kantine/moduler/palegg.webp";
+import modSalater from "../../../images/kantine/moduler/salater.webp";
+import modSmaretter from "../../../images/kantine/moduler/smaretter.webp";
+import modVarmmat from "../../../images/kantine/moduler/varmmat.webp";
+import modDrikke from "../../../images/kantine/moduler/drikke.webp";
+import modVafler from "../../../images/kantine/moduler/vafler.webp";
+import kantine2019Img from "../../../images/kantine/kantine-2019.webp";
+import { cms } from "../../../images/cms";
 
-const thumbs = "https://heltopplagt.no/application/files/cache/thumbnails";
 
 export const kantineData: ServicePageData = {
   path: "/tjenester/kantine",
@@ -135,7 +136,7 @@ export const kantineData: ServicePageData = {
           name: "Dere kan bare komme og nyte maten",
           description:
             "Vi tar oss av alt: av- og pådekking, tilbereding av all maten i buffeten, oppvask, holde kjøkken og kantineområdet rent og ryddig etc. Vi kan også påta oss annet forefallende kontorarbeid og/eller vask av deres lokaler.",
-          image: `${thumbs}/a29ba39192bb1cdb321cad644af15f53.jpg`,
+          image: cms("a29ba39192bb1cdb321cad644af15f53"),
         },
       ],
       link: {
@@ -187,7 +188,7 @@ export const kantineData: ServicePageData = {
       label: "Om våre kantiner",
       description: "Gjennom mange års erfaring med fornøyde kunder er tjenesten spesialtilpasset bedrifter mellom 20 og 300 ansatte.",
       to: "/tjenester/kantine/om-vare-kantiner",
-      image: `${thumbs}/1e7046a1804a25a379a1d086b08d75ee.jpg`,
+      image: cms("1e7046a1804a25a379a1d086b08d75ee"),
     },
     {
       label: "Kantine på jobben – uten kjøkken?",
@@ -199,13 +200,13 @@ export const kantineData: ServicePageData = {
       label: "Verter og vertinner",
       description: "Våre utmerkede verter og vertinner sørger for at dere bare kan komme og nyte maten.",
       to: "/tjenester/kantine/verter-og-vertinner",
-      image: `${thumbs}/a29ba39192bb1cdb321cad644af15f53.jpg`,
+      image: cms("a29ba39192bb1cdb321cad644af15f53"),
     },
     {
       label: "Kombiner kantine og renhold",
       description: "Ved å samle dine tjenester hos en leverandør vil du forenkle din arbeidshverdag. Færre leverandører bidrar til store besparelser.",
       to: "/tjenester/kantine/kombiner-kantine-og-renhold",
-      image: `${thumbs}/37b164159bb2d27e7dd7c3be6e7d98de.jpg`,
+      image: cms("37b164159bb2d27e7dd7c3be6e7d98de"),
     },
     {
       label: "Lunsj",
@@ -220,7 +221,7 @@ export const kantineData: ServicePageData = {
       title: "Om våre kantiner",
       description:
         "Vi kommer med maten - dere nyter. Gjennom mange års erfaring med fornøyde kunder er tjenesten spesialtilpasset bedrifter mellom 20 og 300 ansatte.",
-      image: `${thumbs}/1e7046a1804a25a379a1d086b08d75ee.jpg`,
+      image: cms("1e7046a1804a25a379a1d086b08d75ee"),
       content: [
         {
           type: "text",
@@ -252,7 +253,7 @@ export const kantineData: ServicePageData = {
       title: "Verter og vertinner",
       description:
         "I våre mer enn 100 betjente kantiner sørger våre dyktige, blide og serviceinnstilte verter og vertinner for å skape en god lunsjopplevelse i en travel hverdag for våre kunders ansatte.",
-      image: `${thumbs}/a29ba39192bb1cdb321cad644af15f53.jpg`,
+      image: cms("a29ba39192bb1cdb321cad644af15f53"),
       content: [
         {
           type: "text",
@@ -263,7 +264,7 @@ export const kantineData: ServicePageData = {
         },
         {
           type: "image",
-          src: "https://heltopplagt.no/application/files/5215/5777/5035/2019-05-13_21-17_525.jpg",
+          src: kantine2019Img,
           alt: "Verter og vertinner fra Helt Opplagt",
         },
       ],
@@ -273,7 +274,7 @@ export const kantineData: ServicePageData = {
       title: "Kombiner kantine og renhold",
       description:
         "Ved å samle dine tjenester hos en leverandør vil du forenkle din arbeidshverdag. Færre leverandører bidrar til store besparelser. Du har større oversikt og det krever mindre ressurser.",
-      image: `${thumbs}/37b164159bb2d27e7dd7c3be6e7d98de.jpg`,
+      image: cms("37b164159bb2d27e7dd7c3be6e7d98de"),
       content: [
         {
           type: "text",

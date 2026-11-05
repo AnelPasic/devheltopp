@@ -4,11 +4,11 @@ import { ArrowUpRight, Quote } from "lucide-react";
 import { CONTAINER } from "../components/site";
 import { PageHeader } from "../components/PageHeader";
 import { reviewId, reviews, type Review } from "../../lib/reviews";
-import kantineImg from "../../images/kantine/sport-1-10.jpg";
-import lunsjImg from "../../images/lunsj/lunsj.jpg";
-import fruktImg from "../../images/frukt/fruktkurv-mote.jpg";
-import inneklimaImg from "../../images/inneklima/kontor-luftrenser.jpg";
-import renholdImg from "../../images/renhold/gulvvask-lager.jpg";
+import kantineImg from "../../images/kantine/sport-1-10.webp";
+import lunsjImg from "../../images/lunsj/lunsj.webp";
+import fruktImg from "../../images/frukt/fruktkurv-mote.webp";
+import inneklimaImg from "../../images/inneklima/kontor-luftrenser.webp";
+import renholdImg from "../../images/renhold/gulvvask-lager.webp";
 import { useDocumentMeta } from "../../lib/use-document-meta";
 
 type Service = Review["service"];
