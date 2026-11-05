@@ -359,8 +359,9 @@ function ContentBlockView({ block }: { block: ContentBlock }) {
   }
 
   if (block.type === "table") {
+    const [headRow, ...bodyRows] = block.head ? block.rows : [undefined, ...block.rows];
     return (
-      <div>
+      <div className="max-w-[880px]">
         {block.heading && (
           <h2 className="mb-5 font-lato text-[24px] font-light leading-[1.2] tracking-[-0.01em] text-navy sm:text-[28px]">
             {block.heading}
@@ -370,8 +371,25 @@ function ContentBlockView({ block }: { block: ContentBlock }) {
             inside their container on small screens instead of being clipped. */}
         <div className="overflow-x-auto rounded-[1.25rem] border border-navy/10">
           <table className="w-full text-[15px]">
+            {headRow && (
+              <thead>
+                <tr className="border-b border-navy/10 bg-white">
+                  {headRow.map((cell, j) => (
+                    <th
+                      key={j}
+                      scope="col"
+                      className={`px-4 py-3 text-left font-bold text-navy ${
+                        j === headRow.length - 1 ? "text-right whitespace-nowrap" : ""
+                      }`}
+                    >
+                      {cell}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+            )}
             <tbody>
-              {block.rows.map((row, i) => (
+              {bodyRows.map((row, i) => (
                 <tr key={i} className={i % 2 === 1 ? "bg-cloud/60" : "bg-white"}>
                   {row.map((cell, j) => (
                     <td
@@ -393,6 +411,167 @@ function ContentBlockView({ block }: { block: ContentBlock }) {
             {block.footnote}
           </p>
         )}
+      </div>
+    );
+  }
+
+  if (block.type === "products") {
+    const withPhoto = block.items.filter((item) => item.image);
+    const rest = block.items.filter((item) => !item.image);
+    return (
+      <div>
+        {block.heading && (
+          <h2 className="mb-5 font-lato text-[24px] font-light leading-[1.2] tracking-[-0.01em] text-navy sm:text-[28px]">
+            {block.heading}
+          </h2>
+        )}
+        {withPhoto.length > 0 && (
+          <div className="grid grid-cols-1 gap-3 sm:gap-4 lg:grid-cols-2">
+            {withPhoto.map((item) => (
+              <div
+                key={item.name}
+                className="flex overflow-hidden rounded-[1.25rem] border border-navy/10 bg-white"
+              >
+                <div className="flex min-w-0 flex-1 flex-col justify-center px-4 py-3.5 sm:px-6 sm:py-4">
+                  <h3 className="font-lato text-[16px] font-bold leading-snug text-navy sm:text-[18px]">
+                    {item.name}
+                  </h3>
+                  {item.allergens && (
+                    <p className="mt-1 text-[12px] leading-snug text-navy/50 sm:text-[13px]">{item.allergens}</p>
+                  )}
+                  <p className="mt-3 text-[15px] font-semibold text-brand sm:text-[16px]">{item.price}</p>
+                </div>
+                <div className="relative aspect-[3/2] w-[38%] flex-shrink-0">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        {rest.length > 0 && (
+          <dl className={`divide-y divide-navy/[0.08] border-y border-navy/[0.08] ${withPhoto.length > 0 ? "mt-5" : ""}`}>
+            {rest.map((item) => (
+              <div key={item.name} className="flex items-baseline justify-between gap-6 py-3">
+                <dt className="text-[15px] text-navy">
+                  {item.name}
+                  {item.allergens && (
+                    <span className="mt-0.5 block text-[12px] leading-snug text-navy/50">{item.allergens}</span>
+                  )}
+                </dt>
+                <dd className="whitespace-nowrap text-[15px] font-semibold text-navy">{item.price}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+        {block.footnote && (
+          <p className="mt-3 text-sm italic leading-relaxed text-navy/55">{block.footnote}</p>
+        )}
+      </div>
+    );
+  }
+
+  if (block.type === "packages") {
+    return (
+      <div>
+        {block.heading && (
+          <h2 className="mb-5 font-lato text-[24px] font-light leading-[1.2] tracking-[-0.01em] text-navy sm:text-[28px]">
+            {block.heading}
+          </h2>
+        )}
+        <div className={`grid gap-3 sm:gap-4 ${block.items.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3"}`}>
+          {block.items.map((item) => (
+            <div key={item.name} className="flex overflow-hidden rounded-[1.25rem] border border-navy/10 bg-white">
+              {item.image && (
+                <div className="relative w-[30%] max-w-[170px] flex-shrink-0">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                </div>
+              )}
+              <div className="min-w-0 flex-1 p-5 sm:p-6">
+              <h3 className="font-lato text-[18px] font-bold leading-snug text-navy">{item.name}</h3>
+              <p className="mt-1 text-[16px] font-semibold text-brand">{item.price}</p>
+              <ul className="mt-4 space-y-2.5 border-t border-navy/[0.08] pt-4">
+                {item.points.map((point) => (
+                  <li key={point} className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-lime/15">
+                      <Check className="h-3 w-3 text-lime" strokeWidth={3} />
+                    </span>
+                    <span className="text-[15px] leading-relaxed text-navy/70">{point}</span>
+                  </li>
+                ))}
+              </ul>
+              {item.note && (
+                <p className="mt-4 text-[14px] leading-relaxed text-navy/55">{item.note}</p>
+              )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (block.type === "media") {
+    const rest = block.images.slice(1);
+    const many = block.images.length >= 3;
+    return (
+      <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
+        <div>
+          {block.kicker && <Kicker>{block.kicker}</Kicker>}
+          <h2 className={`font-lato text-[26px] font-light leading-[1.15] tracking-[-0.01em] text-navy sm:text-[32px] ${block.kicker ? "mt-3" : ""}`}>
+            {block.heading}
+          </h2>
+          <div className="mt-5 space-y-4">
+            {block.paragraphs.map((p, i) => (
+              <p key={i} className={`leading-relaxed text-navy/70 ${i === 0 ? "text-[16px] lg:text-[17px]" : "text-[15px] lg:text-[16px]"}`}>
+                {withLinks(p)}
+              </p>
+            ))}
+          </div>
+          {block.badge && (
+            <p className="mt-6 inline-flex rounded-full bg-brand/10 px-4 py-2 text-[14px] font-semibold text-brand">
+              {block.badge}
+            </p>
+          )}
+        </div>
+
+        {/* One photo fills the column. Two sit side by side. Three or more:
+            the first runs full width with the rest in a row under it. */}
+        <div className={`grid gap-3 sm:gap-4 ${block.reverse ? "lg:order-first" : ""} ${many && rest.length === 3 ? "grid-cols-3" : block.images.length >= 2 ? "grid-cols-2" : ""}`}>
+          {block.images.map((image, i) => (
+            <div
+              key={image.src}
+              className={
+                "relative overflow-hidden rounded-[1.25rem] bg-stone " +
+                (many && i === 0
+                  ? `aspect-[16/9] ${rest.length === 3 ? "col-span-3" : "col-span-2"}`
+                  : many
+                    ? rest.length === 3 ? "aspect-square" : "aspect-[4/3]"
+                    : block.images.length === 2 ? "aspect-[4/5]" : "aspect-[4/3]")
+              }
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover"
+                style={image.position ? { objectPosition: image.position } : undefined}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     );
   }

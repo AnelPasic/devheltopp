@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { ArrowRight } from "lucide-react";
 import { CONTAINER } from "../components/site";
 import { PageHeader } from "../components/PageHeader";
-import { articles } from "../../lib/articles";
+import { articleHref, articles } from "../../lib/articles";
 import { useDocumentMeta } from "../../lib/use-document-meta";
 
 export function AktueltPage() {
@@ -19,7 +19,7 @@ export function AktueltPage() {
 
       <section className="bg-white py-16 lg:py-20">
         <div className={CONTAINER}>
-          <Link to={`/aktuelt/${featured.slug}`} className="group block lg:grid lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-14">
+          <Link to={articleHref(featured)} className="group block lg:grid lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-14">
             <div className="relative aspect-[16/10] overflow-hidden rounded-[1.25rem]">
               <img
                 src={featured.image}
@@ -38,7 +38,7 @@ export function AktueltPage() {
                 {featured.ingress}
               </p>
               <span className="mt-5 inline-flex items-center gap-1.5 text-[14px] font-semibold text-brand">
-                Les hele saken
+                {featured.href ? "Les mer" : "Les hele saken"}
                 <ArrowRight
                   className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
                   strokeWidth={2.5}
@@ -51,7 +51,7 @@ export function AktueltPage() {
             {rest.map((a) => (
               <Link
                 key={a.slug}
-                to={`/aktuelt/${a.slug}`}
+                to={articleHref(a)}
                 className="group flex flex-col overflow-hidden rounded-[1.5rem] bg-white shadow-[0_1px_2px_rgba(13,43,64,0.06)] ring-1 ring-navy/5 transition-shadow duration-300 hover:shadow-[0_10px_24px_-12px_rgba(13,43,64,0.14)]"
               >
                 <div className="relative aspect-[16/10] overflow-hidden">

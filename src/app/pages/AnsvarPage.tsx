@@ -38,7 +38,7 @@ const miljoTiltak: Tiltak[] = [
   },
   {
     title: "Kvalitetskontroll av frukt og grønnsaker",
-    body: "Frukt som sorteres ut i vår strenge kvalitetskontroll, og som er fullt brukbar, gis til barnehager og organisasjoner som Fattighuset og Gatebarnas far. Frukt som ikke passer til dette, går til heste- og grisefôr samt biogass.",
+    body: "Hver enkelt frukt blir kontinuerlig sjekket. Det benyttes hansker, forklær og hårnett under pakking. Frukt som sorteres ut i vår strenge kvalitetskontroll, og som er fullt brukbar, gis til barnehager og organisasjoner som Fattighuset og Gatebarnas far. Frukt som ikke passer til dette, går til heste- og grisefôr samt biogass.",
   },
   {
     title: "CO2-nøytral virksomhet",
@@ -46,11 +46,11 @@ const miljoTiltak: Tiltak[] = [
   },
   {
     title: "Gjenbruk av energi",
-    body: "I forbindelse med at vi ferdigstilte og flyttet inn i vårt eget bygg, har vi kunnet planlegge alt fra starten av og all oppvarming er basert på gjenbruk av energi fra forbrenningsanlegget på Klemetsrud. All kjøling til våre 11 kjøle- og fryserom gjøres med energigjerrig varmepumpeteknologi.",
+    body: "Bygget vårt på Bjørnholt benytter seg av gjenbrukbar energi fra forbrenningsanlegget på Klemetsrud. All kjøling til våre 11 kjøle- og fryserom gjøres med energigjerrig varmepumpeteknologi.",
   },
   {
     title: "Vaskbare filtre til inneklima",
-    body: "I vår inneklimaavdeling skifter vi nær 20.000 filtre hvert år ute hos våre kunder. I stedet benytter vi vaskbare filtre, og våre serviceteknikere reiser ut til kundene med rene filtre og returnerer med skitne filtre som vi vasker her i vår vaskehall, som igjen benyttes hos våre kunder. År ut og år inn omtrent som med panteflasker.",
+    body: "I vår inneklimaavdeling skifter vi nær 20.000 filtre hvert år ute hos våre kunder. Våre serviceteknikere reiser ut til kundene med rene filtre og returnerer med skitne filtre som vi vasker her i vår vaskehall, som igjen benyttes hos våre kunder. År ut og år inn omtrent som med panteflasker.",
   },
   {
     title: "Elbiler, hybridbiler og miljømål for 2030",
@@ -65,11 +65,11 @@ const sosialt: Tiltak[] = [
   },
   {
     title: "Nettverk etter soning",
-    body: "Vi i Helt Opplagt har stor tro på mennesket, også de som trenger en ny sjanse. Vi er stolt av samarbeidet vi har fått til med Røde Kors i Oslo. Røde Kors plukker ut passende personer og disse starter i praksisplasser hos oss, samtidig som de får oppfølging av Røde Kors sine frivillige. Dersom arbeidsforholdet fungerer ansetter vi personen fast her hos oss.",
+    body: "Vi i Helt Opplagt har stor tro på mennesket. Vi er stolt av samarbeidet vi har fått til med Røde Kors i Oslo. Røde Kors plukker ut passende personer og disse starter i praksisplasser hos oss, samtidig som de får oppfølging av Røde Kors sine frivillige. Dersom arbeidsforholdet fungerer ansetter vi personen fast her hos oss.",
   },
   {
     title: "Norskkurs hos Helt Opplagt",
-    body: "Vi i Helt Opplagt ønsker at alle våre ansatte skal ha like forutsetninger på jobb og i samfunnet generelt. Derfor tilbyr vi sammen med Folkeuniversitetet norskkurs med gratis lærebøker til 45 av våre ansatte. I tillegg til språkkunnskaper ser man effekter som skaper et sterkt fellesskap mellom de ansatte imellom og oss i Helt Opplagt.",
+    body: "Vi i Helt Opplagt ønsker at alle våre ansatte skal ha like forutsetninger på jobb og i samfunnet generelt. Derfor tilbyr vi sammen med Folkeuniversitetet norskkurs med gratis lærebøker. I tillegg til språkkunnskaper ser man effekter som skaper et sterkt fellesskap mellom de ansatte imellom og oss i Helt Opplagt.",
   },
 ];
 
@@ -104,7 +104,7 @@ const MILJO = {
 };
 const SOSIALT = {
   title: "Mennesker og samfunn",
-  proof: "Vi i Helt Opplagt har stor tro på mennesket, også de som trenger en ny sjanse.",
+  proof: "Vi i Helt Opplagt har stor tro på mennesket.",
 };
 
 function FordLink() {

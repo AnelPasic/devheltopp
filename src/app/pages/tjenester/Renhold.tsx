@@ -2,6 +2,9 @@ import { ServicePage, ServicePageData } from "../../components/ServicePage";
 import heroImg from "../../../images/renhold/renhold.png";
 import openingImg from "../../../images/hero/hero-renhold.jpg";
 import explainerImg from "../../../images/renhold/vinduspuss.jpg";
+import inneklimaCardImg from "../../../images/hero/hero-inneklima-dno.jpg";
+import kantineCardImg from "../../../images/kantine/kantine.png";
+import renholdTeamImg from "../../../images/renhold/renhold-team.jpg";
 
 const thumbs = "https://heltopplagt.no/application/files/cache/thumbnails";
 
@@ -115,7 +118,7 @@ export const renholdData: ServicePageData = {
     {
       question: "Kan renhold kombineres med kantine?",
       answer:
-        "Mindre selskaper kan i tillegg dra nytte av samme person på både renhold og kantine. På denne måten får vi effektivisert tidsbruken til deres vert/vertinne som igjen gjør at dere sparer penger.",
+        "Ja vi har mange fornøyde kunder med kombinert renhold og kantine. Mindre selskaper kan i tillegg dra nytte av samme person på både renhold og kantine. På denne måten får vi effektivisert tidsbruken til deres vert/vertinne som igjen gjør at dere sparer penger.",
     },
   ],
   readMore: [
@@ -123,22 +126,21 @@ export const renholdData: ServicePageData = {
       label: "Kombiner kantine og renhold",
       description: "Ved å samle dine tjenester hos en leverandør vil du forenkle din arbeidshverdag. Færre leverandører bidrar til store besparelser.",
       to: "/tjenester/kantine/kombiner-kantine-og-renhold",
+      image: `${thumbs}/37b164159bb2d27e7dd7c3be6e7d98de.jpg`,
     },
     {
       label: "Inneklima",
       description: "Vi leverer ren luft og rett temperatur, helt uten byggtekniske endringer.",
       to: "/tjenester/inneklima",
+      image: inneklimaCardImg,
     },
     {
-      label: "Vårt samfunnsansvar",
-      description: "Vi har alltid hatt stort fokus på miljøtiltak.",
-      to: "/ansvar",
+      label: "Kantine",
+      description: "Proffkantine er vårt fullservicetilbud til alle typer kjøkken der vi tar oss av hele lunsjavviklingen.",
+      to: "/tjenester/kantine",
+      image: kantineCardImg,
     },
-    {
-      label: "Vil du bli med oss på reisen?",
-      description: "Våre 100 profesjonelle medarbeidere ønsker seg flere nye oppdragssteder.",
-      to: "/karriere",
-    },
+
   ],
   subServices: [
     {
@@ -187,7 +189,7 @@ export const renholdData: ServicePageData = {
         {
           type: "text",
           paragraphs: [
-            "Har dere behov for denne typen tjenester? Ring oss på 0 23 46 eller bruk skjema under for en uforpliktende prat.",
+            "Har dere behov for denne typen tjenester? Ring oss på 0 23 46 eller fyll ut kontaktskjema for en uforpliktende prat.",
             "PS! Har dere behov utover det vi har listet opp her kan vi helt sikkert hjelpe dere med det også.",
           ],
         },

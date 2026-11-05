@@ -1,5 +1,5 @@
-import grillingImg from "../images/aktuelt/grilling.jpg";
 /* Article images are self-hosted; hotlinking the CMS was flaky. */
+import gardshusImg from "../images/catering/garden/gardshus.jpg";
 import fordEtransitImg from "../images/aktuelt/ford-etransit.jpg";
 import fordTilpassetImg from "../images/aktuelt/ford-tilpasset.jpg";
 import dawidImg from "../images/aktuelt/dawid.jpg";
@@ -18,6 +18,9 @@ export interface Article {
   ingress: string;
   image: string;
   imageAlt: string;
+  /** Links the card straight to another page on the site instead of an
+      article of its own; the old /aktuelt URL redirects there. */
+  href?: string;
   blocks: ArticleBlock[];
 }
 
@@ -27,31 +30,10 @@ export const articles: Article[] = [
     title: "Helt Opplagt på gården",
     category: "Arrangementer",
     ingress: "Nå kan vi også stille med lokaler til ditt arrangement.",
-    image: grillingImg,
-    imageAlt: "Grillfest på Store Stensrud gård",
-    blocks: [
-      {
-        type: "text",
-        paragraphs: [
-          "På Store Stensrud gård syd i Oslo har vi plass til store utendørs arrangementer som sommerfest, kick-off, grillfest etc. på et tradisjonsrikt gårdstun. Store arealer gir muligheter for dans, lek, spill og aktiviteter.",
-          "Innendørs kan vi arrangere mindre selskaper for inntil 40–50 personer i koselige og ærverdige stuer, enten du skal arrangere bryllup, konfirmasjon eller firmafest.",
-          "Vi kan stille med mat, drikke, kokk og servitører.",
-          "Gården ligger lett tilgjengelig 15 minutters kjøretid syd for Oslo sentrum og har eget busstopp for ankomst med offentlig transport.",
-        ],
-      },
-      {
-        type: "bullets",
-        heading: "Vi tilbyr",
-        items: [
-          "Innendørs arrangementer",
-          "Utendørs arrangementer",
-          "Full service",
-          "Gårdsleker og aktiviteter",
-          "Badeplass",
-          "Paintball og Archery Tag",
-        ],
-      },
-    ],
+    image: gardshusImg,
+    imageAlt: "Hovedhuset på Store Stensrud Gård",
+    href: "/tjenester/catering/helt-opplagt-pa-garden",
+    blocks: [],
   },
   {
     slug: "helt-opplagt-samarbeider-med-ford-pa-veien-mot-nullutslipp",
@@ -163,6 +145,10 @@ export const articles: Article[] = [
     ],
   },
 ];
+
+export function articleHref(article: Article): string {
+  return article.href ?? `/aktuelt/${article.slug}`;
+}
 
 export function getArticle(slug: string): Article | undefined {
   return articles.find((a) => a.slug === slug);
