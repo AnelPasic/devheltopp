@@ -195,10 +195,14 @@ export function Footer() {
           className={`${CONTAINER} flex flex-wrap items-center justify-between gap-2 py-6`}
         >
           <p className="text-[12px] text-white/45">
-            &copy; {new Date().getFullYear()} Helt Opplagt. Alle rettigheter
-            reservert.
+            &copy; {new Date().getFullYear()} Helt Opplagt på jobben
           </p>
-          <p className="text-[12px] text-white/45">Helt Opplagt på jobben</p>
+          <Link
+            to="/personvern"
+            className="text-[12px] text-white/45 transition-colors hover:text-aqua"
+          >
+            Personvern og informasjonskapsler
+          </Link>
         </div>
       </div>
     </footer>

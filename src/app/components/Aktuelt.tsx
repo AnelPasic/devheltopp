@@ -1,7 +1,7 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router";
 import { CONTAINER, Pill, SectionHead } from "./site";
-import { articles } from "../../lib/articles";
+import { articleHref, articles } from "../../lib/articles";
 import { Reveal } from "./Reveal";
 
 export function Aktuelt() {
@@ -26,7 +26,7 @@ export function Aktuelt() {
 
         <div className="mt-12 grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
           <Reveal delay={100}>
-          <Link to={`/aktuelt/${featured.slug}`} className="group block">
+          <Link to={articleHref(featured)} className="group block">
             <div className="relative aspect-[16/10] overflow-hidden rounded-[1.25rem]">
               <img
                 src={featured.image}
@@ -58,7 +58,7 @@ export function Aktuelt() {
             {listItems.map((item) => (
               <Link
                 key={item.slug}
-                to={`/aktuelt/${item.slug}`}
+                to={articleHref(item)}
                 className="group flex items-center gap-5 rounded-[1.5rem] bg-cloud/60 p-4 transition-colors hover:bg-cloud sm:p-5"
               >
                 <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-[0.75rem] sm:h-24 sm:w-24">

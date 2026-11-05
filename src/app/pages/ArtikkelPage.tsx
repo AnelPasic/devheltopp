@@ -1,7 +1,7 @@
-import { Link, useParams } from "react-router";
+import { Link, Navigate, useParams } from "react-router";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { CONTAINER, Kicker, Pill } from "../components/site";
-import { articles, getArticle, type ArticleBlock } from "../../lib/articles";
+import { articleHref, articles, getArticle, type ArticleBlock } from "../../lib/articles";
 import { useDocumentMeta } from "../../lib/use-document-meta";
 
 export function ArtikkelPage() {
@@ -29,6 +29,8 @@ export function ArtikkelPage() {
       </div>
     );
   }
+
+  if (article.href) return <Navigate to={article.href} replace />;
 
   const others = articles.filter((a) => a.slug !== article.slug).slice(0, 3);
 
@@ -79,7 +81,7 @@ export function ArtikkelPage() {
               {others.map((a) => (
                 <Link
                   key={a.slug}
-                  to={`/aktuelt/${a.slug}`}
+                  to={articleHref(a)}
                   className="group flex flex-col overflow-hidden rounded-[1.5rem] bg-white shadow-[0_1px_2px_rgba(13,43,64,0.06)] transition-shadow duration-300 hover:shadow-[0_10px_24px_-12px_rgba(13,43,64,0.14)]"
                 >
                   <div className="relative aspect-[16/10] overflow-hidden">

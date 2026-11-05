@@ -71,7 +71,7 @@ export const inneklimaData: ServicePageData = {
   explainer: {
     heading: "Hva tilbyr vi?",
     body: [
-      "Vi løser alle utfordringer med dårlig luft på arbeidsplassen. Vi tar en befaring på ditt kontor og miljø og leverer løsninger som ikke krever noen byggtekniske endringer. Enkelt, effektivt og billig!",
+      "Vi har jobbet med ren luft siden 1985. Fokuset har hele tiden vært enkle, fleksible og økonomiske effektive løsninger, uten byggtekniske endringer på arbeidsplassen.",
       "Det er en kjent sak at det er lønnsomt å satse på et godt inneklima, både av hensyn til de ansattes trivsel og helse, samt hensynet til bedriftens totale lønnsomhet. I et kontorlokale med lite svevestøv vil de ansatte umiddelbart føle større velvære og ha mer energi.",
       "Helt Opplagt har løsninger som både kan løse og forebygge dårlig inneklima på jobben. Vi leverer ren luft og behagelig temperatur til dine lokaler. Vårt mål er at du skal være Helt Opplagt på jobben!",
     ],
@@ -197,12 +197,12 @@ export const inneklimaData: ServicePageData = {
     {
       question: "Hjelper en luftrenser mot pollen og allergi på kontoret?",
       answer:
-        "Visste du at en av fire på kontoret sliter med allergier som gir plager og nedsatt effektivitet? Nå er det sesong for pollen og mange arbeidstagere plages. Helt Opplagt har løsninger som både kan løse og forebygge dårlig inneklima på jobben.",
+        "Pollenpartikler og andre allergener (som støv og husstøvmidd) føres ofte inn på kontoret via ventilasjonsanlegg, åpne vider eller klær. En god luftrenser filterer ut disse partiklene fortløpene slik at belastningen på luftveiene og øynene reduseres.",
     },
     {
       question: "Hva gjør vi med tørr eller dårlig luft på kontoret?",
       answer:
-        "Vi tar en befaring på ditt kontor og miljø og leverer løsninger som ikke krever noen byggtekniske endringer. I et kontorlokale med lite svevestøv vil de ansatte umiddelbart føle større velvære og ha mer energi.",
+        "Vi tar en befaring på ditt kontor og miljø og leverer løsninger som ikke krever noen byggtekniske endringer. I et kontorlokale med mye svevestøv vil de ansatte umiddelbart føle større velvære og ha mer energi.",
     },
     {
       question: "Kan dere måle luftkvaliteten?",
@@ -232,12 +232,7 @@ export const inneklimaData: ServicePageData = {
       to: "/tjenester/inneklima/luftmalinger",
       image: safelungsImg,
     },
-    {
-      label: "Luftrenser for kontor",
-      description: "Vi løser alle utfordringer med dårlig luft på arbeidsplassen.",
-      to: "/tjenester/inneklima/kontor",
-      image: kontorImg,
-    },
+
     {
       label: "Få kontroll over luftkvaliteten i industribygg",
       description: "Vi har løsningene og produktene som løser alle utfordringer.",
@@ -270,61 +265,7 @@ export const inneklimaData: ServicePageData = {
     },
   ],
   subServices: [
-    {
-      slug: "kontor",
-      group: "Artikler",
-      title: "Kontor",
-      description:
-        "Vi løser alle utfordringer med dårlig luft på arbeidsplassen. Vi tar en befaring på ditt kontor og miljø og leverer løsninger som ikke krever noen byggtekniske endringer. Enkelt, effektivt og billig!",
-      image: kontorImg,
-      content: [
-        {
-          type: "text",
-          paragraphs: [
-            "Forskning viser et skremmende bilde og burde få enhver næringslivsleder til å ta problemet alvorlig. Det er en kjent sak at det er lønnsomt å satse på et godt inneklima, både av hensyn til de ansattes trivsel og helse, samt hensynet til bedriftens totale lønnsomhet.",
-            "En gjennomsnittlig medarbeider vil miste 10 % av sin yteevne ved et dårlig inneklima. I et kontorlokale med lite svevestøv vil de ansatte umiddelbart føle større velvære og ha mer energi.",
-            "Helt Opplagt har løsninger som både kan løse og forebygge dårlig inneklima på jobben. Vi leverer ren luft og behagelig temperatur til dine lokaler. Vårt mål er at du skal være Helt Opplagt på jobben!",
-            "Det finnes mange kilder og symptomer som kan bidra til dårlig inneklima. Her kommer en liten oversikt som skal gjøre det lettere for deg å identifisere de:",
-          ],
-        },
-        {
-          type: "bullets",
-          heading: "Vanlige problemer:",
-          items: [
-            "Hodepine",
-            "Følelse av tørr luft",
-            "Såre øyne",
-            "Problemer med kontaktlinser",
-            "Tretthet utover dagen",
-            "Tørr hud",
-            "Halsinfeksjoner",
-            "Tørre slimhinner",
-            "Driftsproblemer på maskiner",
-            "Nedsmussing av lokaler",
-          ],
-        },
-        {
-          type: "bullets",
-          heading: "Kjente kilder:",
-          items: [
-            "Svevestøv fra egen aktivitet",
-            "Svevestøv fra papir og tonere",
-            "Kopimaskiner, printere, faxer",
-            "Arkiv, post og pakkerom",
-            "Tekstilstøv og bygningsmaterialer",
-            "Støv utenfra, som eksos, veistøv og pollen",
-            "Ventilasjonsforurensing",
-            "Statisk elektrisitet",
-            "Varme",
-          ],
-        },
-        {
-          type: "image",
-          src: "https://heltopplagt.no/application/files/5215/6646/4847/Euromate_Call_center_HVC_Middenmeer_2.JPG",
-          alt: "Vi løser utfordringer med inneklima i alle slags lokaler",
-        },
-      ],
-    },
+
     {
       slug: "temperatur",
       group: "Artikler",
@@ -392,7 +333,7 @@ export const inneklimaData: ServicePageData = {
         {
           type: "text",
           paragraphs: [
-            "I nesten alle profesjonelle kjøkken vil det være mye fett og sotpartikler som blir frigitt. Brannfaren øker med mer fett som legger seg i avtrekk og ventilatorer. Euromate sitt filtersystem fjerner selv de minste fett- og røykpartikler fra luften. På den måten vil du få betydelig mindre vedlikehold i avtrekk og ventilator.",
+            "Euromate sitt filtersystem fjerner selv de minste fett- og røykpartikler fra luften. På den måten vil du få betydelig mindre vedlikehold i avtrekk og ventilator.",
           ],
         },
         {
@@ -400,7 +341,7 @@ export const inneklimaData: ServicePageData = {
           heading: "Hvordan kvitte seg med kjøkkengassene?",
           paragraphs: [
             "Kommersielle og profesjonelle kjøkken blir i dag mer og mer omfattende. Mange kjøkken ligger også tett inntil både boligbebyggelse og annen kommersiell virksomhet, dette gjør kravene til gass, lukt og brannsikkerhet større.",
-            "God filtrering i avtrekk hjelper deg å minimere potensielle risikoer som brann, omdømme og ikke minst kostnaden med opprydning hvis en ulykke skulle forekomme.",
+            "God filtrering i avtrekk hjelper deg å minimere potensielle risikoer som brann og ikke minst kostnaden med opprydning hvis en ulykke skulle forekomme.",
           ],
         },
         {
@@ -425,8 +366,16 @@ export const inneklimaData: ServicePageData = {
           type: "text",
           paragraphs: [
             "Støvet pustes inn av de ansatte og skaper helseproblemer samt legger seg på utstyr og forårsaker driftsproblemer for maskiner. Støvet legger seg på kameraer, optiske sensorer og datautstyr som forårsaker økt behov for vedlikehold og renhold. Dette utgjør en vesentlig kostnad. I bakerier, kaffeproduksjon og annen matproduksjon er ofte mikropartikler, gasser, lukter og bakterier et viktig tema, dette er utfordringer våre produkter og løsninger også kan ta seg av.",
-            "Vi har i over 30 år benyttet Euromates industrielle luftrensere til å håndtere denne type problemer. Utstyret er meget godt egnet til oppgaven. I tillegg til å gi langt renere inneluft, har utstyret flere andre positive effekter, som utjevning av temperaturforskjell mellom tak og gulv, samt vesentlig reduksjon av behov av ventilasjon. Å rense luft tilstrekkelig i slike områder ved hjelp av ventilasjon er meget kostbart både installasjons- og energimessig.",
-            "Å benytte oss til denne jobben er derfor meget lønnsomt. Det forsterkes også av at filtrene ofte kan vaskes og ikke kastes, noe som gir ytterligere miljø- og økonomisk gevinst.",
+          ],
+        },
+        {
+          type: "text",
+          heading: "Industrielle luftrensere fra Njord",
+          paragraphs: [
+            "Til lager, verksted og produksjonslokaler bruker vi luftrensere fra Njord. De har totrinnsfiltrering: et forfilter fanger opp større støvpartikler, og hovedfilteret fjerner de minste og mest helseskadelige partiklene (PM10, PM2,5 og PM1). Konstantstrømsstyringen Njord Constant Flow™ holder renseeffekten oppe, uavhengig av filterbelastning.",
+            "<a href=\"/tjenester/inneklima/njord-xp-f\">Njord XP-F</a>: flat luftrenser for lokaler med lav takhøyde.",
+            "<a href=\"/tjenester/inneklima/njord-xp-2\">Njord XP-2</a>: for store lager- og produksjonshaller, med to luftinntak og opptil 4100 m³/h.",
+            "<a href=\"/tjenester/inneklima/njord-xp-4\">Njord XP-4</a>: for de aller største hallene, med fire luftinntak (360°) og opptil 6500 m³/h.",
           ],
         },
         {
@@ -472,14 +421,7 @@ export const inneklimaData: ServicePageData = {
           label: "Les mer hos SafeLungs",
           href: "https://safelungs.no/",
         },
-        {
-          type: "text",
-          heading: "Få et uforpliktende tilbud",
-          paragraphs: [
-            "Når målingene er foretatt lager vi en rapport hvor det står beskrevet hvordan tilstanden er rent inneklimamessig, og hvilke forbedringer som bør gjøres. Prisen for disse målinger er naturligvis avhengig av størrelsen på oppdraget.",
-            "Ring oss på 0 23 46 eller bruk skjema under og gjør en avtale med en av våre inneklimarådgivere, så får dere råd og veiledning og et uforpliktende pristilbud.",
-          ],
-        },
+
       ],
     },
     {
@@ -545,15 +487,15 @@ export const inneklimaData: ServicePageData = {
       group: "Artikler",
       title: "Sesong for såre øyne og luftveisplager",
       description:
-        "Visste du at en av fire på kontoret sliter med allergier som gir plager og nedsatt effektivitet? Nå er det sesong for pollen og mange arbeidstagere plages.",
+        "Visste du at en av fire på kontoret sliter med allergier som gir plager og nedsatt effektivitet?.",
       image: `${thumbs}/6a989ffd1db602cbc63770c77ea10689.jpg`,
       content: [
         {
           type: "text",
           paragraphs: [
-            "Nå er det sesong for pollen og mange arbeidstagere plages. Med en luftrenser som skaper ren luft på kontoret sikrer du at ansatte med allergier får en bra arbeidsdag også i pollensesongen.",
+            "Med en luftrenser som skaper ren luft på kontoret sikrer du at ansatte med allergier får en bra arbeidsdag også i pollensesongen.",
             "Vi løser utfordringer med pollen og annet som bidrar til dårlig luft på arbeidsplassen. Vi tar en uforpliktende befaring på din arbeidsplass og leverer løsninger som ikke krever byggtekniske endringer. Enkelt, effektivt og billig!",
-            "Registrer deg under så tar vi snarlig kontakt for avtale.",
+            "Fyll ut kontaktskjema på siden eller ring oss på 0 23 46 eller e-post bli@heltopplagt.no.",
           ],
         },
       ],
@@ -735,6 +677,7 @@ export const inneklimaData: ServicePageData = {
         {
           type: "table",
           heading: "Tekniske spesifikasjoner",
+          head: true,
           rows: [
             ["Modell", "VisionAir 1", "VisionAir 2"],
             ["Luftstrøm", "180 m³/h", "360 m³/h"],

@@ -9,6 +9,7 @@ import { ArtikkelPage } from "./pages/ArtikkelPage";
 import { AnsvarPage } from "./pages/AnsvarPage";
 import { KontaktPage } from "./pages/KontaktPage";
 import { TakkPage } from "./pages/TakkPage";
+import { PersonvernPage } from "./pages/PersonvernPage";
 import { FruktPage } from "./pages/tjenester/Frukt";
 import { LunsjPage } from "./pages/tjenester/Lunsj";
 import { RenholdPage } from "./pages/tjenester/Renhold";
@@ -43,6 +44,7 @@ export const router = createBrowserRouter([
       { path: "ansvar", Component: AnsvarPage },
       { path: "kontakt", Component: KontaktPage },
       { path: "takk", Component: TakkPage },
+      { path: "personvern", Component: PersonvernPage },
       { path: "karriere", Component: KarriereRedirect },
       { path: "tjenester", Component: TjenesterPage },
       { path: "tjenester/frukt", Component: FruktPage },

@@ -43,7 +43,7 @@ export function BrushStroke({ className = "" }: { className?: string }) {
 }
 
 export const CONTAINER =
-  "mx-auto w-full max-w-[1360px] px-5 sm:px-8 lg:px-10";
+  "mx-auto w-full max-w-[1360px] px-5 sm:px-8 lg:px-10 min-[1680px]:max-w-[1520px]";
 
 /* Entrance on first paint: fades and lifts in, staggered per element via
    [transition-delay:…]. Users who prefer reduced motion see it at rest. */

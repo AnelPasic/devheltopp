@@ -162,7 +162,37 @@ export type ContentBlock =
   | { type: "text"; heading?: string; paragraphs: string[] }
   | { type: "bullets"; heading?: string; items: string[] }
   | { type: "image"; src: string; alt?: string }
-  | { type: "table"; heading?: string; rows: string[][]; footnote?: string }
+  /** `head`: the first row is a bold header row, e.g. model names. */
+  | { type: "table"; heading?: string; rows: string[][]; head?: boolean; footnote?: string }
+  /** Packages side by side, each with a price and a checklist of what is in it. */
+  | {
+    type: "packages";
+    heading?: string;
+    /** `note`: one line under the checklist, e.g. who the package suits.
+        `image`: a photo down the left side of the card. */
+    items: { name: string; price: string; points: string[]; note?: string; image?: string }[];
+  }
+  /** Text beside a photo collage, full width. `reverse` puts the photos on
+      the left on desktop, so consecutive sections can zigzag. */
+  | {
+    type: "media";
+    kicker?: string;
+    heading: string;
+    paragraphs: string[];
+    /** A short highlighted line, e.g. "Fra 500,- pr hode". */
+    badge?: string;
+    /** `position` is a CSS object-position, e.g. "50% 30%" to keep a face in a crop. */
+    images: { src: string; alt: string; position?: string }[];
+    reverse?: boolean;
+  }
+  /** Menu with prices: products with a photo show as photo cards, the rest
+      as a plain price list under them. */
+  | {
+    type: "products";
+    heading?: string;
+    items: { name: string; allergens?: string; price: string; image?: string }[];
+    footnote?: string;
+  }
   | {
     type: "cards";
     heading?: string;
@@ -299,6 +329,8 @@ export interface CatalogItem {
   image?: string;
   /** Small tag carried over from the printed brochure, e.g. "Populær". */
   tag?: string;
+  /** Price from the brochure, e.g. "fra 395,- per person". Shown under the name. */
+  price?: string;
   /** One short checked fact under the description, e.g. "Ny kurv hver uke". */
   spec?: string;
   /** Optional link target: the whole card becomes a link with a "Les mer" arrow. */
@@ -316,6 +348,8 @@ export interface CatalogSection {
   /** true = real photographs (object-cover). Default false = white-background cut-outs (mix-blend-multiply). */
   photo?: boolean;
   link?: { label: string; to: string };
+  /** A short name/price list under the items, e.g. Møteservice "Enkeltvis". */
+  priceList?: { heading: string; rows: [name: string, price: string][] };
   /** A button on the right of the heading, e.g. "Se alle våre kurver". */
   headerLink?: { label: string; to: string };
 }
@@ -493,16 +527,25 @@ function CatalogSectionView({
       )}
 
       {catalog.layout === "panels" ? (
-        <div className="mt-9 grid grid-cols-1 gap-5 sm:grid-cols-3">
+        /* Three across; more than three wrap with the last row centred. */
+        <div className="mt-9 flex flex-wrap justify-center gap-5">
           {catalog.items.map((item) => (
             <div
               key={item.name}
-              className="flex flex-col items-center rounded-[1.5rem] bg-white px-6 py-9 text-center shadow-[0_1px_2px_rgba(13,43,64,0.06)]"
+              className={
+                "flex w-full flex-col items-center rounded-[1.5rem] bg-white px-6 py-9 text-center shadow-[0_1px_2px_rgba(13,43,64,0.06)] " +
+                (catalog.items.length > 3
+                  ? "sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
+                  : "sm:w-[calc((100%-2.5rem)/3)]")
+              }
             >
               <h3 className="font-lato text-[20px] font-bold leading-tight text-navy">
                 {item.name}
               </h3>
-              <p className="mt-3.5 max-w-[30ch] text-[15px] leading-relaxed text-navy/65">
+              {item.price && (
+                <p className="mt-2 text-[15px] font-semibold text-brand">{item.price}</p>
+              )}
+              <p className="mt-3.5 max-w-[34ch] text-[15px] leading-relaxed text-navy/65">
                 {item.description}
               </p>
             </div>
@@ -640,6 +683,22 @@ function CatalogSectionView({
               </div>
             );
           })}
+        </div>
+      )}
+
+      {catalog.priceList && (
+        <div className="mx-auto mt-5 max-w-[46rem] rounded-[1.5rem] bg-white px-6 py-7 shadow-[0_1px_2px_rgba(13,43,64,0.06)] sm:px-9">
+          <h3 className="text-center font-lato text-[20px] font-bold leading-tight text-navy">
+            {catalog.priceList.heading}
+          </h3>
+          <dl className="mt-5 divide-y divide-navy/[0.07]">
+            {catalog.priceList.rows.map(([name, price]) => (
+              <div key={name} className="flex items-baseline justify-between gap-6 py-2.5 text-[15px]">
+                <dt className="text-navy/75">{name}</dt>
+                <dd className="whitespace-nowrap font-semibold text-navy">{price}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       )}
 

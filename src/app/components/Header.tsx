@@ -220,8 +220,8 @@ export function Header() {
           </div>
           </div>
 
-          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 py-6 sm:px-8 sm:py-14">
-            <div className="mx-auto grid max-w-[1280px] gap-6 sm:grid-cols-2 sm:gap-16">
+          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain py-6 sm:py-14">
+            <div className={`${CONTAINER} grid gap-6 sm:grid-cols-2 sm:gap-16`}>
               <nav>
                 <p className="mb-2.5 flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.16em] text-white/50 sm:mb-5">
                   <span aria-hidden="true" className="text-[14px] font-bold text-aqua">/</span>
@@ -239,7 +239,7 @@ export function Header() {
                             : "0ms",
                         }}
                         className={
-                          "inline-block py-0.5 font-lato text-xl font-light tracking-[-0.01em] transition-[translate,opacity,color] duration-300 ease-out hover:text-aqua sm:py-1.5 sm:text-4xl " +
+                          "inline-block py-0.5 font-lato text-xl font-light tracking-[-0.01em] transition-[translate,opacity,color] duration-300 ease-out hover:text-aqua sm:py-1.5 sm:text-4xl [@media(min-width:1024px)_and_(min-height:760px)]:text-5xl " +
                           (menuExpanded
                             ? "translate-x-0 opacity-100"
                             : "-translate-x-3 opacity-0")
@@ -260,7 +260,7 @@ export function Header() {
                 <ul className="flex flex-col gap-1">
                   {secondaryLinks.map((l, i) => {
                     const cls =
-                      "inline-block py-0.5 font-lato text-xl font-light tracking-[-0.01em] transition-[translate,opacity,color] duration-300 ease-out hover:text-aqua sm:py-1.5 sm:text-4xl " +
+                      "inline-block py-0.5 font-lato text-xl font-light tracking-[-0.01em] transition-[translate,opacity,color] duration-300 ease-out hover:text-aqua sm:py-1.5 sm:text-4xl [@media(min-width:1024px)_and_(min-height:760px)]:text-5xl " +
                       (menuExpanded
                         ? "translate-x-0 opacity-100"
                         : "-translate-x-3 opacity-0");
@@ -300,7 +300,8 @@ export function Header() {
             </div>
           </div>
 
-          <div className="flex flex-shrink-0 flex-col items-start justify-between gap-4 border-t border-white/10 px-6 py-6 sm:flex-row sm:items-center sm:px-8">
+          <div className="flex-shrink-0 border-t border-white/10">
+          <div className={`${CONTAINER} flex flex-col items-start justify-between gap-4 py-6 sm:flex-row sm:items-center`}>
             <div className="flex flex-col gap-2 sm:flex-row sm:gap-6">
               <a
                 href="mailto:bli@heltopplagt.no"
@@ -326,6 +327,7 @@ export function Header() {
             >
               <ExternalLink className="h-4 w-4" />
             </a>
+          </div>
           </div>
         </div>
         <div className="modal-backdrop">
