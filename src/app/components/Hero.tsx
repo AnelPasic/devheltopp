@@ -1,12 +1,12 @@
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
-import heroLunsj from "../../images/hero/hero-lunsj.jpg";
-import heroKantine from "../../images/hero/hero-kantine.jpg";
-import heroFrukt from "../../images/hero/hero-frukt.jpg";
-import heroCatering from "../../images/hero/hero-catering.jpg";
-import heroInneklima from "../../images/hero/hero-inneklima-dno.jpg";
-import heroRenhold from "../../images/hero/hero-renhold.jpg";
+import heroLunsj from "../../images/hero/hero-lunsj.webp";
+import heroKantine from "../../images/hero/hero-kantine.webp";
+import heroFrukt from "../../images/hero/hero-frukt.webp";
+import heroCatering from "../../images/hero/hero-catering.webp";
+import heroInneklima from "../../images/hero/hero-inneklima-dno.webp";
+import heroRenhold from "../../images/hero/hero-renhold.webp";
 import { BrushUnderline, CONTAINER, ENTER, Kicker, LinePiece, Pill } from "./site";
 
 const SLIDE_DURATION = 6000;
@@ -22,8 +22,13 @@ const slides = [
 
 export function Hero() {
   const [active, setActive] = useState(0);
+  /* Slides are mounted as the show reaches them (plus the next one, so its
+     fade-in is ready), instead of downloading all six on page load. */
+  const [mounted, setMounted] = useState(2);
+  const visibleUpTo = Math.max(mounted, active + 2);
 
   useEffect(() => {
+    setMounted((n) => Math.max(n, active + 2));
     const timer = setInterval(
       () => setActive((i) => (i + 1) % slides.length),
       SLIDE_DURATION
@@ -71,11 +76,14 @@ export function Hero() {
 
         <div className={`${ENTER} [transition-delay:200ms]`}>
           <div className="relative mx-auto aspect-[4/5] w-full max-w-[26rem] overflow-hidden rounded-[0.875rem] lg:max-w-[30rem] xl:max-w-[33rem]">
-            {slides.map((slide, i) => (
+            {slides.map((slide, i) => i < visibleUpTo && (
               <img
                 key={slide.label}
                 src={slide.src}
                 alt={slide.label}
+                /* The first slide is the home page's LCP image. */
+                fetchpriority={i === 0 ? "high" : undefined}
+                decoding="async"
                 className={
                   "absolute inset-0 h-full w-full object-cover transition-[opacity,scale] duration-[1200ms] ease-in-out motion-safe:[transition-duration:1200ms,7000ms] motion-safe:[transition-timing-function:ease-in-out,ease-out] " +
                   (i === active

@@ -4,7 +4,7 @@ import { Breadcrumb, Head, ServiceFooter, type SubService } from "../../componen
 import { CONTAINER, ENTER_DESKTOP, FADE_DESKTOP, Pill } from "../../components/site";
 import { useDocumentMeta } from "../../../lib/use-document-meta";
 import { fruktData } from "./Frukt";
-import heroImg from "../../../images/frukt/fruktkurv-kontor.jpg";
+import heroImg from "../../../images/frukt/fruktkurv-kontor.webp";
 
 /**
  * /tjenester/frukt/fruktkurver: all fruit baskets on one page, with help to

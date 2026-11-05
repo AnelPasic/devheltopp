@@ -35,6 +35,8 @@ function LogoRun({ hidden = false }: { hidden?: boolean }) {
           <img
             src={customer.logo}
             alt={customer.name}
+            loading="lazy"
+            decoding="async"
             className="max-h-7 w-auto max-w-[8rem] object-contain opacity-55 grayscale transition-[opacity,filter] duration-300 hover:opacity-100 hover:grayscale-0 lg:max-h-8"
           />
         </li>

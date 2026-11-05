@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Download } from "lucide-react";
 import {
   Breadcrumb,
   ContentBlock,
@@ -93,6 +93,20 @@ function SubServiceDetail() {
      image right. Content that opens with that same photo would repeat it, so
      it is dropped from the body. */
   const showImage = Boolean(sub.image);
+  const actions = (
+    <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+      <Pill to="/kontakt">
+        Ta kontakt for tilbud
+        <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+      </Pill>
+      {sub.brochureUrl && (
+        <Pill href={sub.brochureUrl} variant="outline" target="_blank" rel="noopener noreferrer">
+          <Download className="h-4 w-4" strokeWidth={2.5} />
+          Brosjyre
+        </Pill>
+      )}
+    </div>
+  );
   const first = sub.content?.[0];
   const body =
     first?.type === "image" && first.src === sub.image
@@ -154,12 +168,7 @@ function SubServiceDetail() {
                     ))}
                   </div>
                 )}
-                <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                  <Pill to="/kontakt">
-                    Ta kontakt for tilbud
-                    <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
-                  </Pill>
-                </div>
+                {actions}
               </>
             ) : (
               <>
@@ -168,12 +177,7 @@ function SubServiceDetail() {
                     {sub.description}
                   </p>
                 )}
-                <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                  <Pill to="/kontakt">
-                    Ta kontakt for tilbud
-                    <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
-                  </Pill>
-                </div>
+                {actions}
               </>
             )}
           </div>
@@ -327,7 +331,7 @@ function ContentBlockView({ block }: { block: ContentBlock }) {
   if (block.type === "image") {
     return (
       <div className="max-w-[780px] overflow-hidden rounded-[1.25rem]">
-        <img src={block.src} alt={block.alt ?? ""} className="w-full" />
+        <img src={block.src} alt={block.alt ?? ""} loading="lazy" decoding="async" className="w-full" />
       </div>
     );
   }
@@ -359,7 +363,8 @@ function ContentBlockView({ block }: { block: ContentBlock }) {
   }
 
   if (block.type === "table") {
-    const [headRow, ...bodyRows] = block.head ? block.rows : [undefined, ...block.rows];
+    const headRow = block.head ? block.rows[0] : undefined;
+    const bodyRows = block.head ? block.rows.slice(1) : block.rows;
     return (
       <div className="max-w-[880px]">
         {block.heading && (
@@ -618,6 +623,8 @@ function ContentBlockView({ block }: { block: ContentBlock }) {
                 <img
                   src={item.image}
                   alt={item.title}
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-cover"
                 />
               </div>

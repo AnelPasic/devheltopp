@@ -1,14 +1,14 @@
 import { ServicePage, ServicePageData } from "../../components/ServicePage";
-import heroImg from "../../../images/lunsj/lunsj.png";
-import openingImg from "../../../images/hero/hero-lunsj.jpg";
-import explainerImg from "../../../images/catering/fat-anretning.jpg";
-import fatHof3 from "../../../images/lunsj/hof3.jpg";
-import hverdagslunsjenImg from "../../../images/lunsj/cards/hverdagslunsjen.jpg";
-import golunsjenImg from "../../../images/lunsj/cards/golunsjen.jpg";
-import superlunsjenImg from "../../../images/lunsj/cards/superlunsjen.jpg";
-import varmLunsjImg from "../../../images/lunsj/varm-lunsj.jpg";
+import heroImg from "../../../images/lunsj/lunsj.webp";
+import openingImg from "../../../images/hero/hero-lunsj.webp";
+import explainerImg from "../../../images/catering/fat-anretning.webp";
+import fatHof3 from "../../../images/lunsj/hof3.webp";
+import hverdagslunsjenImg from "../../../images/lunsj/cards/hverdagslunsjen.webp";
+import golunsjenImg from "../../../images/lunsj/cards/golunsjen.webp";
+import superlunsjenImg from "../../../images/lunsj/cards/superlunsjen.webp";
+import varmLunsjImg from "../../../images/lunsj/varm-lunsj.webp";
+import { cms } from "../../../images/cms";
 
-const thumbs = "https://heltopplagt.no/application/files/cache/thumbnails";
 
 export const lunsjData: ServicePageData = {
   path: "/tjenester/lunsj",
@@ -26,7 +26,7 @@ export const lunsjData: ServicePageData = {
   imageAlt: "Lunsj fra Helt Opplagt",
   heroImage: openingImg,
   brochureUrl:
-    "https://heltopplagt.no/application/files/8917/6785/9195/HeltOpplagt_Lunsjbrosjyre_januar_2026_web.pdf",
+    "/brosjyrer/helt-opplagt-lunsjbrosjyre-2026.pdf",
   heroPoints: [
     { label: "Sunn og god lunsj hver dag" },
     { label: "Et sosialt avbrekk i en travel hverdag" },
@@ -141,13 +141,13 @@ export const lunsjData: ServicePageData = {
       label: "Lunsjesker",
       description: "Velg blant vår enkle Hverdagslunsj™, populære Go'lunsj™ eller luksuriøse Superlunsj™.",
       to: "/tjenester/lunsj/hverdagslunsjen",
-      image: `${thumbs}/4b5debec2dd9e84aaaa4847cf6ad5852.png`,
+      image: cms("4b5debec2dd9e84aaaa4847cf6ad5852"),
     },
     {
       label: "Ferdige fat",
       description: "Lekre fat, levert rett i kjøleskapet - klart til lunsj når dere er det",
       to: "/tjenester/lunsj/ferdige-fat",
-      image: `${thumbs}/41d9e0eadce975c155ef731dbce1b6a8.jpg`,
+      image: cms("41d9e0eadce975c155ef731dbce1b6a8"),
     },
     {
       label: "Varm lunsj",
@@ -159,7 +159,7 @@ export const lunsjData: ServicePageData = {
       label: "Kantine",
       description: "Et fullservicetilbud som passer alle typer kjøkken der vi tar oss av hele lunsjavviklingen.",
       to: "/tjenester/kantine",
-      image: `${thumbs}/f8b24672f313f2f3ca35fd4b0765e8ab.jpg`,
+      image: cms("f8b24672f313f2f3ca35fd4b0765e8ab"),
     },
   ],
   subServices: [
@@ -227,7 +227,7 @@ export const lunsjData: ServicePageData = {
       title: "Ferdige fat",
       description:
         "Kjøtt- og fiskepålegg, ost, egg, grønnsaker osv pakkes på fat. Et tidsbesparende og lønnsomt alternativ til å handle mat i butikken. Passer best fra ca 10 pers og oppover.",
-      image: `${thumbs}/41d9e0eadce975c155ef731dbce1b6a8.jpg`,
+      image: cms("41d9e0eadce975c155ef731dbce1b6a8"),
       content: [
         {
           type: "text",
@@ -274,7 +274,7 @@ export const lunsjData: ServicePageData = {
       title: "Kantine",
       description:
         "Et fullservicetilbud som passer alle typer kjøkken der vi tar oss av hele lunsjavviklingen.",
-      image: `${thumbs}/f8b24672f313f2f3ca35fd4b0765e8ab.jpg`,
+      image: cms("f8b24672f313f2f3ca35fd4b0765e8ab"),
       content: [
         {
           type: "text",

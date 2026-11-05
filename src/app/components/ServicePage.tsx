@@ -6,7 +6,7 @@ import { BrushUnderline, CONTAINER, ENTER_DESKTOP, FADE_DESKTOP, LinePiece, Pill
 import { useDocumentMeta } from "../../lib/use-document-meta";
 import { Reveal } from "./Reveal";
 
-export const allServices = [
+const allServices = [
   { label: "Lunsj", to: "/tjenester/lunsj" },
   { label: "Kantine", to: "/tjenester/kantine" },
   { label: "Frukt", to: "/tjenester/frukt" },
@@ -213,6 +213,8 @@ export interface SubService {
   variantOf?: string;
   /** Short price line, shown on the sub-page header and switcher thumbs. */
   priceNote?: string;
+  /** PDF brochure, shown as a "Brosjyre" button next to the contact button. */
+  brochureUrl?: string;
   /** Page content copied from heltopplagt.no */
   content?: ContentBlock[];
 }
@@ -839,7 +841,7 @@ function ReadMoreList({ links }: { links: ReadMoreLink[] }) {
   );
 }
 
-export function FaqList({ items }: { items: FaqItem[] }) {
+function FaqList({ items }: { items: FaqItem[] }) {
   /* A shared `name` makes the <details> exclusive: opening one closes the rest. */
   const group = useId();
   return (

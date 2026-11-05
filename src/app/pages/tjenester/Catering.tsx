@@ -1,49 +1,50 @@
 import { ServicePage, ServicePageData, type ContentBlock } from "../../components/ServicePage";
-import heroImg from "../../../images/catering/catering.png";
-import openingImg from "../../../images/hero/hero-catering.jpg";
-import explainerImg from "../../../images/catering/kokker.jpg";
-import lunsjCardImg from "../../../images/lunsj/lunsj.png";
-import kantineCardImg from "../../../images/kantine/kantine.png";
-import fruktCardImg from "../../../images/frukt/frukt.png";
-import pasmurtImg from "../../../images/catering/pasmurt.jpg";
-import varmmatImg from "../../../images/catering/varmmat-buffet.jpg";
-import moteserviceImg from "../../../images/catering/moteservice.jpg";
-import eventImg from "../../../images/catering/event-koldtbord.jpg";
-import kakerImg from "../../../images/catering/kaker.jpg";
-import kakerKaffeImg from "../../../images/catering/kaker-kaffe.jpg";
-import bltImg from "../../../images/catering/meny/blt.jpg";
-import ostSkinkeImg from "../../../images/catering/meny/ost-skinke.jpg";
-import kyllingsalatImg from "../../../images/catering/meny/kyllingsalat.jpg";
-import roastbeefImg from "../../../images/catering/meny/roastbeef.jpg";
-import chorizoImg from "../../../images/catering/meny/chorizo-cheddar.jpg";
-import mozzarellaImg from "../../../images/catering/meny/tomat-mozzarella.jpg";
-import wrapKyllingImg from "../../../images/catering/meny/wrap-kylling.jpg";
-import wrapSpekeskinkeImg from "../../../images/catering/meny/wrap-spekeskinke.jpg";
-import wrapRokelaksImg from "../../../images/catering/meny/wrap-rokelaks.jpg";
-import greskSalatImg from "../../../images/catering/meny/gresk-salat.jpg";
-import nicoiseImg from "../../../images/catering/meny/nicoisesalat.jpg";
-import caesarImg from "../../../images/catering/meny/caesarsalat.jpg";
-import pastasalatImg from "../../../images/catering/meny/pastasalat.jpg";
-import taboulehImg from "../../../images/catering/meny/taboulehsalat.jpg";
-import texmexImg from "../../../images/catering/meny/texmex-salat.jpg";
-import nudelsalatImg from "../../../images/catering/meny/nudelsalat.jpg";
-import gronnSalatImg from "../../../images/catering/meny/gronn-salat.jpg";
-import hverdagssalatImg from "../../../images/catering/meny/hverdagssalat.jpg";
-import gardshusImg from "../../../images/catering/garden/gardshus.jpg";
-import innkjorselImg from "../../../images/catering/garden/innkjorsel.jpg";
-import stallenFestImg from "../../../images/catering/garden/stallen-fest.jpg";
-import kokkImg from "../../../images/catering/garden/kokk.jpg";
-import festlokaleImg from "../../../images/catering/garden/festlokale.jpg";
-import gardstunBordImg from "../../../images/catering/garden/gardstun-bord.jpg";
-import badmintonImg from "../../../images/catering/garden/badminton.jpg";
-import kubbImg from "../../../images/catering/garden/kubb.jpg";
-import badeplassImg from "../../../images/catering/garden/badeplass.jpg";
-import archeryTagImg from "../../../images/catering/garden/AT-jente.jpg";
-import paintballImg from "../../../images/catering/garden/paintball.jpg";
-import paintballStemningImg from "../../../images/catering/garden/paintball-stemning.jpg";
-import lavvoImg from "../../../images/catering/garden/Lavvo.jpg";
+import heroImg from "../../../images/catering/catering.webp";
+import openingImg from "../../../images/hero/hero-catering.webp";
+import explainerImg from "../../../images/catering/kokker.webp";
+import lunsjCardImg from "../../../images/lunsj/lunsj.webp";
+import kantineCardImg from "../../../images/kantine/kantine.webp";
+import fruktCardImg from "../../../images/frukt/frukt.webp";
+import pasmurtImg from "../../../images/catering/pasmurt.webp";
+import varmmatImg from "../../../images/catering/varmmat-buffet.webp";
+import moteserviceImg from "../../../images/catering/moteservice.webp";
+import eventImg from "../../../images/catering/event-koldtbord.webp";
+import kakerImg from "../../../images/catering/kaker.webp";
+import kakerKaffeImg from "../../../images/catering/kaker-kaffe.webp";
+import bltImg from "../../../images/catering/meny/blt.webp";
+import ostSkinkeImg from "../../../images/catering/meny/ost-skinke.webp";
+import kyllingsalatImg from "../../../images/catering/meny/kyllingsalat.webp";
+import roastbeefImg from "../../../images/catering/meny/roastbeef.webp";
+import chorizoImg from "../../../images/catering/meny/chorizo-cheddar.webp";
+import mozzarellaImg from "../../../images/catering/meny/tomat-mozzarella.webp";
+import wrapKyllingImg from "../../../images/catering/meny/wrap-kylling.webp";
+import wrapSpekeskinkeImg from "../../../images/catering/meny/wrap-spekeskinke.webp";
+import wrapRokelaksImg from "../../../images/catering/meny/wrap-rokelaks.webp";
+import greskSalatImg from "../../../images/catering/meny/gresk-salat.webp";
+import nicoiseImg from "../../../images/catering/meny/nicoisesalat.webp";
+import caesarImg from "../../../images/catering/meny/caesarsalat.webp";
+import pastasalatImg from "../../../images/catering/meny/pastasalat.webp";
+import taboulehImg from "../../../images/catering/meny/taboulehsalat.webp";
+import texmexImg from "../../../images/catering/meny/texmex-salat.webp";
+import nudelsalatImg from "../../../images/catering/meny/nudelsalat.webp";
+import gronnSalatImg from "../../../images/catering/meny/gronn-salat.webp";
+import hverdagssalatImg from "../../../images/catering/meny/hverdagssalat.webp";
+import gardshusImg from "../../../images/catering/garden/gardshus.webp";
+import innkjorselImg from "../../../images/catering/garden/innkjorsel.webp";
+import stallenFestImg from "../../../images/catering/garden/stallen-fest.webp";
+import kokkImg from "../../../images/catering/garden/kokk.webp";
+import festlokaleImg from "../../../images/catering/garden/festlokale.webp";
+import gardstunBordImg from "../../../images/catering/garden/gardstun-bord.webp";
+import badmintonImg from "../../../images/catering/garden/badminton.webp";
+import kubbImg from "../../../images/catering/garden/kubb.webp";
+import badeplassImg from "../../../images/catering/garden/badeplass.webp";
+import archeryTagImg from "../../../images/catering/garden/AT-jente.webp";
+import paintballImg from "../../../images/catering/garden/paintball.webp";
+import paintballStemningImg from "../../../images/catering/garden/paintball-stemning.webp";
+import lavvoImg from "../../../images/catering/garden/Lavvo.webp";
+import kickoffImg from "../../../images/catering/kickoff-2021.webp";
+import { cms } from "../../../images/cms";
 
-const thumbs = "https://heltopplagt.no/application/files/cache/thumbnails";
 
 /* Products and prices from the printed catering brochure. Shared by the
    catalogs on the Catering page and the price tables on the sub-pages. */
@@ -150,8 +151,6 @@ export const cateringData: ServicePageData = {
   image: heroImg,
   imageAlt: "Catering fra Helt Opplagt",
   heroImage: openingImg,
-  brochureUrl:
-    "https://heltopplagt.no/application/files/8417/5526/4710/Catering_2025.pdf",
   heroPoints: [
     { label: "Laget fra bunn av med ferske råvarer" },
     { label: "Vi kan stille med mat, drikke, kokk og servitører." },
@@ -324,7 +323,7 @@ export const cateringData: ServicePageData = {
       title: "Salater",
       description:
         "Vi har en variert salatmeny med klassiske salater som cæsarsalat, nicoisesalat og pastasalat, samt spennende salater med smaker fra hele verden.",
-      image: `${thumbs}/3d1ba52d8c13ebc884ca2ef2304b2516.jpg`,
+      image: cms("3d1ba52d8c13ebc884ca2ef2304b2516"),
       content: [
         {
           type: "text",
@@ -362,7 +361,7 @@ export const cateringData: ServicePageData = {
       title: "Overtidsmat",
       description:
         "Vi lager nydelige varmretter i porsjonspakker. Våre overtidspakker leveres som «overtidsmat abonnement» som sørger for at dere har mat klar i kjøleskapet som enkelt kan varmes i micro. Vi varierer menyen hver uke.",
-      image: `${thumbs}/fae8c770cb3e37279d5d9083d9b71ddd.jpg`,
+      image: cms("fae8c770cb3e37279d5d9083d9b71ddd"),
       content: [
         {
           type: "text",
@@ -423,7 +422,7 @@ export const cateringData: ServicePageData = {
         },
         {
           type: "image",
-          src: "https://heltopplagt.no/application/files/7316/1348/5394/Kickoff_2021.jpg",
+          src: kickoffImg,
           alt: "Kick-off med Helt Opplagt",
         },
         {
@@ -450,7 +449,8 @@ export const cateringData: ServicePageData = {
       slug: "helt-opplagt-pa-garden",
       title: "Helt Opplagt på gården",
       description: "Nå kan vi også stille med lokaler til ditt arrangement.",
-      image: `${thumbs}/88375d2d8c649f17faafa2f6ad6ccc56.jpg`,
+      brochureUrl: "/brosjyrer/helt-opplagt-pa-garden.pdf",
+      image: cms("88375d2d8c649f17faafa2f6ad6ccc56"),
       content: [
         {
           type: "media",
